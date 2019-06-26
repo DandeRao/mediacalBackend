@@ -39,7 +39,7 @@ INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type
 INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (22, 67,  null, null, 'Kidney');
 INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (23, 23, 7, 1, 'Harmone-Refractory');
 INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (24, 23, 7, 1,'Hormonal');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (25, 69, 'Testicular');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (25, 69, null, null,'Testicular');
  INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (28, 72, null, null,  'Unknown Primary');
 INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (29, 73,  null, null, 'AIDS-Related');
 INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (30, 74,  null, null, 'Hodgkin''s');
@@ -81,7 +81,7 @@ INSERT INTO subcancertype1 (pk, patient_type_id, cancer_type_id, title) VALUES (
 INSERT INTO subcancertype1 (pk, patient_type_id, cancer_type_id, title) VALUES (18,  1,6, 'Cervical');
 INSERT INTO subcancertype1 (pk, patient_type_id, cancer_type_id, title) VALUES (19,  1,6, 'Endometrial');
 INSERT INTO subcancertype1 (pk, patient_type_id, cancer_type_id, title) VALUES (20,  1,6, 'Ovarian');
-INSERT INTO subcancertype1 (pk, patient_type_id, cancer_type_id, title) VALUES (21,  1,7 1,, 'Bladder');
+INSERT INTO subcancertype1 (pk, patient_type_id, cancer_type_id, title) VALUES (21,  1,7,'Bladder');
 INSERT INTO subcancertype1 (pk, patient_type_id, cancer_type_id, title) VALUES (22,  1,7, 'Kidney');
 INSERT INTO subcancertype1 (pk, patient_type_id, cancer_type_id, title) VALUES (23,  1,7, 'Prostate');
 INSERT INTO subcancertype1 (pk, patient_type_id, cancer_type_id, title) VALUES (24,  1,7, 'Testicular');

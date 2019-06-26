@@ -38,8 +38,9 @@ public class SubCancerType2Service {
         SubCancerType2 subCancerType2 = objectMapper.readValue(payLoad, SubCancerType2.class);
         SubCancerType2 subCancerType1 = SubCancerType2.builder()
                 .id(subCancerType2.getId() != 0? subCancerType2.getId() :(int) (subCancerType2Repository.getMaxId() +1))
-                .subCancerType1(subCancerType2.getSubCancerType1())
                 .subcancertypeid(subCancerType2.getSubcancertypeid())
+                .cancerTypeId(subCancerType2.getSubcancertypeid())
+                .patienttypeid(subCancerType2.getSubcancertypeid())
                 .title(subCancerType2.getTitle())
                 .build();
         return subCancerType2Repository.save(subCancerType1);
