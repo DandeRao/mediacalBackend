@@ -21,9 +21,19 @@ public class SubCancerType3 {
     private String title;
 
     @Column(name = "subcancer_type2_id")
-    private int subcancertypeid;
+    private int subcancertype2id;
 
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private SubCancerType2 subCancerType2;
+    @Column(name = "subcancer_type1_id")
+    private int subcancertype1id;
+
+
+    @Column(name = "cancer_type_id")
+    private int cancerTypeId;
+
+    @Column(name = "patient_type_id")
+    private int patienttypeid;
+
+    @Column(name = "linked_sub_cancer_id")
+    private int linkedSubCancerId;
+
 }
