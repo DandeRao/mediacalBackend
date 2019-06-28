@@ -43,15 +43,18 @@ public class SubCancerType3Service {
 
     public SubCancerType3 addOrUpdateSubCancerType3(String payLoad) throws JsonParseException, JsonMappingException, IOException {
         SubCancerType3 subCancerType3 = objectMapper.readValue(payLoad, SubCancerType3.class);
+
         SubCancerType3 subCancerType3new = SubCancerType3.builder()
-                .id(subCancerType3.getId() !=0? subCancerType3.getId() :subCancerType3Repository.getMaxId() +1)
-                .title(subCancerType3.getTitle())
-                .cancerTypeId(subCancerType3.getCancerTypeId())
-                .subcancertype1id(subCancerType3.getSubcancertype1id())
-                .subcancertype2id(subCancerType3.getSubcancertype2id())
-                .linkedSubCancerId(subCancerType3.getLinkedSubCancerId())
-                .id(subCancerType3.getId())
-                .build();
+                    .id(subCancerType3.getId() !=0? subCancerType3.getId() :subCancerType3Repository.getMaxId() +1)
+                    .title(subCancerType3.getTitle())
+                    .cancerTypeId(subCancerType3.getCancerTypeId())
+                    .subcancertype1id(subCancerType3.getSubcancertype1id())
+                    .subcancertype2id(subCancerType3.getSubcancertype2id())
+                    .linkedSubCancerId(subCancerType3.getLinkedSubCancerId())
+                    .id(subCancerType3.getId())
+                    .build();
+
+
         return subCancerType3Repository.save(subCancerType3new);
     }
 

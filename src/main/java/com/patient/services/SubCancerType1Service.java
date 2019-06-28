@@ -46,7 +46,7 @@ public class SubCancerType1Service {
             SubCancerType1 subCancer1 = new SubCancerType1();
             subCancer1.setId(subCancer.getId());
             subCancer1.setPatienttypeid(subCancer.getPatienttypeid());
-            subCancer1.setSubcancertypeid(subCancer.getSubcancertype1id());
+             subCancer1.setSubcancertypeid(subCancer.getSubcancertype1id());
             subCancer1.setTitle(subCancer.getTitle());
             subCancerForCancer.add(subCancer1);
         }

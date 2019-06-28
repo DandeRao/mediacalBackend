@@ -15,4 +15,6 @@ public interface CancerTypeRepository extends JpaRepository<CancerType, Integer>
 
     @Query(value = "select MAX(pk) from cancer_type", nativeQuery = true)
     int getMaxId();
+
+
 }

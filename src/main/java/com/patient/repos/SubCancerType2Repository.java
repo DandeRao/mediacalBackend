@@ -1,5 +1,6 @@
 package com.patient.repos;
 import com.patient.models.SubCancerType2;
+import com.patient.models.SubCancerType3;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
