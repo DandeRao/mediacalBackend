@@ -19,8 +19,14 @@ public interface SubCancerType3Repository extends JpaRepository<SubCancerType3, 
     List<SubCancerType3> findCancerById(@Param("patientId") int patientId);
 
 
-    @Query("Select a from SubCancerType3 a where a.patienttypeid = :pid and a.subcancertype1id = :id and a.linkedSubCancerId = 0  and a.subcancertype2id = 0  and a.cancerTypeId = :cid")
-    List<SubCancerType3> findSubCancerType2ById(@Param("id") int id, @Param("pid") int pid, @Param("cid") int cid);
+    @Query("Select a from SubCancerType3 a where a.patienttypeid = :patientId and a.subcancertype1id = :subCancer1Id and a.linkedSubCancerId = 0  and a.subcancertype2id = 0  and a.cancerTypeId = :cancerId")
+    List<SubCancerType3> findSubCancerType2ById(@Param("patientId") int patientId, @Param("cancerId") int cancerId, @Param("subCancer1Id") int subCancer1Id);
+
+    @Query("Select a from SubCancerType3 a where a.patienttypeid = :patientId and a.subcancertype1id = :subCancer1Id and a.linkedSubCancerId = 0  and a.subcancertype2id = :subCancer2Id  and a.cancerTypeId = :cancerId")
+    List<SubCancerType3> findSubCancerType3ById(@Param("patientId") int patientId, @Param("cancerId") int cancerId, @Param("subCancer1Id") int subCancer1Id, @Param("subCancer2Id") int subCancer2Id);
+
+    @Query("Select a from SubCancerType3 a where a.patienttypeid = :patientId and a.subcancertype1id = :subCancer1Id and a.linkedSubCancerId = :linkedId  and a.subcancertype2id = :subCancer2Id  and a.cancerTypeId = :cancerId")
+    List<SubCancerType3> findSubCancerTypeByLinkedId(@Param("patientId") int patientId, @Param("cancerId") int cancerId, @Param("subCancer1Id") int subCancer1Id, @Param("subCancer2Id") int subCancer2Id, @Param("linkedId") int linkedId);
 
     @Query("Select MAX(id) from SubCancerType3")
     int getMaxId();

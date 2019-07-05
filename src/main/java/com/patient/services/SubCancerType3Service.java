@@ -32,8 +32,10 @@ public class SubCancerType3Service {
         return subCancerType3Repository.findOne(id);
     }
 
-    public  List<SubCancerType3> getSubCancerType3TypesById(int id) { return
-            subCancerType3Repository.findSubCancerType3ById(id);}
+    public  List<SubCancerType3> getSubCancerType3TypesById(String payLoad)  throws JsonParseException, JsonMappingException, IOException {
+        SubCancerType3 subCancerType3 = objectMapper.readValue(payLoad, SubCancerType3.class);
+        return subCancerType3Repository.findSubCancerTypeByLinkedId(subCancerType3.getPatienttypeid(), subCancerType3.getCancerTypeId(), subCancerType3.getSubcancertype1id(), subCancerType3.getSubcancertype2id(), subCancerType3.getLinkedSubCancerId());
+    }
 
 
     public long deleteSubCancerType3(int id) {

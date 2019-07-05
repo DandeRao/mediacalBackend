@@ -17,15 +17,11 @@ public class SubCancerType3Controller {
     @Autowired
     private SubCancerType3Service subCancerType3Service;
 
-    @RequestMapping(value = "/subCancerType3ControllerById", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-    public List<SubCancerType3> getSubCancerType3Controller() {
-        return subCancerType3Service.getAllSubCancerType3();
+    @RequestMapping(value = "/subCancerType3ControllerById/get", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    public List<SubCancerType3> getSubCancerType3Controller(@RequestBody String payLoad) throws JsonParseException, JsonMappingException, IOException {
+        return subCancerType3Service.getSubCancerType3TypesById(payLoad);
     }
 
-    @RequestMapping(value = "/subCancerType3ControllerById/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-    public List<SubCancerType3> getSubCancerType3ControllerId(@PathVariable("id") Integer id) {
-        return subCancerType3Service.getSubCancerType3TypesById(id);
-    }
 
     @RequestMapping(value = "/subCancerType3ControllerById/add", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     public SubCancerType3 addSubCancerType3(@RequestBody String payLoad)
