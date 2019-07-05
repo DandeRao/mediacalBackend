@@ -3,7 +3,6 @@ package com.patient.services;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.patient.models.SubCancerType1;
 import com.patient.models.SubCancerType2;
 import com.patient.models.SubCancerType3;
 import com.patient.repos.SubCancerType2Repository;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,15 +29,10 @@ public class SubCancerType2Service {
         return subCancerType2Repository.findAll();
     }
 
+    public  List<SubCancerType2> getSubCancerType2TypesById(int patientId, int cancerId, int subCancer1Id) {
 
-    public  List<SubCancerType2> getSubCancerType2TypesById(int id) { return
-            subCancerType2Repository.findSubCancerType2ById(id);}
-
-
-    public  List<SubCancerType2> getSubCancerType2TypesByLinkedId(int id) {
-
-        List<SubCancerType3> subCancerType3LinkedList = subCancerType3Repository.findSubCancerType2ByLinkedId(id,id,id);
-        List<SubCancerType2> subCancerType2 = subCancerType2Repository.findSubCancerType2ById(id);
+        List<SubCancerType3> subCancerType3LinkedList = subCancerType3Repository.findSubCancerType2ById(patientId, cancerId, subCancer1Id);
+        List<SubCancerType2> subCancerType2 = subCancerType2Repository.findSubCancerType2ById(subCancer1Id);
 
         for(SubCancerType3 subCancer  : subCancerType3LinkedList){
             SubCancerType2 subCancerType2new = new SubCancerType2();

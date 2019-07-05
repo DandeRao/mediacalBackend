@@ -37,9 +37,9 @@ public class SubCancerType1Service {
         return subCancerTypeRepository.findOne(id);
     }
 
-    public  List<SubCancerType1> getSubCancerType1TypesById(int id) {
-        List<SubCancerType3> subCancersInLinkedTable = type3Repository.findSubCancerType1ById(id);
-        List<SubCancerType1> subCancerForCancer = subCancerTypeRepository.findSubCancerType1ById(id);
+    public  List<SubCancerType1> getSubCancerType1TypesById(int patientId, int cancerId) {
+        List<SubCancerType3> subCancersInLinkedTable = type3Repository.findSubCancerType1ById(patientId, cancerId);
+        List<SubCancerType1> subCancerForCancer = subCancerTypeRepository.findSubCancerType1ById(cancerId);
 
         for(SubCancerType3 subCancer :subCancersInLinkedTable)
         {

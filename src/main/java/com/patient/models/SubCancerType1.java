@@ -25,4 +25,36 @@ public class SubCancerType1 implements Serializable {
 
     @Column(name = "patient_type_id")
     private int patienttypeid;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getSubcancertypeid() {
+        return subcancertypeid;
+    }
+
+    public void setSubcancertypeid(int subcancertypeid) {
+        this.subcancertypeid = subcancertypeid;
+    }
+
+    public int getPatienttypeid() {
+        return patienttypeid;
+    }
+
+    public void setPatienttypeid(int patienttypeid) {
+        this.patienttypeid = patienttypeid;
+    }
 }

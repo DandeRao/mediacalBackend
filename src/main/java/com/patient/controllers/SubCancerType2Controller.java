@@ -24,9 +24,9 @@ public class SubCancerType2Controller {
     }
 
 
-    @RequestMapping(value = "/subCancerType2ControllerById/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-    public List<SubCancerType2> getSubCancerType1ControllerId(@PathVariable("id") Integer id) {
-        return subCancerType2Service.getSubCancerType2TypesById(id);
+    @RequestMapping(value = "/subCancerType2ControllerById/{patientId}/{cancerId}/{subCancer1Id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    public List<SubCancerType2> getSubCancerType1ControllerId(@PathVariable("patientId") int patientId, @PathVariable("cancerId") int cancerId, @PathVariable("subCancer1Id") int subCancer1Id) {
+        return subCancerType2Service.getSubCancerType2TypesById(patientId, cancerId, subCancer1Id);
     }
 
     @RequestMapping(value = "/subCancerType2ControllerById/add", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)

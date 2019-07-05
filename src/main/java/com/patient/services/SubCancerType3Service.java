@@ -43,15 +43,15 @@ public class SubCancerType3Service {
 
     public SubCancerType3 addOrUpdateSubCancerType3(String payLoad) throws JsonParseException, JsonMappingException, IOException {
         SubCancerType3 subCancerType3 = objectMapper.readValue(payLoad, SubCancerType3.class);
-
+        int newId = (subCancerType3.getId() !=0)? subCancerType3.getId() : (0 == subCancerType3Repository.getMaxId() ? 1 : subCancerType3Repository.getMaxId() +1);
         SubCancerType3 subCancerType3new = SubCancerType3.builder()
-                    .id(subCancerType3.getId() !=0? subCancerType3.getId() :subCancerType3Repository.getMaxId() +1)
+                    .id(newId)
                     .title(subCancerType3.getTitle())
+                    .patienttypeid(subCancerType3.getPatienttypeid())
                     .cancerTypeId(subCancerType3.getCancerTypeId())
                     .subcancertype1id(subCancerType3.getSubcancertype1id())
                     .subcancertype2id(subCancerType3.getSubcancertype2id())
                     .linkedSubCancerId(subCancerType3.getLinkedSubCancerId())
-                    .id(subCancerType3.getId())
                     .build();
 
 

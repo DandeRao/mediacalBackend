@@ -24,43 +24,45 @@ INSERT INTO cancer_type (pk, patient_type_id, title) VALUES (21, 2, 'Leukemias')
 
 INSERT INTO patient_type (pk, title) VALUES (1, 'Adult');
 INSERT INTO patient_type (pk, title) VALUES (2, 'Pediatric');
+
+INSERT INTO subcancertype3 (pk, subcancer_type1_id, subcancer_type2_id, linked_sub_cancer_id, cancer_type_id, patient_type_id, title) VALUES (0,0,0,0,0,0,'');
+
 INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (9, 9, 3, 1, 'Biliary Tract Cancer');
 INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (10, 9, 3, 1, 'Hepatocellular Cancer');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (12, 57, null, null, 'Non-Small Cell');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (13, 58, null, null,  'Small Cell');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (14, 59,  null, null, 'Thymoma');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (15, 60, null, null,  'HER-2 Neu Negative');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (16, 61,  null, null, 'HER-2 Neu Positive');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (17, 62,  null, null, 'Hormonal Therapy');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (18, 63,  null, null, 'Cervical');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (19, 64,  null, null, 'Endometrial');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (20, 65,  null, null, 'Ovarian');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (21, 66,  null, null, 'Bladder');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (22, 67,  null, null, 'Kidney');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (12, 57, 0, 0, 'Non-Small Cell');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (13, 58, 0, 0,  'Small Cell');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (14, 59,  0, 0, 'Thymoma');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (15, 60, 0, 0,  'HER-2 Neu Negative');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (16, 61,  0, 0, 'HER-2 Neu Positive');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (17, 62,  0, 0, 'Hormonal Therapy');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (18, 63,  0, 0, 'Cervical');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (19, 64,  0, 0, 'Endometrial');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (20, 65,  0, 0, 'Ovarian');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (21, 66,  0, 0, 'Bladder');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (22, 67,  0, 0, 'Kidney');
 INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (23, 23, 7, 1, 'Harmone-Refractory');
 INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (24, 23, 7, 1,'Hormonal');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (25, 69, null, null,'Testicular');
- INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (28, 72, null, null,  'Unknown Primary');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (29, 73,  null, null, 'AIDS-Related');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (30, 74,  null, null, 'Hodgkin''s');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (31, 75,  null, null, 'Non-Hodgkin''s');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (32, 76,  null, null, 'Acute Lymphocytic Leukemia (ALL)');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (33, 77,  null, null, 'Acute Myeloid Leukemia (AML)');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (34, 78,  null, null, 'Chronic Lymphocytic Leukemia (CLL)');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (35, 79, null, null,  'Chronic Myeloid Leukemia (CML)');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (36, 80, null, null,  'Hairy Cell Leukemia');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (38, 82,  null, null, 'CNS Tumors');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (39, 83, 15, null,'Neuroblastoma');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (40, 84, 16, null,'Retinoblastoma');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (41, 85, 17, null,'Hepatoblastoma');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (42, 86, 18, null,'Wilms'' Tumor');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (43, 87,  null, null, 'Osteosarcoma');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (44, 88,  null, null, 'Soft tissue and Bone');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (45, 89,  null, null, 'Hodgkin''s');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (46, 90,  null, null, 'Non-Hodgkin''s');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (47, 91,  null, null, 'Acute Lymphocytic Leukemia');
-INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (48, 92,  null, null, 'Acute Myeloid Leukemia');
-
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (25, 69, 0, 0,'Testicular');
+ INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (28, 72, 0, 0,  'Unknown Primary');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (29, 73,  0, 0, 'AIDS-Related');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (30, 74,  0, 0, 'Hodgkin''s');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (31, 75,  0, 0, 'Non-Hodgkin''s');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (32, 76,  0, 0, 'Acute Lymphocytic Leukemia (ALL)');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (33, 77,  0, 0, 'Acute Myeloid Leukemia (AML)');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (34, 78,  0, 0, 'Chronic Lymphocytic Leukemia (CLL)');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (35, 79, 0, 0,  'Chronic Myeloid Leukemia (CML)');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (36, 80, 0, 0,  'Hairy Cell Leukemia');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (38, 82,  0, 0, 'CNS Tumors');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (39, 83, 15, 0,'Neuroblastoma');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (40, 84, 16, 0,'Retinoblastoma');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (41, 85, 17, 0,'Hepatoblastoma');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (42, 86, 18, 0,'Wilms'' Tumor');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (43, 87,  0, 0, 'Osteosarcoma');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (44, 88,  0, 0, 'Soft tissue and Bone');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (45, 89,  0, 0, 'Hodgkin''s');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (46, 90,  0, 0, 'Non-Hodgkin''s');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (47, 91,  0, 0, 'Acute Lymphocytic Leukemia');
+INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (48, 92,  0, 0, 'Acute Myeloid Leukemia');
 
 
 -- INSERT INTO subcancertype1 (pk, patient_type_id, patient_type_id, cancer_type_id, title) VALUES (47, 1, 1, 'CNS Tumors');

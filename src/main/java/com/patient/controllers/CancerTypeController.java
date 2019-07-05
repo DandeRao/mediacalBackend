@@ -3,7 +3,9 @@ package com.patient.controllers;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.patient.models.CancerType;
+import com.patient.models.SubCancerType3;
 import com.patient.services.CancerTypeService;
+import com.patient.services.SubCancerType3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,9 @@ public class CancerTypeController {
 
     @Autowired
     private CancerTypeService cancerTypeService;
+
+    @Autowired
+    private SubCancerType3Service subCancerType3Service;
 
     @RequestMapping(value = "/cancerTypeController", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public List<CancerType> getAllCancerTypes() {
@@ -34,9 +39,9 @@ public class CancerTypeController {
     }
 
     @RequestMapping(value = "/cancerTypeControllerById/add", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-    public CancerType addRegimenDetail(@RequestBody String payLoad)
+    public SubCancerType3 addRegimenDetail(@RequestBody String payLoad)
             throws JsonParseException, JsonMappingException, IOException {
-        return cancerTypeService.addOrUpdateCancerType(payLoad);
+        return subCancerType3Service.addOrUpdateSubCancerType3(payLoad);
     }
 
     @RequestMapping(value = "/cancerTypeControllerById/edit", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)

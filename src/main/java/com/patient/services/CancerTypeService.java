@@ -4,12 +4,15 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.patient.models.CancerType;
+import com.patient.models.SubCancerType3;
 import com.patient.repos.CancerTypeRepository;
 import com.patient.repos.PatientRepository;
+import com.patient.repos.SubCancerType3Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,6 +24,8 @@ public class CancerTypeService {
     @Autowired
     private PatientRepository patientRepository;
 
+    @Autowired
+    private SubCancerType3Repository subCancerType3Repository;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -33,8 +38,21 @@ public class CancerTypeService {
         return cancerTypeRepository.findOne(id);
     }
 
-    public  List<CancerType> getCancerTypes(int id) { return
-            cancerTypeRepository.findByCancerTypeId(id);}
+    public  List<CancerType> getCancerTypes(int id) {
+        List<CancerType> cancers = new ArrayList<>();
+        List<SubCancerType3> cancersInSubCancerTable = subCancerType3Repository.findCancerById(id);
+        cancers.addAll(cancerTypeRepository.findByCancerTypeId(id));
+
+        for(SubCancerType3 s3: cancersInSubCancerTable) {
+            CancerType c = new CancerType();
+            c.setId(s3.getId());
+            c.setPatienttypeid(s3.getPatienttypeid());
+            c.setTitle(s3.getTitle());
+            cancers.add(c);
+        }
+
+        return cancers;
+    }
 
     public int deleteCancerType(int id) {
         CancerType cancerType = cancerTypeRepository.findOne(id);

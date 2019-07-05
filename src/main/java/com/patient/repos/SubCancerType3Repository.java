@@ -12,18 +12,16 @@ public interface SubCancerType3Repository extends JpaRepository<SubCancerType3, 
     @Query("Select a from SubCancerType3 a where a.id = :id")
     List<SubCancerType3> findSubCancerType3ById(@Param("id") int id);
 
-    @Query("Select a from SubCancerType3 a where a.subcancertype2id = null and a.subcancertype1id = :id")
-    List<SubCancerType3> findSubCancerType1ById(@Param("id") int id);
+    @Query("Select a from SubCancerType3 a where a.patienttypeid = :patientId and a.cancerTypeId = :cancerId  and a.subcancertype1id = 0 and a.subcancertype2id = 0  and a.linkedSubCancerId = 0")
+    List<SubCancerType3> findSubCancerType1ById(@Param("patientId") int patientId, @Param("cancerId") int cancerId);
 
-    @Query("Select a from SubCancerType3 a where a.patienttypeid = :id and a.cancerTypeId = :cid")
-    List<SubCancerType3> findSubCancerType1ByLinkedId(@Param("id") int id, @Param("cid") int cid);
+    @Query("Select a from SubCancerType3 a where a.patienttypeid = :patientId and a.cancerTypeId = 0  and a.subcancertype1id = 0 and a.subcancertype2id = 0  and a.linkedSubCancerId = 0 and a.cancerTypeId = 0")
+    List<SubCancerType3> findCancerById(@Param("patientId") int patientId);
 
-    @Query("Select a from SubCancerType3 a where a.patienttypeid = :pid and a.subcancertype1id = :id and a.linkedSubCancerId = null and a.cancerTypeId = :cid")
-    List<SubCancerType3> findSubCancerType2ByLinkedId(@Param("id") int id, @Param("pid") int pid, @Param("cid") int cid);
 
-    @Query("Select a from SubCancerType3 a where a.subcancertype1id=:subcancertype1id and a.subcancertype2id=:subcancertype2id")
-    List<SubCancerType3> findSubCancerType2ById(@Param("subcancertype1id") int subcancertype1id, @Param("subcancertype2id") int subcancertype2id);
+    @Query("Select a from SubCancerType3 a where a.patienttypeid = :pid and a.subcancertype1id = :id and a.linkedSubCancerId = 0  and a.subcancertype2id = 0  and a.cancerTypeId = :cid")
+    List<SubCancerType3> findSubCancerType2ById(@Param("id") int id, @Param("pid") int pid, @Param("cid") int cid);
 
-    @Query(value = "select MAX(pk) from subcancertype3", nativeQuery = true)
+    @Query("Select MAX(id) from SubCancerType3")
     int getMaxId();
 }
