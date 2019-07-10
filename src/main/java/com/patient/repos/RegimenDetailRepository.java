@@ -13,6 +13,10 @@ public interface RegimenDetailRepository extends JpaRepository< RegimenDetail, L
     @Query("Select a from RegimenDetail a where a.SubCancerTypeId3 = :id")
     List<RegimenDetail> findRegimenDetailById(@Param("id") int id);
 
+    @Query(value = "select * from regimen_detail", nativeQuery = true)
+    List<RegimenDetail> getAllRegimenDetails();
+
+
     @Query(value = "select MAX(pk) from regimen_detail", nativeQuery = true)
     int getMaxId();
 

@@ -99,8 +99,15 @@ public class RegimenDetailService {
     }
 
 
-    public  List<RegimenDetail> getRegimenDetailById(int id) { return
-            regimenDetailRepository.findRegimenDetailById(id);}
+    public List<RegimenDetail> getRegimenDetailById(int id) {
+
+        if (id == 0) {
+            return regimenDetailRepository.getAllRegimenDetails();
+        } else {
+            return
+                    regimenDetailRepository.findRegimenDetailById(id);
+        }
+    }
 
     public long getRegimenId( RegimenDetail regimenDetail1){
 

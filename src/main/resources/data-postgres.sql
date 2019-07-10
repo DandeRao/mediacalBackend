@@ -25,7 +25,7 @@ INSERT INTO cancer_type (pk, patient_type_id, title) VALUES (21, 2, 'Leukemias')
 INSERT INTO patient_type (pk, title) VALUES (1, 'Adult');
 INSERT INTO patient_type (pk, title) VALUES (2, 'Pediatric');
 
-INSERT INTO subcancertype3 (pk, subcancer_type1_id, subcancer_type2_id, linked_sub_cancer_id, cancer_type_id, patient_type_id, title) VALUES (0,0,0,0,0,0,'');
+INSERT INTO subcancertype3 (pk, subcancer_type1_id, subcancer_type2_id, linked_sub_cancer_id, cancer_type_id, patient_type_id, title) VALUES (93,0,0,0,0,0,'');
 
 INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (9, 9, 3, 1, 'Biliary Tract Cancer');
 INSERT INTO subcancertype2 (pk, subcancer_type1_id, cancer_type_id, patient_type_id, title) VALUES (10, 9, 3, 1, 'Hepatocellular Cancer');
