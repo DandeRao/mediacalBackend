@@ -2,7 +2,10 @@ package com.patient.controllers;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.patient.models.CancerResponse;
+import com.patient.models.LevelType;
 import com.patient.models.RegimenDetail;
+import com.patient.repos.LevelTypeRepository;
 import com.patient.services.RegimenDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -30,8 +33,18 @@ public class RegimenDetailController {
 
 
     @RequestMapping(value = "/regimenDetailController/{id}/names", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-    public List<RegimenDetail> getregimenDetailId(@PathVariable("id") Integer id) {
-        return regimenDetailService.getRegimenDetailById(id);
+    public CancerResponse getregimenDetailId(@PathVariable("id") Integer id) {
+        return regimenDetailService.getRegimenDetailByCancerId(id);
+    }
+
+    @RequestMapping(value = "/regimenDetailController/{id}/type/{type}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    public CancerResponse getregimenDetailIdAndType(@PathVariable("id") Integer id, @PathVariable("type") String type) {
+        return regimenDetailService.getRegimenDetailByCancerIdAndType(id, type);
+    }
+
+    @RequestMapping(value = "/regimenDetailController/levels/{type}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    public List<String> getLevels(@PathVariable("type") String type) {
+        return regimenDetailService.getLevelsByType(type);
     }
 
     /**
@@ -47,6 +60,21 @@ public class RegimenDetailController {
     public RegimenDetail addRegimenDetail(@RequestBody String payLoad)
             throws JsonParseException, JsonMappingException, IOException {
         return regimenDetailService.addOrUpdateRegimenDetail(payLoad);
+    }
+
+    /**
+     * This method is used for both update and add.
+     *
+     * @param payLoad
+     * @return
+     * @throws JsonParseException
+     * @throws JsonMappingException
+     * @throws IOException
+     */
+    @RequestMapping(value = "/regimenDetailController/add/level", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    public LevelType addLevelType(@RequestBody String payLoad)
+            throws JsonParseException, JsonMappingException, IOException {
+        return regimenDetailService.addLevel(payLoad);
     }
 
     @RequestMapping(value = "/regimenDetailController/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)

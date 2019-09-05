@@ -10,12 +10,18 @@ import java.util.List;
 @Repository
 public interface RegimenDetailRepository extends JpaRepository< RegimenDetail, Long> {
 
-    @Query("Select a from RegimenDetail a where a.SubCancerTypeId3 = :id")
+    @Query("Select a from RegimenDetail a where a.subCancerTypeId3 = :id")
     List<RegimenDetail> findRegimenDetailById(@Param("id") int id);
+
+    @Query("Select a from RegimenDetail a where a.subCancerTypeId3 = :id and a.regimenType = :type")
+    List<RegimenDetail> findRegimenDetailByIdAndType(@Param("id") int id, @Param("type") String type);
 
     @Query(value = "select * from regimen_detail", nativeQuery = true)
     List<RegimenDetail> getAllRegimenDetails();
 
+
+    @Query(value = "Select a from RegimenDetail a where a.id = :id")
+    RegimenDetail getRegimenDetailWithId(@Param("id") int id);
 
     @Query(value = "select MAX(pk) from regimen_detail", nativeQuery = true)
     int getMaxId();

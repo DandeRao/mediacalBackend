@@ -3,19 +3,17 @@ package com.patient.services;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.patient.models.RegimenDetail;
-import com.patient.models.SubCancerType1;
-import com.patient.models.SubCancerType2;
-import com.patient.models.SubCancerType3;
+import com.patient.models.*;
+import com.patient.repos.CancerRepository;
+import com.patient.repos.LevelTypeRepository;
 import com.patient.repos.RegimenDetailRepository;
-import com.patient.repos.SubCancerType2Repository;
-import com.patient.repos.SubCancerType3Repository;
-import com.patient.repos.SubCancerTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 @Service
 public class RegimenDetailService {
@@ -24,16 +22,16 @@ public class RegimenDetailService {
     private RegimenDetailRepository regimenDetailRepository;
 
     @Autowired
+    private CancerRepository cancerRepository;
+
+    @Autowired
+    private CancerService cancerService;
+
+    @Autowired
     private ObjectMapper objectMapper;
 
     @Autowired
-    private SubCancerType3Repository subCancerType3Repository;
-
-    @Autowired
-    private SubCancerType2Repository subCancerType2Repository;
-
-    @Autowired
-    private SubCancerTypeRepository subCancerTypeRepository;
+    private LevelTypeRepository levelTypeRepository;
 
     public List<RegimenDetail> getAllRegimenDetails(){
         return regimenDetailRepository.findAll();
@@ -51,9 +49,8 @@ public class RegimenDetailService {
 
     public RegimenDetail addOrUpdateRegimenDetail(String payLoad) throws JsonParseException, JsonMappingException, IOException {
         RegimenDetail regimenDetail1 = objectMapper.readValue(payLoad, RegimenDetail.class);
-        SubCancerType1 subCancerType1 = subCancerTypeRepository.findOne(regimenDetail1.getId2());
-        SubCancerType2 subCancerType2 = subCancerType2Repository.findOne(regimenDetail1.getId3());
-        SubCancerType3 subCancerType3 = subCancerType3Repository.findOne(regimenDetail1.getId4());
+
+        int cancerId = regimenDetail1.getSubCancerTypeId3();
         RegimenDetail regimenDetail = RegimenDetail.builder()
                 .id(getRegimenId(regimenDetail1))
                 .brandNames(regimenDetail1.getBrandNames())
@@ -62,12 +59,32 @@ public class RegimenDetailService {
                 .dispName(regimenDetail1.getDispName())
                 .dosageModifications(regimenDetail1.getDosageModifications())
                 .schedule(regimenDetail1.getSchedule())
-                .subCancerType3(subCancerType3)
-                .subCancerType2(subCancerType2)
-                .subCancerType1(subCancerType1)
-                .SubCancerTypeId3(regimenDetail1.getId2())
+                .subCancerTypeId3(cancerId)
+                .regimenType(regimenDetail1.getRegimenType())
                 .build();
+
+        String regimenForCancer = cancerRepository.getRegimenByPatientId(cancerId);
+
+        if(regimenForCancer !=null && regimenForCancer.indexOf(cancerId + "") < 0) {
+            regimenForCancer =  regimenForCancer.concat("," + getRegimenId(regimenDetail1) + "");
+            Cancer cancer = cancerRepository.getCancerById(cancerId);
+            cancer.setRegimen(regimenForCancer);
+            cancerRepository.save(cancer);
+        }
+
         return regimenDetailRepository.save(regimenDetail);
+    }
+
+    public LevelType addLevel(String payLoad) throws JsonParseException, JsonMappingException, IOException {
+        LevelType level = objectMapper.readValue(payLoad, LevelType.class);
+
+        LevelType levelDetail = LevelType.builder()
+                .id(levelTypeRepository.getMaxId() + 1)
+                .level(level.getLevel())
+                .type(level.getType())
+                .build();
+
+        return levelTypeRepository.save(levelDetail);
     }
 
     public RegimenDetail updateRegimenDetail(String payLoad) throws JsonParseException, JsonMappingException, IOException {
@@ -87,6 +104,7 @@ public class RegimenDetailService {
             regimenDetail.setReference(regimenDetail1.getReference());
             regimenDetail.setEmetogenicPotential(regimenDetail1.getEmetogenicPotential());
             regimenDetail.setSchedule(regimenDetail1.getSchedule());
+            regimenDetail.setRegimenType(regimenDetail.getRegimenType());
             return regimenDetailRepository.save(regimenDetail);
         }
 
@@ -99,24 +117,58 @@ public class RegimenDetailService {
     }
 
 
-    public List<RegimenDetail> getRegimenDetailById(int id) {
+    public CancerResponse getRegimenDetailByCancerId(int cancerId) {
 
-        if (id == 0) {
-            return regimenDetailRepository.getAllRegimenDetails();
+        CancerResponse cancerResponse = new CancerResponse();
+
+        if (cancerId == 0) {
+            cancerResponse.setRegimenDetail(regimenDetailRepository.getAllRegimenDetails());
         } else {
-            return
-                    regimenDetailRepository.findRegimenDetailById(id);
+            cancerResponse.setRegimenDetail(regimenDetailRepository.findRegimenDetailById(cancerId));
         }
+
+        cancerResponse.setParentCancers(cancerService.getParentCancers(cancerId));
+
+        if(null != cancerResponse.getParentCancers() && cancerResponse.getParentCancers().size() > 0) {
+            cancerResponse.setPatientType(cancerResponse.getParentCancers().get(0).getPatientType());
+        }
+
+        return cancerResponse;
     }
 
-    public long getRegimenId( RegimenDetail regimenDetail1){
+    public CancerResponse getRegimenDetailByCancerIdAndType(int cancerId, String type) {
 
-        if(regimenDetail1.getId() != null){
-            if(regimenDetail1.getId() != 0){
-                return  regimenDetail1.getId();
-            }
+        CancerResponse cancerResponse = new CancerResponse();
+
+        cancerResponse.setRegimenDetail(regimenDetailRepository.findRegimenDetailByIdAndType(cancerId, type));
+
+        cancerResponse.setParentCancers(cancerService.getParentCancers(cancerId));
+
+        if(null != cancerResponse.getParentCancers() && cancerResponse.getParentCancers().size() > 0) {
+            cancerResponse.setPatientType(cancerResponse.getParentCancers().get(0).getPatientType());
+        }
+
+        return cancerResponse;
+    }
+
+
+    public int getRegimenId(RegimenDetail regimenDetail1) {
+
+        if (regimenDetail1.getId() != 0) {
+            return regimenDetail1.getId();
         }
         return regimenDetailRepository.getMaxId() + 1;
     }
 
+
+    public List<String> getLevelsByType(String type) {
+
+        List<String> levels = new ArrayList<>();
+
+        for(LevelType level: levelTypeRepository.findLevelTypeByType(type)) {
+            levels.add(level.getLevel());
+        }
+
+        return levels;
+    }
 }

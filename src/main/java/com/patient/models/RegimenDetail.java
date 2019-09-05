@@ -1,5 +1,6 @@
 package com.patient.models;
 
+import com.sun.istack.internal.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,11 +19,11 @@ import java.io.Serializable;
 public class RegimenDetail implements Serializable {
     @Id
     @Column(name = "pk")
-    private Long id;
+    private int id;
 
 
     @Column(name = "subcancer_type3_id")
-    private int SubCancerTypeId3;
+    private int subCancerTypeId3;
 
     @Column(name = "disp_name")
     @Size(max = 10485760)
@@ -48,30 +49,12 @@ public class RegimenDetail implements Serializable {
     @Size(max = 10485760)
     private String dosageModifications;
 
+    @Nullable
+    @Column(name = "regimen_type")
+    private String regimenType;
+
     @Column(name = "brand_names")
     @Size(max = 10485760)
     private String brandNames;
-
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private SubCancerType3 subCancerType3;
-
-    @ManyToOne
-    @JoinColumn(name = "subcancertype2_id")
-    private SubCancerType2 subCancerType2;
-
-    @ManyToOne
-    @JoinColumn(name = "subcancertype3_id")
-    private SubCancerType1 subCancerType1;
-
-    @Transient
-    private int id2;
-
-    @Transient
-    private int id3;
-
-    @Transient
-    private int id4;
-
 
 }
