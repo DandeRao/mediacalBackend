@@ -7,6 +7,8 @@ public class CancerResponse {
 
   private int patientType;
 
+  private String patientTitle;
+
   private Integer parentId;
 
   private String title;
@@ -32,6 +34,16 @@ public class CancerResponse {
   public void setPatientType(int patientType) {
     this.patientType = patientType;
   }
+
+
+  public String getPatientTitle() {
+    return patientTitle;
+  }
+
+  public void setPatientTitle(String patientTitle) {
+    this.patientTitle = patientTitle;
+  }
+
 
   public Integer getParentId() {
     return parentId;

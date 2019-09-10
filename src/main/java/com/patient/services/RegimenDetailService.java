@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.patient.models.*;
 import com.patient.repos.CancerRepository;
 import com.patient.repos.LevelTypeRepository;
+import com.patient.repos.PatientRepository;
 import com.patient.repos.RegimenDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,8 +31,11 @@ public class RegimenDetailService {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Autowired
-    private LevelTypeRepository levelTypeRepository;
+  @Autowired
+  private LevelTypeRepository levelTypeRepository;
+
+  @Autowired
+  private PatientRepository patientRepository;
 
     public List<RegimenDetail> getAllRegimenDetails(){
         return regimenDetailRepository.findAll();
@@ -131,6 +135,7 @@ public class RegimenDetailService {
 
         if(null != cancerResponse.getParentCancers() && cancerResponse.getParentCancers().size() > 0) {
             cancerResponse.setPatientType(cancerResponse.getParentCancers().get(0).getPatientType());
+            cancerResponse.setPatientTitle(patientRepository.getPatientTitileById(cancerResponse.getPatientType()));
         }
 
         return cancerResponse;
@@ -145,7 +150,8 @@ public class RegimenDetailService {
         cancerResponse.setParentCancers(cancerService.getParentCancers(cancerId));
 
         if(null != cancerResponse.getParentCancers() && cancerResponse.getParentCancers().size() > 0) {
-            cancerResponse.setPatientType(cancerResponse.getParentCancers().get(0).getPatientType());
+          cancerResponse.setPatientType(cancerResponse.getParentCancers().get(0).getPatientType());
+          cancerResponse.setPatientTitle(patientRepository.getPatientTitileById(cancerResponse.getPatientType()));
         }
 
         return cancerResponse;

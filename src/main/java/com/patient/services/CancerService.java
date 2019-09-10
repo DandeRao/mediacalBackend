@@ -8,6 +8,7 @@ import com.patient.models.Cancer;
 import com.patient.models.CancerResponse;
 import com.patient.models.RegimenDetail;
 import com.patient.repos.CancerRepository;
+import com.patient.repos.PatientRepository;
 import com.patient.repos.RegimenDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -30,6 +31,9 @@ public class CancerService {
   private RegimenDetailRepository regimenDetailRepository;
 
   @Autowired
+  private PatientRepository patientRepository;
+
+  @Autowired
   private ObjectMapper objectMapper;
 
 
@@ -39,6 +43,7 @@ public class CancerService {
 
     CancerResponse cancerResponse = new CancerResponse();
     cancerResponse.setPatientType(patientId);
+    cancerResponse.setPatientTitle(patientRepository.getPatientTitileById(patientId));
     cancerResponse.setSubCancers(populateCancersWithRegimens(cancers));
 
     return cancerResponse;
@@ -57,6 +62,7 @@ public class CancerService {
 
     if(null != cancerResponse.getSubCancers() && cancerResponse.getSubCancers().size() > 0) {
       cancerResponse.setPatientType(cancerResponse.getSubCancers().get(0).getPatientType());
+      cancerResponse.setPatientTitle(patientRepository.getPatientTitileById(cancerResponse.getPatientType()));
     }
 
     return cancerResponse;
