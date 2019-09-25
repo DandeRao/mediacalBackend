@@ -152,8 +152,10 @@ public class CancerService {
     if (null != regimenString && !regimenString.equals("")) {
       String[] regimens = regimenString.split(",");
       for (String regimen : regimens) {
-        RegimenDetail regimenDetail = regimenDetailRepository.getRegimenDetailWithId(Integer.parseInt(regimen));
-        regimensForCancer.add(regimenDetail);
+        if(null != regimen && !regimen.equals("")) {
+          RegimenDetail regimenDetail = regimenDetailRepository.getRegimenDetailWithId(Integer.parseInt(regimen));
+          regimensForCancer.add(regimenDetail);
+        }
       }
     }
 
