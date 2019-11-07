@@ -32,6 +32,9 @@ public interface CancerRepository extends JpaRepository<Cancer, Integer> {
   @Query("Select a from Cancer a where a.id = :id")
   Cancer getCancerById(@Param("id") int id);
 
+  @Query(value = "Select id, title from Cancer", nativeQuery = true)
+  List<Object> getAllCancerNames();
+
   @Query(value = "select MAX(id) from cancer", nativeQuery = true)
   int getMaxId();
 }

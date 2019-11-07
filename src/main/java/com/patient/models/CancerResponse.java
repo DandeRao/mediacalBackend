@@ -19,6 +19,8 @@ public class CancerResponse {
 
   private List<Cancer> subCancers;
 
+  private List<Object> allCancers;
+
   public int getId() {
     return id;
   }
@@ -83,5 +85,13 @@ public class CancerResponse {
 
   public void setSubCancers(List<Cancer> subCancers) {
     this.subCancers = subCancers;
+  }
+
+  public List<Object> getAllCancers() {
+    return allCancers;
+  }
+
+  public void setAllCancers(List<Object> allCancers) {
+    this.allCancers = allCancers;
   }
 }

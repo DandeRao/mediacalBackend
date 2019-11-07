@@ -161,4 +161,11 @@ public class CancerService {
 
     return  regimensForCancer;
   }
+
+  public CancerResponse getAllCancerNames() {
+    List<Object> cancers = cancerRepository.getAllCancerNames();
+    CancerResponse response = new CancerResponse();
+    response.setAllCancers(cancers);
+    return  response;
+  }
 }

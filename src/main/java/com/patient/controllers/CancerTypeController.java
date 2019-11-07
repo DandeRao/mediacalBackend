@@ -63,6 +63,11 @@ public class CancerTypeController {
         return cancerService.deleteCancerId(id);
     }
 
+    @RequestMapping(value = "/getAllCancerNames", produces = MediaType.ALL_VALUE, method = RequestMethod.GET)
+    public CancerResponse getAllCancerNames() {
+        return cancerService.getAllCancerNames();
+    }
+
     @RequestMapping(value = "/getCancersByPatient/{patientId}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public CancerResponse getCancersByPatientId(@PathVariable("patientId") Integer id) {
         return cancerService.getCancersWithPatientId(id);
