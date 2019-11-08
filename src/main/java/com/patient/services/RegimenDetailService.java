@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 @Service
 public class RegimenDetailService {
@@ -93,7 +92,7 @@ public class RegimenDetailService {
 
     public RegimenDetail updateRegimenDetail(String payLoad) throws JsonParseException, JsonMappingException, IOException {
         RegimenDetail regimenDetail1 = objectMapper.readValue(payLoad, RegimenDetail.class);
-        RegimenDetail regimenDetail = regimenDetailRepository.findOne((long) regimenDetail1.getSubCancerTypeId3());
+        RegimenDetail regimenDetail = regimenDetailRepository.fingRegimenById(regimenDetail1.getId());
 
         if(regimenDetail.getBrandNames() != regimenDetail1.getBrandNames()
            | regimenDetail.getDispName() != regimenDetail1.getDispName()
@@ -108,7 +107,8 @@ public class RegimenDetailService {
             regimenDetail.setReference(regimenDetail1.getReference());
             regimenDetail.setEmetogenicPotential(regimenDetail1.getEmetogenicPotential());
             regimenDetail.setSchedule(regimenDetail1.getSchedule());
-            regimenDetail.setRegimenType(regimenDetail.getRegimenType());
+            regimenDetail.setRegimenType(regimenDetail1.getRegimenType());
+            regimenDetail.setSubCancerTypeId3(regimenDetail1.getSubCancerTypeId3());
             return regimenDetailRepository.save(regimenDetail);
         }
 
@@ -128,7 +128,7 @@ public class RegimenDetailService {
         if (cancerId == 0) {
             cancerResponse.setRegimenDetail(regimenDetailRepository.getAllRegimenDetails());
         } else {
-            cancerResponse.setRegimenDetail(regimenDetailRepository.findRegimenDetailById(cancerId));
+            cancerResponse.setRegimenDetail(regimenDetailRepository.findRegimenDetailByCancerId(cancerId));
         }
 
         cancerResponse.setParentCancers(cancerService.getParentCancers(cancerId));

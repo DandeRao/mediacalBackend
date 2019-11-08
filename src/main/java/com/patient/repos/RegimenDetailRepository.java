@@ -11,7 +11,10 @@ import java.util.List;
 public interface RegimenDetailRepository extends JpaRepository< RegimenDetail, Long> {
 
     @Query("Select a from RegimenDetail a where a.subCancerTypeId3 = :id")
-    List<RegimenDetail> findRegimenDetailById(@Param("id") int id);
+    List<RegimenDetail> findRegimenDetailByCancerId(@Param("id") int id);
+
+    @Query("Select a from RegimenDetail a where a.id = :id")
+    RegimenDetail fingRegimenById(@Param("id") int id);
 
     @Query("Select a from RegimenDetail a where a.subCancerTypeId3 = :id and a.regimenType = :type")
     List<RegimenDetail> findRegimenDetailByIdAndType(@Param("id") int id, @Param("type") String type);
