@@ -53,7 +53,6 @@ public class RegimenDetailService {
     public RegimenDetail addOrUpdateRegimenDetail(String payLoad) throws JsonParseException, JsonMappingException, IOException {
         RegimenDetail regimenDetail1 = objectMapper.readValue(payLoad, RegimenDetail.class);
 
-        int cancerId = regimenDetail1.getSubCancerTypeId3();
         RegimenDetail regimenDetail = RegimenDetail.builder()
                 .id(getRegimenId(regimenDetail1))
                 .brandNames(regimenDetail1.getBrandNames())
@@ -62,13 +61,22 @@ public class RegimenDetailService {
                 .dispName(regimenDetail1.getDispName())
                 .dosageModifications(regimenDetail1.getDosageModifications())
                 .schedule(regimenDetail1.getSchedule())
-                .subCancerTypeId3(cancerId)
                 .regimenType(regimenDetail1.getRegimenType())
                 .build();
 
-        String regimenForCancer = cancerRepository.getRegimenByPatientId(cancerId);
+      String regimenForCancer = null;
+      Integer cancerId = null;
 
-        if(regimenForCancer !=null && regimenForCancer.indexOf(cancerId + "") < 0) {
+      if(null != regimenDetail1.getSubCancerTypeId3())
+      {
+        cancerId = regimenDetail1.getSubCancerTypeId3();
+
+        regimenDetail.setSubCancerTypeId3(cancerId);
+
+        regimenForCancer = cancerRepository.getRegimenByPatientId(cancerId);
+      }
+
+        if((regimenForCancer != null) && (null != cancerId )&& (regimenForCancer.indexOf(cancerId + "") < 0)) {
             regimenForCancer =  regimenForCancer.concat("," + getRegimenId(regimenDetail1) + "");
             Cancer cancer = cancerRepository.getCancerById(cancerId);
             cancer.setRegimen(regimenForCancer);
@@ -108,7 +116,9 @@ public class RegimenDetailService {
             regimenDetail.setEmetogenicPotential(regimenDetail1.getEmetogenicPotential());
             regimenDetail.setSchedule(regimenDetail1.getSchedule());
             regimenDetail.setRegimenType(regimenDetail1.getRegimenType());
-            regimenDetail.setSubCancerTypeId3(regimenDetail1.getSubCancerTypeId3());
+            if (null != regimenDetail1.getSubCancerTypeId3()) {
+              regimenDetail.setSubCancerTypeId3(regimenDetail1.getSubCancerTypeId3());
+            }
             return regimenDetailRepository.save(regimenDetail);
         }
 

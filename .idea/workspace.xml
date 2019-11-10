@@ -2,9 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00e2dc03-740d-467b-b2c1-dd0a68065de9" name="Default" comment="siovs">
-      <change beforePath="$PROJECT_DIR$/../frontend" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktop.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/patient/services/RegimenDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/patient/services/RegimenDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/controllers/CancerTypeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/patient/controllers/CancerTypeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/controllers/RegimenDetailController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/patient/controllers/RegimenDetailController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/controllers/SubCancerType1Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/controllers/SubCancerType2Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/controllers/SubCancerType3Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/models/RegimenDetail$RegimenDetailBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/patient/models/RegimenDetail$RegimenDetailBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/models/RegimenDetail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/patient/models/RegimenDetail.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/models/SubCancerType1$SubCancerType1Builder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/models/SubCancerType1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/models/SubCancerType2$SubCancerType2Builder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/models/SubCancerType2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/models/SubCancerType3$SubCancerType3Builder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/models/SubCancerType3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/repos/PatientRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/patient/repos/PatientRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/repos/RegimenDetailRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/patient/repos/RegimenDetailRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/repos/SubCancerType2Repository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/repos/SubCancerType3Repository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/repos/SubCancerTypeRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/services/CancerTypeService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/services/RegimenDetailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/patient/services/RegimenDetailService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/services/SubCancerType1Service.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/services/SubCancerType2Service.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/patient/services/SubCancerType3Service.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data-postgres.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data-postgres.sql" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="C:\Users\Malli\IdeaProjects\backend\.idea\shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,40 +59,30 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/services/CancerService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="455">
+              <caret line="155" column="114" selection-start-line="155" selection-start-column="114" selection-end-line="155" selection-end-column="114" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#getCancersWithPatientId#0;class#CancerService#0" expanded="true" />
+                <element signature="method#getCancersWithParentId#0;class#CancerService#0" expanded="true" />
+                <element signature="method#deleteCancerId#0;class#CancerService#0" expanded="true" />
+                <element signature="method#populateCancersWithRegimens#0;class#CancerService#0" expanded="true" />
+                <element signature="method#populateCancersWithSubCancerTypes#0;class#CancerService#0" expanded="true" />
+                <element signature="method#getAllCancerNames#0;class#CancerService#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/data-postgres.sql">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/controllers/RegimenDetailController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#755#756#0" expanded="true" />
-                <element signature="e#821#822#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/services/RegimenDetailService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="23" column="27" lean-forward="true" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#addOrUpdateRegimenDetail#0;class#RegimenDetailService#0" expanded="true" />
-                <element signature="method#getRegimenDetailById#0;class#RegimenDetailService#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="119">
+              <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -70,11 +90,101 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/repos/RegimenDetailRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+            <state relative-caret-position="391">
+              <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#0#60#1" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/1.13.1.RELEASE/spring-data-commons-1.13.1.RELEASE.jar!/org/springframework/data/repository/CrudRepository.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/controllers/RegimenDetailController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="680">
+              <caret line="82" column="50" selection-start-line="82" selection-start-column="50" selection-end-line="82" selection-end-column="50" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#getregimenDetailId#0;class#RegimenDetailController#0" expanded="true" />
+                <element signature="method#getregimenDetailIdAndType#0;class#RegimenDetailController#0" expanded="true" />
+                <element signature="method#getLevels#0;class#RegimenDetailController#0" expanded="true" />
+                <element signature="docComment;method#addRegimenDetail#0;class#RegimenDetailController#0" expanded="true" />
+                <element signature="method#addRegimenDetail#0;class#RegimenDetailController#0" expanded="true" />
+                <element signature="docComment;method#deleteRegimenDetail#0;class#RegimenDetailController#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/repos/CancerRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="35" column="22" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/models/Cancer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#276#283#0" expanded="true" />
+                <element signature="e#410#430#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/controllers/CancerTypeController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="67" column="39" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="n#!!doc;n#deleteRegimenDetail#0;n#CancerTypeController#0" expanded="true" />
+                <element signature="method#deleteRegimenDetail#0;class#CancerTypeController#0" expanded="true" />
+                <element signature="method#getCancersByParentId#0;class#CancerTypeController#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/models/CancerResponse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1003">
+              <caret line="93" column="14" selection-start-line="93" selection-start-column="14" selection-end-line="93" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/models/RegimenDetail.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#432#435#0" expanded="true" />
+                <element signature="e#486#495#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -85,24 +195,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
+        <option value="TypeScript File" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>system</find>
-      <find>getSubCancerType1TypesById</find>
-      <find>subcancertype1_id</find>
-      <find>Thymoma</find>
-      <find>3</find>
-      <find>Flox</find>
-      <find>ECF</find>
-      <find>DCF</find>
-      <find>Imatinib</find>
-      <find>Biliary</find>
-      <find>Gem</find>
-      <find>GEMOX</find>
       <find>FOLFIR</find>
       <find>Pancrea</find>
       <find>Pancreatic</find>
@@ -121,6 +221,18 @@
       <find>spring.datasource</find>
       <find>subcancertype2</find>
       <find>Create</find>
+      <find>subCancerType2ControllerById</find>
+      <find>9,</find>
+      <find>Lymphoma</find>
+      <find>spring.datasource.initialize</find>
+      <find>[</find>
+      <find>add</find>
+      <find>Carboplatin/Irinotecan</find>
+      <find>regimen</find>
+      <find>regimenDetailController</find>
+      <find>PCV</find>
+      <find>(344</find>
+      <find>update</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -128,7 +240,7 @@
     </replaceStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$/.." value="master" />
@@ -138,57 +250,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/paragon/repos/MedicineRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paragon/RepositoryConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paragon/models/Medicine.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paragon/domain/PersonWrapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paragon/domain/MedicineWrapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paragon/services/MedicineService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paragon/MedicineController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paragon/models/RegimenDetail.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paragon/models/Patient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paragon/models/CancerType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/patient/models/Medicine.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/patient/services/MedicineService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/patient/MedicineController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/patient/PatientController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/patient/RepositoryConfig.java" />
         <option value="$PROJECT_DIR$/src/main/resources/schema.sql_xyz" />
         <option value="$PROJECT_DIR$/src/main/java/com/patient/repos/SubCancerTypeService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/patient/models/CancerTypeRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/patient/HelloController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/data.sql" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/schema.sql" />
         <option value="$PROJECT_DIR$/src/main/resources/schema-postgres.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/com/patient/controllers/PatientController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/patient/services/PatientService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/patient/repos/RegimenDetailRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/patient/repos/PatientRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/patient/repos/CancerTypeRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/patient/models/Patient.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/patient/models/CancerType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/patient/Application.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/patient/CORSFilter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/patient/controllers/SubCancerType3Controller.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/patient/controllers/SubCancerType2Controller.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/patient/controllers/SubCancerType1Controller.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/patient/controllers/CancerTypeController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/patient/repos/SubCancerType2Repository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/repos/SubCancerTypeRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/models/SubCancerType1.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/patient/models/SubCancerType2.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/controllers/SubCancerType1Controller.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/services/SubCancerType1Service.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/services/SubCancerType2Service.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/controllers/SubCancerType2Controller.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/patient/models/SubCancerType3.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/patient/repos/SubCancerType3Repository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/patient/services/SubCancerType2Service.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/controllers/SubCancerType3Controller.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/patient/services/SubCancerType3Service.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/patient/controllers/RegimenDetailController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/patient/services/RegimenDetailService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/patient/models/SubCancerType1.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/patient/repos/SubCancerTypeRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/Controller.java" />
+        <option value="$PROJECT_DIR$/src/main/test/java/com.patient/services/CancerServiceTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com.patient/services/CancerServiceTest.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/controllers/PatientController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/patient/services/CancerTypeService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/patient/services/SubCancerType1Service.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/patient/models/RegimenDetail.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/models/RegimenDetailResponse.ts" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/models/RegimenDetailResponse.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/models/RegimenType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/services/LevelTypeService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/models/LevelType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/repos/LevelTypeRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/controllers/RegimenDetailController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/repos/PatientRepository.java" />
         <option value="$PROJECT_DIR$/src/main/resources/data-postgres.sql" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/controllers/CancerTypeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/models/Cancer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/services/CancerService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/repos/CancerRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/models/CancerResponse.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/models/RegimenDetail.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/repos/RegimenDetailRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/patient/services/RegimenDetailService.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -211,99 +323,75 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-77" />
-    <option name="y" value="-8" />
-    <option name="width" value="2904" />
-    <option name="height" value="1584" />
+    <option name="x" value="-12" />
+    <option name="y" value="-12" />
+    <option name="width" value="3864" />
+    <option name="height" value="2124" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
+      <pane id="PackagesPane" />
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
             <path>
-              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="modular" type="2674bda8:ScopeViewTreeModel$GroupNode" />
             </path>
             <path>
-              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="modular" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
-              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="modular" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
-              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="modular" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
-              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="patient" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="modular" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
-              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="patient" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="modular" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="patient" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
-              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="patient" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="patient" type="462c0819:PsiDirectoryNode" />
-              <item name="repos" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="patient" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="modular" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="patient" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="services" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -319,10 +407,19 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="ts.external.directory.path" value="E:\ProgramFiles\intelliJ\IntelliJ IDEA 2019.1.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Malli\IdeaProjects\backend" />
+      <recent name="C:\Users\Malli\IdeaProjects\backend\src" />
+      <recent name="C:\Users\Malli\IdeaProjects\backend\src\main" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -336,7 +433,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.Application">
+  <component name="RunManager" selected="Application.Application">
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -473,6 +570,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Controller" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.patient.Controller" />
+      <module name="modular" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.patient.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -515,6 +626,23 @@
       <setting name="launchBrowserUrl" value="" />
       <setting name="depsClasspath" value="false" />
       <method v="2" />
+    </configuration>
+    <configuration name="CancerServiceTest.test_getCancersByPatientId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="modular" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.patient.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.patient.services" />
+      <option name="MAIN_CLASS_NAME" value="com.patient.services.CancerServiceTest" />
+      <option name="METHOD_NAME" value="test_getCancersByPatientId" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
@@ -559,11 +687,15 @@
     </configuration>
     <list>
       <item itemvalue="Application.Application" />
+      <item itemvalue="Application.Controller" />
+      <item itemvalue="JUnit.CancerServiceTest.test_getCancersByPatientId" />
       <item itemvalue="Spring Boot.Application" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Application" />
+        <item itemvalue="JUnit.CancerServiceTest.test_getCancersByPatientId" />
+        <item itemvalue="Application.Controller" />
       </list>
     </recent_temporary>
   </component>
@@ -603,6 +735,34 @@
       <workItem from="1561084429418" duration="417000" />
       <workItem from="1561310552194" duration="6240000" />
       <workItem from="1561425434528" duration="3524000" />
+      <workItem from="1562122212169" duration="2661000" />
+      <workItem from="1562267453516" duration="11223000" />
+      <workItem from="1562337937467" duration="7373000" />
+      <workItem from="1562384899060" duration="2016000" />
+      <workItem from="1562627424876" duration="2238000" />
+      <workItem from="1562800063448" duration="1902000" />
+      <workItem from="1563133366226" duration="2693000" />
+      <workItem from="1563327092552" duration="598000" />
+      <workItem from="1563400692021" duration="598000" />
+      <workItem from="1563732326493" duration="6000" />
+      <workItem from="1564456703421" duration="4348000" />
+      <workItem from="1564890259645" duration="10421000" />
+      <workItem from="1565536611382" duration="2247000" />
+      <workItem from="1566072574988" duration="14922000" />
+      <workItem from="1567303058631" duration="1182000" />
+      <workItem from="1567563793555" duration="6912000" />
+      <workItem from="1568075241796" duration="4192000" />
+      <workItem from="1568566491165" duration="619000" />
+      <workItem from="1569281690415" duration="691000" />
+      <workItem from="1569289982891" duration="1017000" />
+      <workItem from="1569291836973" duration="2065000" />
+      <workItem from="1569370138804" duration="3093000" />
+      <workItem from="1569722885815" duration="1573000" />
+      <workItem from="1572733815083" duration="600000" />
+      <workItem from="1573042124280" duration="10834000" />
+      <workItem from="1573398975882" duration="121000" />
+      <workItem from="1573399118908" duration="188000" />
+      <workItem from="1573399329537" duration="376000" />
     </task>
     <task id="LOCAL-00001" summary="siovs">
       <created>1558646593915</created>
@@ -618,16 +778,84 @@
       <option name="project" value="LOCAL" />
       <updated>1560575922363</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="siovs">
+      <created>1562355322453</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1562355322453</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added code changes to support regimen levels">
+      <created>1568082469016</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1568082469017</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added code changes to fix failing regimen fetch">
+      <created>1569382695522</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1569382695522</updated>
+    </task>
+    <task id="LOCAL-00006" summary="updated regimens added code changes to get all regimen names">
+      <created>1573096554854</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1573096554854</updated>
+    </task>
+    <task id="LOCAL-00007" summary="added regimen to cancer mapping">
+      <created>1573184583737</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1573184583737</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="CancerServiceTest_test_getCancersByPatientId - 2019.08.05 at 20h 02m 00s.xml">
+      <configuration name="CancerServiceTest.test_getCancersByPatientId" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CancerServiceTest_test_getCancersByPatientId - 2019.08.05 at 20h 04m 08s.xml">
+      <configuration name="CancerServiceTest.test_getCancersByPatientId" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CancerServiceTest_test_getCancersByPatientId - 2019.08.05 at 20h 04m 34s.xml">
+      <configuration name="CancerServiceTest.test_getCancersByPatientId" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CancerServiceTest_test_getCancersByPatientId - 2019.08.05 at 20h 04m 57s.xml">
+      <configuration name="CancerServiceTest.test_getCancersByPatientId" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CancerServiceTest_test_getCancersByPatientId - 2019.08.05 at 20h 05m 08s.xml">
+      <configuration name="CancerServiceTest.test_getCancersByPatientId" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CancerServiceTest_test_getCancersByPatientId - 2019.08.05 at 20h 06m 33s.xml">
+      <configuration name="CancerServiceTest.test_getCancersByPatientId" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CancerServiceTest_test_getCancersByPatientId - 2019.08.05 at 20h 09m 20s.xml">
+      <configuration name="CancerServiceTest.test_getCancersByPatientId" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="240113000" />
+    <option name="totallyTimeSpent" value="336981000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="2575" height="1415" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1554672" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19005965" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -637,20 +865,21 @@
       <window_info id="Nl-Palette" order="7" />
       <window_info id="Web" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.55789477" weight="0.45470694" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.89554656" weight="0.24473889" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.32650602" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.55789477" weight="0.45440373" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8946322" weight="0.31644583" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.5674201" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Spring" order="7" weight="0.32917532" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.89554656" visible="true" weight="0.55728763" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.104453444" side_tool="true" weight="0.071047954" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32771084" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32969603" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.3289166" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.89502984" weight="0.5565082" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.17693837" side_tool="true" visible="true" weight="0.40062353" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.3257989" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="11" sideWeight="0.82306165" visible="true" weight="0.40062353" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Java Enterprise" order="13" />
+      <window_info anchor="bottom" id="Java Enterprise" order="13" weight="0.3299373" />
       <window_info anchor="bottom" id="Database Changes" order="14" />
+      <window_info anchor="bottom" id="TypeScript" order="15" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -663,65 +892,106 @@
       <window_info anchor="right" id="Palette&#9;" order="9" />
       <window_info anchor="right" id="Theme Preview" order="10" />
       <window_info anchor="right" id="Bean Validation" order="11" />
-      <window_info anchor="right" id="Maven" order="12" visible="true" weight="0.054075547" />
+      <window_info anchor="right" id="Maven" order="12" sideWeight="0.49922118" visible="true" weight="0.12723657" />
+      <window_info anchor="right" x="0" y="0" width="593" height="1215" id="Documentation" order="13" sideWeight="0.5007788" side_tool="true" visible="true" weight="0.12758346" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21870968" />
-      <window_info id="Structure" order="1" weight="0.25" />
-      <window_info id="Nl-Palette" order="2" />
-      <window_info id="Capture Tool" order="3" />
-      <window_info id="Designer" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Image Layers" order="6" />
-      <window_info id="Favorites" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.53430355" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.46500346" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Docker" order="8" />
-      <window_info anchor="bottom" id="Messages" order="9" />
-      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Spring" order="11" weight="0.32917532" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32917532" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Maven Projects" order="4" />
-      <window_info anchor="right" id="Properties" order="5" />
-      <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="right" id="Data View" order="7" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="right" id="Capture Analysis" order="9" />
-      <window_info anchor="right" id="Bean Validation" order="10" />
-      <window_info anchor="right" id="Theme Preview" order="11" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-    <option name="exactExcludedFiles">
-      <list>
-        <option value="$PROJECT_DIR$/../frontend/node_modules/karma/config.tpl.js" />
-      </list>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="siovs" />
     <MESSAGE value="AART-2222| CHANGES TO BACKEND" />
-    <option name="LAST_COMMIT_MESSAGE" value="AART-2222| CHANGES TO BACKEND" />
+    <MESSAGE value="siovs" />
+    <MESSAGE value="added code changes to support regimen levels" />
+    <MESSAGE value="added code changes to fix failing regimen fetch" />
+    <MESSAGE value="updated regimens added code changes to get all regimen names" />
+    <MESSAGE value="added regimen to cancer mapping" />
+    <option name="LAST_COMMIT_MESSAGE" value="added regimen to cancer mapping" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/patient/services/RegimenDetailService.java</url>
-          <line>69</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/patient/Controller.java</url>
+          <line>31</line>
           <properties />
-          <option name="timeStamp" value="53" />
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com.patient/services/CancerServiceTest.java</url>
+          <line>24</line>
+          <properties />
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com.patient/services/CancerServiceTest.java</url>
+          <line>23</line>
+          <properties />
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/patient/services/CancerService.java</url>
+          <line>144</line>
+          <properties />
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/patient/services/CancerService.java</url>
+          <line>143</line>
+          <properties />
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/patient/services/RegimenDetailService.java</url>
+          <line>78</line>
+          <properties />
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/patient/services/RegimenDetailService.java</url>
+          <line>102</line>
+          <properties />
+          <option name="timeStamp" value="69" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -730,8 +1000,40 @@
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/backend$Application.ic" NAME="Application Coverage Results" MODIFIED="1567564687433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.patient.*</FILTER>
+    </SUITE>
+  </component>
   <component name="debuggerHistoryManager">
+    <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>regimenForCancer !=null &amp;&amp; regimenForCancer.indexOf(cancerId + &quot;&quot;) &lt; 0</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+    </expressions>
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>rs.getInt(1)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>(subCancerType3.getId() !=0)? subCancerType3.getId() : (0 == subCancerType3Repository.getMaxId() ? 1 : subCancerType3Repository.getMaxId() +1)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>subCancerType3Repository.getMaxId()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>SubCancerType3</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>subCancerType2</expression-string>
         <language-id>JAVA</language-id>
@@ -757,126 +1059,224 @@
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>(regimenDetail1.getId() != 0)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>regimenDetail1.getId()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>regimenDetail</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>regimenDetail1.getId() != 0</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/1.11.1.RELEASE/spring-data-jpa-1.11.1.RELEASE.jar!/org/springframework/data/jpa/repository/Query.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/paragon/models/Address.java" />
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/paragon/test/ApplicationTests.java" />
-    <entry file="file://$USER_HOME$/OncologyApp/OncologyApp/Classes/Classes/StagingListViewController.h" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/domain/MedicineWrapper.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/models/Medicine.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.3.7.RELEASE/spring-beans-4.3.7.RELEASE.jar!/org/springframework/beans/factory/annotation/AutowiredAnnotationBeanPostProcessor.class" />
-    <entry file="file://$USER_HOME$/Downloads/CRUD v1.0/backend/src/main/java/com/paragon/services/PersonService.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/1.13.1.RELEASE/spring-data-commons-1.13.1.RELEASE.jar!/org/springframework/data/repository/CrudRepository.class" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/repos/SubCancerType2Repository.java" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.7.RELEASE/spring-web-4.3.7.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="117" selection-start-line="117" selection-end-line="117" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/models/SubCancerType1.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/services/SubCancerType1Service.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/controllers/SubCancerType1Controller.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/controllers/SubCancerType2Controller.java" />
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1615" column="10" selection-start-line="1615" selection-start-column="10" selection-end-line="1615" selection-end-column="10" />
+          <folding>
+            <element signature="n#component#1;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#option#7;n#component#1;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#component#2;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#component#3;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#leaf#0;n#component#3;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#file#0;n#leaf#0;n#component#3;n#project#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/repos/SubCancerType3Repository.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/repos/SubCancerTypeRepository.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/models/SubCancerType3.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/controllers/SubCancerType3Controller.java" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-rest-webmvc/2.6.1.RELEASE/spring-data-rest-webmvc-2.6.1.RELEASE.jar!/org/springframework/data/rest/webmvc/config/RepositoryRestMvcConfiguration.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="191" column="22" selection-start-line="191" selection-start-column="22" selection-end-line="191" selection-end-column="22" />
+          <folding>
+            <element signature="e#10862#10863#0" expanded="true" />
+            <element signature="e#10920#10921#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/services/SubCancerType2Service.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="38" column="53" selection-start-line="38" selection-start-column="53" selection-end-line="38" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/services/SubCancerType3Service.java" />
+    <entry file="file://$PROJECT_DIR$/src/test/java/com.patient/services/CancerServiceTest" />
+    <entry file="file://$PROJECT_DIR$/src/main/test/java/com.patient/services/CancerServiceTest" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="88" column="21" selection-start-line="88" selection-start-column="21" selection-end-line="88" selection-end-column="21" />
+        <state relative-caret-position="178">
+          <caret line="79" column="20" lean-forward="true" selection-start-line="79" selection-start-column="20" selection-end-line="79" selection-end-column="20" />
+          <folding>
+            <element signature="n#parent#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#dependency#0;n#dependencies#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#dependency#1;n#dependencies#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#dependency#2;n#dependencies#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#dependency#3;n#dependencies#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#dependency#4;n#dependencies#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#dependency#5;n#dependencies#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#dependency#6;n#dependencies#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#dependency#7;n#dependencies#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#dependency#8;n#dependencies#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#dependency#9;n#dependencies#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#dependency#10;n#dependencies#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#dependency#12;n#dependencies#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#dependency#13;n#dependencies#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#dependency#14;n#dependencies#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#properties#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#build#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#resources#0;n#build#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#resource#0;n#resources#0;n#build#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#resource#1;n#resources#0;n#build#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#plugins#0;n#build#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#plugin#0;n#plugins#0;n#build#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#repositories#0;n#project#0;n#!!top" expanded="true" />
+            <element signature="n#repository#0;n#repositories#0;n#project#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/models/CancerTypeRequest.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/data-postgres.sql.disabled" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/schema-postgres.sql.disabled" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar!/javax/persistence/GenerationType.class" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/RepositoryConfig.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.11/tomcat-embed-core-8.5.11.jar!/org/apache/catalina/core/StandardWrapperValve.class" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/services/PatientService.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+        <state relative-caret-position="204">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/CORSFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-226">
-          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/HelloController.java" />
-    <entry file="file://$PROJECT_DIR$/.classpath" />
-    <entry file="file://$PROJECT_DIR$/modular.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1717" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_project.xml">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/_classpath.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-244" />
+        <state relative-caret-position="238">
+          <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
+          <folding>
+            <element signature="n#classpathentry#0;n#classpath#0;n#!!top" expanded="true" />
+            <element signature="n#attributes#0;n#classpathentry#0;n#classpath#0;n#!!top" expanded="true" />
+            <element signature="n#classpathentry#1;n#classpath#0;n#!!top" expanded="true" />
+            <element signature="n#attributes#0;n#classpathentry#1;n#classpath#0;n#!!top" expanded="true" />
+            <element signature="n#classpathentry#3;n#classpath#0;n#!!top" expanded="true" />
+            <element signature="n#attributes#0;n#classpathentry#3;n#classpath#0;n#!!top" expanded="true" />
+            <element signature="n#classpathentry#4;n#classpath#0;n#!!top" expanded="true" />
+            <element signature="n#attributes#0;n#classpathentry#4;n#classpath#0;n#!!top" expanded="true" />
+            <element signature="n#classpathentry#5;n#classpath#0;n#!!top" expanded="true" />
+            <element signature="n#attributes#0;n#classpathentry#5;n#classpath#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com.patient/services/CancerServiceTest.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/models/CancerType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#196#203#0" expanded="true" />
+            <element signature="e#341#361#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/services/PatientService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+          <folding>
+            <element signature="e#746#747#0" expanded="true" />
+            <element signature="e#787#788#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/services/CancerTypeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="44" column="34" selection-start-line="44" selection-start-column="34" selection-end-line="44" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-orm/4.3.7.RELEASE/spring-orm-4.3.7.RELEASE.jar!/org/springframework/orm/jpa/ExtendedEntityManagerCreator.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="229" selection-start-line="229" selection-end-line="229" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/models/RegimenDetailResponse.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/repos/CancerTypeRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/services/LevelTypeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="19" column="33" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getLevelsByType#0;class#LevelTypeService#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/1.11.1.RELEASE/spring-data-jpa-1.11.1.RELEASE.jar!/org/springframework/data/jpa/repository/JpaRepository.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/models/LevelType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#243#250#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/controllers/PatientController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+        <state relative-caret-position="391">
+          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="docComment;method#deleteRegimenDetail#0;class#PatientController#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/controllers/CancerTypeController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/repos/PatientRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="47" column="47" selection-start-line="47" selection-start-column="47" selection-end-line="47" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/controllers/SubCancerType3Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/controllers/SubCancerType2Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="37" column="100" selection-start-line="37" selection-start-column="100" selection-end-line="37" selection-end-column="100" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/models/CancerType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+        <state relative-caret-position="170">
+          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -885,159 +1285,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/models/Patient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="10" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#103#110#0" expanded="true" />
+            <element signature="e#246#249#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/models/SubCancerType3.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/repos/LevelTypeRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="11" selection-start-line="11" selection-end-line="11" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/repos/SubCancerType2Repository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/services/SubCancerType2Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="47" column="1" lean-forward="true" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/services/SubCancerType3Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="53" column="5" lean-forward="true" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/services/SubCancerType1Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#914#915#0" expanded="true" />
-            <element signature="e#972#973#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/models/SubCancerType1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/models/SubCancerType2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="23" column="31" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/controllers/SubCancerType1Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/repos/CancerTypeRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#0#54#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/repos/PatientRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#0#25#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/repos/SubCancerType3Repository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="66" selection-start-line="11" selection-start-column="66" selection-end-line="11" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/repos/SubCancerTypeRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="66" selection-start-line="12" selection-start-column="66" selection-end-line="12" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/services/CancerTypeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="52" column="46" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
+        <state relative-caret-position="238">
+          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1047,61 +1308,148 @@
     <entry file="file://$PROJECT_DIR$/resources/data.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/schema.sql">
+    <entry file="file://$PROJECT_DIR$/target/classes/data-postgres.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/controllers/RegimenDetailController.java">
+    <entry file="file://$PROJECT_DIR$/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#755#756#0" expanded="true" />
-            <element signature="e#821#822#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="204">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/models/RegimenDetail.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/data-postgres.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1178#1188#0" expanded="true" />
-            <element signature="e#1266#1276#0" expanded="true" />
-            <element signature="e#1369#1379#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="51">
+          <caret line="3" column="35" lean-forward="true" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/services/RegimenDetailService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="23" column="27" lean-forward="true" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+        <state relative-caret-position="697">
+          <caret line="62" column="55" selection-start-line="62" selection-start-column="55" selection-end-line="62" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#addOrUpdateRegimenDetail#0;class#RegimenDetailService#0" expanded="true" />
-            <element signature="method#getRegimenDetailById#0;class#RegimenDetailService#0" expanded="true" />
+            <element signature="method#updateRegimenDetail#0;class#RegimenDetailService#0" expanded="true" />
+            <element signature="method#getRegimenDetailByCancerId#0;class#RegimenDetailService#0" expanded="true" />
+            <element signature="method#getRegimenDetailByCancerIdAndType#0;class#RegimenDetailService#0" expanded="true" />
+            <element signature="method#getRegimenId#0;class#RegimenDetailService#0" expanded="true" />
+            <element signature="method#getLevelsByType#0;class#RegimenDetailService#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/repos/RegimenDetailRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        <state relative-caret-position="391">
+          <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#0#60#1" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/data-postgres.sql">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/1.13.1.RELEASE/spring-data-commons-1.13.1.RELEASE.jar!/org/springframework/data/repository/CrudRepository.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+        <state relative-caret-position="204">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/controllers/RegimenDetailController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="82" column="50" selection-start-line="82" selection-start-column="50" selection-end-line="82" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getregimenDetailId#0;class#RegimenDetailController#0" expanded="true" />
+            <element signature="method#getregimenDetailIdAndType#0;class#RegimenDetailController#0" expanded="true" />
+            <element signature="method#getLevels#0;class#RegimenDetailController#0" expanded="true" />
+            <element signature="docComment;method#addRegimenDetail#0;class#RegimenDetailController#0" expanded="true" />
+            <element signature="method#addRegimenDetail#0;class#RegimenDetailController#0" expanded="true" />
+            <element signature="docComment;method#deleteRegimenDetail#0;class#RegimenDetailController#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/repos/CancerRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="35" column="22" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/models/Cancer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#276#283#0" expanded="true" />
+            <element signature="e#410#430#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/controllers/CancerTypeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="67" column="39" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="n#!!doc;n#deleteRegimenDetail#0;n#CancerTypeController#0" expanded="true" />
+            <element signature="method#deleteRegimenDetail#0;class#CancerTypeController#0" expanded="true" />
+            <element signature="method#getCancersByParentId#0;class#CancerTypeController#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/models/CancerResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="93" column="14" selection-start-line="93" selection-start-column="14" selection-end-line="93" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/models/RegimenDetail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#432#435#0" expanded="true" />
+            <element signature="e#486#495#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/patient/services/CancerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="155" column="114" selection-start-line="155" selection-start-column="114" selection-end-line="155" selection-end-column="114" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getCancersWithPatientId#0;class#CancerService#0" expanded="true" />
+            <element signature="method#getCancersWithParentId#0;class#CancerService#0" expanded="true" />
+            <element signature="method#deleteCancerId#0;class#CancerService#0" expanded="true" />
+            <element signature="method#populateCancersWithRegimens#0;class#CancerService#0" expanded="true" />
+            <element signature="method#populateCancersWithSubCancerTypes#0;class#CancerService#0" expanded="true" />
+            <element signature="method#getAllCancerNames#0;class#CancerService#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
         </state>
       </provider>
     </entry>
