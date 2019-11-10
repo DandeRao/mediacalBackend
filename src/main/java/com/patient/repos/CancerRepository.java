@@ -17,7 +17,7 @@ public interface CancerRepository extends JpaRepository<Cancer, Integer> {
   List<Cancer> getCancersByParentId(@Param("id") int id);
 
   @Query("Select a.regimen from Cancer a where a.id = :id")
-  String getRegimenByPatientId(@Param("id") int id);
+  String getRegimenByCancerId(@Param("id") int id);
 
 
   @Query("Select a from Cancer a where a.parentId = :id and a.subCancerType = 'ADJUVANT'")

@@ -10,14 +10,14 @@ import java.util.List;
 @Repository
 public interface RegimenDetailRepository extends JpaRepository< RegimenDetail, Long> {
 
-    @Query("Select a from RegimenDetail a where a.subCancerTypeId3 = :id")
-    List<RegimenDetail> findRegimenDetailByCancerId(@Param("id") int id);
+    @Query("Select a from RegimenDetail a where a.subCancerTypeId3 like :id or a.subCancerTypeId3 like  CONCAT('%,',:id,',%') or a.subCancerTypeId3 like CONCAT(:id,',%') or a.subCancerTypeId3 like  CONCAT('%,',:id)")
+    List<RegimenDetail> findRegimenDetailByCancerId(@Param("id") String id);
 
     @Query("Select a from RegimenDetail a where a.id = :id")
     RegimenDetail fingRegimenById(@Param("id") int id);
 
-    @Query("Select a from RegimenDetail a where a.subCancerTypeId3 = :id and a.regimenType = :type")
-    List<RegimenDetail> findRegimenDetailByIdAndType(@Param("id") int id, @Param("type") String type);
+    @Query("Select a from RegimenDetail a where a.subCancerTypeId3 like :id or a.subCancerTypeId3 like  CONCAT('%,',:id,',%') or a.subCancerTypeId3 like CONCAT(:id,',%') or a.subCancerTypeId3 like  CONCAT('%,',:id) and a.regimenType = :type")
+    List<RegimenDetail> findRegimenDetailByIdAndType(@Param("id") String id, @Param("type") String type);
 
     @Query(value = "select * from regimen_detail", nativeQuery = true)
     List<RegimenDetail> getAllRegimenDetails();

@@ -33,13 +33,13 @@ public class RegimenDetailController {
 
 
     @RequestMapping(value = "/regimenDetailController/{id}/names", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-    public CancerResponse getregimenDetailId(@PathVariable("id") Integer id) {
-        return regimenDetailService.getRegimenDetailByCancerId(id);
+    public CancerResponse getregimenDetailId(@PathVariable("id") int id) {
+        return regimenDetailService.getRegimenDetailByCancerId(String.valueOf(id));
     }
 
     @RequestMapping(value = "/regimenDetailController/{id}/type/{type}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-    public CancerResponse getregimenDetailIdAndType(@PathVariable("id") Integer id, @PathVariable("type") String type) {
-        return regimenDetailService.getRegimenDetailByCancerIdAndType(id, type);
+    public CancerResponse getregimenDetailIdAndType(@PathVariable("id") int id, @PathVariable("type") String type) {
+        return regimenDetailService.getRegimenDetailByCancerIdAndType(String.valueOf(id), type);
     }
 
     @RequestMapping(value = "/regimenDetailController/levels/{type}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)

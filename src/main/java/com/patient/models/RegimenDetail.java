@@ -23,7 +23,8 @@ public class RegimenDetail implements Serializable {
 
     @Nullable
     @Column(name = "subcancer_type3_id")
-    private Integer subCancerTypeId3;
+    @Size(max = 10485760)
+    private String subCancerTypeId3;
 
     @Column(name = "disp_name")
     @Size(max = 10485760)

@@ -10,6 +10,7 @@ import com.patient.models.RegimenDetail;
 import com.patient.repos.CancerRepository;
 import com.patient.repos.PatientRepository;
 import com.patient.repos.RegimenDetailRepository;
+import org.aspectj.apache.bcel.generic.RET;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
@@ -59,7 +60,7 @@ public class CancerService {
     cancerResponse.setId(parentId);
     cancerResponse.setSubCancers(populateCancersWithRegimens(cancers));
     cancerResponse.setParentCancers(getParentCancers(parentId));
-
+    cancerResponse.setRegimenDetail(getRegimenForCancerId(String.valueOf(parentId)));
     if(null != cancerResponse.getSubCancers() && cancerResponse.getSubCancers().size() > 0) {
       cancerResponse.setPatientType(cancerResponse.getSubCancers().get(0).getPatientType());
       cancerResponse.setPatientTitle(patientRepository.getPatientTitileById(cancerResponse.getPatientType()));
@@ -134,6 +135,11 @@ public class CancerService {
     }
 
     return cancers;
+  }
+
+  private List<RegimenDetail> getRegimenForCancerId(String cancerId) {
+
+    return regimenDetailRepository.findRegimenDetailByCancerId(cancerId);
   }
 
   private void populateCancersWithSubCancerTypes(List<Cancer> cancers) {
