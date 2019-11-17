@@ -14,7 +14,7 @@ public interface PatientRepository extends JpaRepository<Patient, Integer> {
     List<String>  getAllPatientTypeNames();
 
 
-    @Query("Select a.title from Patient a where a.id = :id")
+    @Query("Select a.title from Patient a where a.id = :id ORDER BY a.title ASC")
     String getPatientTitileById(@Param("id") int id);
 
 

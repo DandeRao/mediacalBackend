@@ -142,15 +142,6 @@ public class CancerService {
     return regimenDetailRepository.findRegimenDetailByCancerId(cancerId);
   }
 
-  private void populateCancersWithSubCancerTypes(List<Cancer> cancers) {
-
-    for (Cancer cancer : cancers) {
-      cancer.setAdjuvantTypes(cancerRepository.getAdjuvantCancersByParentId(cancer.getId()));
-      cancer.setNeoAdjuvantTypes(cancerRepository.getNeoAdjuvantCancersByParentId(cancer.getId()));
-      cancer.setMetaStaticTypes(cancerRepository.getMetaStaticCancersByParentId(cancer.getId()));
-    }
-  }
-
   private List<RegimenDetail> getRegimenDetailFromRegimenList(String regimenString) {
 
     List<RegimenDetail> regimensForCancer = new ArrayList<>();

@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface LevelTypeRepository extends JpaRepository<LevelType, Integer> {
 
-  @Query("Select a from LevelType a where a.type = :type")
+  @Query("Select a from LevelType a where a.type = :type ORDER BY a.level ASC")
   List<LevelType> findLevelTypeByType(@Param("type") String type);
 
 

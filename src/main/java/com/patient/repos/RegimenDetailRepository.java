@@ -10,16 +10,16 @@ import java.util.List;
 @Repository
 public interface RegimenDetailRepository extends JpaRepository< RegimenDetail, Long> {
 
-    @Query("Select a from RegimenDetail a where a.subCancerTypeId3 like :id or a.subCancerTypeId3 like  CONCAT('%,',:id,',%') or a.subCancerTypeId3 like CONCAT(:id,',%') or a.subCancerTypeId3 like  CONCAT('%,',:id)")
+    @Query("Select a from RegimenDetail a where a.subCancerTypeId3 like :id or a.subCancerTypeId3 like  CONCAT('%,',:id,',%') or a.subCancerTypeId3 like CONCAT(:id,',%') or a.subCancerTypeId3 like  CONCAT('%,',:id) ORDER BY a.dispName ASC")
     List<RegimenDetail> findRegimenDetailByCancerId(@Param("id") String id);
 
     @Query("Select a from RegimenDetail a where a.id = :id")
     RegimenDetail fingRegimenById(@Param("id") int id);
 
-    @Query("Select a from RegimenDetail a where a.subCancerTypeId3 like :id or a.subCancerTypeId3 like  CONCAT('%,',:id,',%') or a.subCancerTypeId3 like CONCAT(:id,',%') or a.subCancerTypeId3 like  CONCAT('%,',:id) and a.regimenType = :type")
+    @Query("Select a from RegimenDetail a where a.subCancerTypeId3 like :id or a.subCancerTypeId3 like  CONCAT('%,',:id,',%') or a.subCancerTypeId3 like CONCAT(:id,',%') or a.subCancerTypeId3 like  CONCAT('%,',:id) and a.regimenType = :type ORDER BY a.dispName ASC")
     List<RegimenDetail> findRegimenDetailByIdAndType(@Param("id") String id, @Param("type") String type);
 
-    @Query(value = "select * from regimen_detail", nativeQuery = true)
+    @Query(value = "select * from regimen_detail ORDER BY disp_name ASC", nativeQuery = true)
     List<RegimenDetail> getAllRegimenDetails();
 
 

@@ -10,29 +10,16 @@ import java.util.List;
 
 public interface CancerRepository extends JpaRepository<Cancer, Integer> {
 
-  @Query("Select a from Cancer a where a.patientType = :id and a.parentId = null")
+  @Query("Select a from Cancer a where a.patientType = :id and a.parentId = null ORDER BY a.title ASC")
   List<Cancer> getCancersByPatientId(@Param("id") int id);
 
-  @Query("Select a from Cancer a where a.parentId = :id and a.subCancerType = null")
+  @Query("Select a from Cancer a where a.parentId = :id and a.subCancerType = null ORDER BY a.title ASC")
   List<Cancer> getCancersByParentId(@Param("id") int id);
-
-  @Query("Select a.regimen from Cancer a where a.id = :id")
-  String getRegimenByCancerId(@Param("id") int id);
-
-
-  @Query("Select a from Cancer a where a.parentId = :id and a.subCancerType = 'ADJUVANT'")
-  List<Cancer> getAdjuvantCancersByParentId(@Param("id") int id);
-
-  @Query("Select a from Cancer a where a.parentId = :id and a.subCancerType = 'NEOADJUVANT'")
-  List<Cancer> getNeoAdjuvantCancersByParentId(@Param("id") int id);
-
-  @Query("Select a from Cancer a where a.parentId = :id and a.subCancerType = 'METASTATIC'")
-  List<Cancer> getMetaStaticCancersByParentId(@Param("id") int id);
 
   @Query("Select a from Cancer a where a.id = :id")
   Cancer getCancerById(@Param("id") int id);
 
-  @Query(value = "Select id, title from Cancer", nativeQuery = true)
+  @Query(value = "Select id, title from Cancer ORDER BY title ASC", nativeQuery = true)
   List<Object> getAllCancerNames();
 
   @Query(value = "select MAX(id) from cancer", nativeQuery = true)
