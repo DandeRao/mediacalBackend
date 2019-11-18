@@ -107,7 +107,7 @@ public class RegimenDetailController {
      * @throws IOException
      */
     @RequestMapping(value = "/regimenDetailController/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
-    public long deleteRegimenDetail(@PathVariable("id") Long id) {
+    public int deleteRegimenDetail(@PathVariable("id") int id) {
         regimenDetailService.deleteRegimenDetail(id);
         return id;
     }

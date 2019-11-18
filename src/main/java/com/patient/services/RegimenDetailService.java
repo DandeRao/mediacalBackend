@@ -44,9 +44,8 @@ public class RegimenDetailService {
         return regimenDetailRepository.findOne((long) id);
     }
 
-    public long deleteRegimenDetail(long id) {
-        RegimenDetail regimenDetail = regimenDetailRepository.findOne(id);
-        regimenDetailRepository.delete(regimenDetail);
+    public int deleteRegimenDetail(int id) {
+        regimenDetailRepository.delteRegimenWithId(id);
         return id;
     }
 
