@@ -22,6 +22,9 @@ public interface CancerRepository extends JpaRepository<Cancer, Integer> {
   @Query(value = "Select id, title from Cancer ORDER BY title ASC", nativeQuery = true)
   List<Object> getAllCancerNames();
 
+  @Query(value = "DELETE FROM Cancer c WHERE  c.parentId=:id")
+  List<Object> deleteCancersWithParentId(@Param("id") int id);
+
   @Query(value = "select MAX(id) from cancer", nativeQuery = true)
   int getMaxId();
 }

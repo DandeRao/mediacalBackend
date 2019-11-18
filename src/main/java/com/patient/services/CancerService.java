@@ -72,6 +72,7 @@ public class CancerService {
   public boolean deleteCancerId(int id) {
 
     try{
+      cancerRepository.deleteCancersWithParentId(id);
       cancerRepository.delete(id);
     }
     catch (Exception e) {
@@ -151,7 +152,9 @@ public class CancerService {
       for (String regimen : regimens) {
         if(null != regimen && !regimen.equals("")) {
           RegimenDetail regimenDetail = regimenDetailRepository.getRegimenDetailWithId(Integer.parseInt(regimen));
-          regimensForCancer.add(regimenDetail);
+          if(null != regimenDetail) {
+            regimensForCancer.add(regimenDetail);
+          }
         }
       }
     }
