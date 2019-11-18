@@ -77,6 +77,22 @@ public class RegimenDetailController {
         return regimenDetailService.addLevel(payLoad);
     }
 
+    /**
+     * This method is used for both update and add.
+     *
+     * @param payLoad
+     * @return
+     * @throws JsonParseException
+     * @throws JsonMappingException
+     * @throws IOException
+     */
+    @RequestMapping(value = "/regimenDetailController/delete/level/{level}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
+    public String  deleteLevelType(@PathVariable("level") String payLoad)
+            throws JsonParseException, JsonMappingException, IOException {
+        return regimenDetailService.deleteLevel(payLoad);
+    }
+
+
     @RequestMapping(value = "/regimenDetailController/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
     public RegimenDetail UpdateRegimenDetail(@RequestBody String payLoad)
             throws JsonParseException, JsonMappingException, IOException {

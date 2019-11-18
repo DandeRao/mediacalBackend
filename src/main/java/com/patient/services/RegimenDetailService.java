@@ -79,14 +79,28 @@ public class RegimenDetailService {
     public LevelType addLevel(String payLoad) throws JsonParseException, JsonMappingException, IOException {
         LevelType level = objectMapper.readValue(payLoad, LevelType.class);
 
-        LevelType levelDetail = LevelType.builder()
-                .id(levelTypeRepository.getMaxId() + 1)
-                .level(level.getLevel())
-                .type(level.getType())
-                .build();
+        LevelType existingLevel = levelTypeRepository.findLevelTypeByLevelNameAndType(level.getLevel(), level.getType());
 
-        return levelTypeRepository.save(levelDetail);
+        if(null == existingLevel) {
+          LevelType levelDetail = LevelType.builder()
+                  .id(levelTypeRepository.getMaxId() + 1)
+                  .level(level.getLevel())
+                  .type(level.getType())
+                  .build();
+
+          return levelTypeRepository.save(levelDetail);
+        }
+
+        return level;
     }
+
+  public String deleteLevel(String payLoad) throws JsonParseException, JsonMappingException, IOException {
+
+      LevelType levelType = levelTypeRepository.findLevelTypeByLevelName(payLoad);
+      levelTypeRepository.delete(levelType);
+
+    return payLoad;
+  }
 
     public RegimenDetail updateRegimenDetail(String payLoad) throws JsonParseException, JsonMappingException, IOException {
         RegimenDetail regimenDetail1 = objectMapper.readValue(payLoad, RegimenDetail.class);
@@ -123,10 +137,15 @@ public class RegimenDetailService {
         for (String cancerId : regimenDetail.getSubCancerTypeId3().split(",")) {
           if (cancerId != "") {
             Cancer cancer = cancerRepository.getCancerById(Integer.valueOf(cancerId));
-            if (cancer.getRegimen().indexOf(regimenDetail.getId()) == -1) {
-              cancer.setRegimen(cancer.getRegimen() + "," + regimenDetail.getId());
-              cancerRepository.save(cancer);
+
+            if(null == cancer.getRegimen()) {
+              cancer.setRegimen(regimenDetail.getId() + "");
             }
+            else if (cancer.getRegimen().indexOf(regimenDetail.getId()) == -1) {
+              cancer.setRegimen(cancer.getRegimen() + "," + regimenDetail.getId());
+            }
+
+            cancerRepository.save(cancer);
           }
         }
       }

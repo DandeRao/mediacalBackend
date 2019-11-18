@@ -16,6 +16,13 @@ public interface LevelTypeRepository extends JpaRepository<LevelType, Integer> {
   List<LevelType> findLevelTypeByType(@Param("type") String type);
 
 
+  @Query("Select a from LevelType a where a.level = :id")
+  LevelType findLevelTypeByLevelName(@Param("id") String type);
+
+
+  @Query("Select a from LevelType a where a.level = :level and a.type=:type")
+  LevelType findLevelTypeByLevelNameAndType(@Param("level") String level, @Param("type") String type);
+
   @Query(value = "select MAX(pk) from level_type", nativeQuery = true)
   int getMaxId();
 
