@@ -58,32 +58,33 @@ public class CancerTypeController {
 //     * @throws JsonMappingException
 //     * @throws IOException
 //     */
+    @CrossOrigin("*")
     @RequestMapping(value = "/cancerTypeControllerById/{patienttypeid}", produces = MediaType.ALL_VALUE, method = RequestMethod.DELETE)
     public boolean deleteRegimenDetail(@PathVariable("patienttypeid") Integer id) {
         return cancerService.deleteCancerId(id);
     }
-
+    @CrossOrigin("*")
     @RequestMapping(value = "/getAllCancerNames", produces = MediaType.ALL_VALUE, method = RequestMethod.GET)
     public CancerResponse getAllCancerNames() {
         return cancerService.getAllCancerNames();
     }
-
+    @CrossOrigin("*")
     @RequestMapping(value = "/getCancersByPatient/{patientId}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public CancerResponse getCancersByPatientId(@PathVariable("patientId") Integer id) {
         return cancerService.getCancersWithPatientId(id);
     }
-
+    @CrossOrigin("*")
     @RequestMapping(value = "/getCancersByParentId/{parentId}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public CancerResponse getCancersByParentId(@PathVariable("parentId") Integer id) {
         return cancerService.getCancersWithParentId(id);
     }
-
+    @CrossOrigin("*")
     @RequestMapping(value = "/cancerTypeControllerById/add", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     public CancerResponse addRegimenDetail(@RequestBody String payLoad)
             throws JsonParseException, JsonMappingException, IOException {
         return cancerService.addOrUpdateCancer(payLoad);
     }
-
+    @CrossOrigin("*")
         @RequestMapping(value = "/cancerTypeControllerById/edit", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     public CancerResponse UpdateRegimenDetail(@RequestBody String payLoad)
             throws JsonParseException, JsonMappingException, IOException {

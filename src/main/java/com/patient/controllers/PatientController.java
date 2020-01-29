@@ -19,18 +19,18 @@ public class PatientController {
 
 	@Autowired
 	private PatientService patientService;
-
+	@CrossOrigin("*")
 	@RequestMapping(value = "/patientController", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
 	public List<Patient> getAllMedicines() {
 		return patientService.getAllPatients();
 	}
-
+	@CrossOrigin("*")
 	@RequestMapping(value = "/patientController/add", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	public Patient addRegimenDetail(@RequestBody String payLoad)
 			throws JsonParseException, JsonMappingException, IOException {
 		return patientService.addOrUpdatePatient(payLoad);
 	}
-
+	@CrossOrigin("*")
 	@RequestMapping(value = "/patientController/edit", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
 	public Patient UpdateRegimenDetail(@RequestBody String payLoad)
 			throws JsonParseException, JsonMappingException, IOException {
@@ -45,6 +45,7 @@ public class PatientController {
 	 * @throws JsonMappingException
 	 * @throws IOException
 	 */
+	@CrossOrigin("*")
 	@RequestMapping(value = "/patientController/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
 	public int deleteRegimenDetail(@PathVariable("id") Integer id) {
 		patientService.deletePatient(id);

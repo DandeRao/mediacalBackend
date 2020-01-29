@@ -20,28 +20,29 @@ public class RegimenDetailController {
     @Autowired
     private RegimenDetailService regimenDetailService;
 
+    @CrossOrigin("*")
     @RequestMapping(value = "/regimenDetailController", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public List<RegimenDetail> getRegimentDetails(){
         return regimenDetailService.getAllRegimenDetails();
     }
 
-
+    @CrossOrigin("*")
     @RequestMapping(value = "/regimenDetailController/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public RegimenDetail getRegimenDetail(@PathVariable("id") Integer id) {
         return regimenDetailService.getRegimenDetailId(id);
     }
 
-
+    @CrossOrigin("*")
     @RequestMapping(value = "/regimenDetailController/{id}/names", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public CancerResponse getregimenDetailId(@PathVariable("id") int id) {
         return regimenDetailService.getRegimenDetailByCancerId(String.valueOf(id));
     }
-
+    @CrossOrigin("*")
     @RequestMapping(value = "/regimenDetailController/{id}/type/{type}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public CancerResponse getregimenDetailIdAndType(@PathVariable("id") int id, @PathVariable("type") String type) {
         return regimenDetailService.getRegimenDetailByCancerIdAndType(String.valueOf(id), type);
     }
-
+    @CrossOrigin("*")
     @RequestMapping(value = "/regimenDetailController/levels/{type}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public List<String> getLevels(@PathVariable("type") String type) {
         return regimenDetailService.getLevelsByType(type);
@@ -56,6 +57,7 @@ public class RegimenDetailController {
      * @throws JsonMappingException
      * @throws IOException
      */
+    @CrossOrigin("*")
     @RequestMapping(value = "/regimenDetailController/add", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     public RegimenDetail addRegimenDetail(@RequestBody String payLoad)
             throws JsonParseException, JsonMappingException, IOException {
@@ -71,6 +73,7 @@ public class RegimenDetailController {
      * @throws JsonMappingException
      * @throws IOException
      */
+    @CrossOrigin("*")
     @RequestMapping(value = "/regimenDetailController/add/level", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     public LevelType addLevelType(@RequestBody String payLoad)
             throws JsonParseException, JsonMappingException, IOException {
@@ -86,13 +89,14 @@ public class RegimenDetailController {
      * @throws JsonMappingException
      * @throws IOException
      */
+    @CrossOrigin("*")
     @RequestMapping(value = "/regimenDetailController/delete/level/{level}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
     public String  deleteLevelType(@PathVariable("level") String payLoad)
             throws JsonParseException, JsonMappingException, IOException {
         return regimenDetailService.deleteLevel(payLoad);
     }
 
-
+    @CrossOrigin("*")
     @RequestMapping(value = "/regimenDetailController/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
     public RegimenDetail UpdateRegimenDetail(@RequestBody String payLoad)
             throws JsonParseException, JsonMappingException, IOException {
@@ -106,6 +110,7 @@ public class RegimenDetailController {
      * @throws JsonMappingException
      * @throws IOException
      */
+    @CrossOrigin("*")
     @RequestMapping(value = "/regimenDetailController/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
     public int deleteRegimenDetail(@PathVariable("id") int id) {
         regimenDetailService.deleteRegimenDetail(id);

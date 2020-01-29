@@ -1,6 +1,6 @@
 package com.patient.models;
 
-import com.sun.istack.internal.Nullable;
+import javax.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
