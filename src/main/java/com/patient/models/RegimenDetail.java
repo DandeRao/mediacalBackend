@@ -1,6 +1,5 @@
 package com.patient.models;
 
-import javax.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +20,6 @@ public class RegimenDetail implements Serializable {
     @Column(name = "pk")
     private int id;
 
-    @Nullable
     @Column(name = "subcancer_type3_id")
     @Size(max = 10485760)
     private String subCancerTypeId3;
@@ -50,7 +48,6 @@ public class RegimenDetail implements Serializable {
     @Size(max = 10485760)
     private String dosageModifications;
 
-    @Nullable
     @Column(name = "regimen_type")
     private String regimenType;
 

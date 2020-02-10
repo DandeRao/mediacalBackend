@@ -14,11 +14,11 @@ import org.aspectj.apache.bcel.generic.RET;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @ComponentScan("com.patient.services")
 @Service
@@ -51,16 +51,22 @@ public class CancerService {
   }
 
   public CancerResponse getCancersWithParentId(int parentId) {
-
     List<Cancer> cancers = cancerRepository.getCancersByParentId(parentId);
 
 //    populateCancersWithSubCancerTypes(cancers);
 
     CancerResponse cancerResponse = new CancerResponse();
+    cancerResponse.setCurrentCancer(cancerRepository.getCancerById(parentId));
     cancerResponse.setId(parentId);
     cancerResponse.setSubCancers(populateCancersWithRegimens(cancers));
     cancerResponse.setParentCancers(getParentCancers(parentId));
-    cancerResponse.setRegimenDetail(getRegimenForCancerId(String.valueOf(parentId)));
+
+    List<RegimenDetail> regimenForCancer = new ArrayList<>();
+    regimenForCancer.addAll(getRegimenDetailFromRegimenList(cancerResponse.getCurrentCancer().getRegimen()));
+    regimenForCancer.addAll(getRegimenForCancerId(String.valueOf(parentId)));
+
+    cancerResponse.setRegimenDetail(regimenForCancer);
+
     if(null != cancerResponse.getSubCancers() && cancerResponse.getSubCancers().size() > 0) {
       cancerResponse.setPatientType(cancerResponse.getSubCancers().get(0).getPatientType());
       cancerResponse.setPatientTitle(patientRepository.getPatientTitileById(cancerResponse.getPatientType()));
@@ -107,6 +113,43 @@ public class CancerService {
     return cancerResponse;
   }
 
+  public CancerResponse updateRegimenInCancer(String payLoad) throws JsonParseException, JsonMappingException, IOException {
+
+    Cancer incomingCancer = objectMapper.readValue(payLoad, Cancer.class);
+    String incomingRegimenString = !StringUtils.isEmpty(incomingCancer.getRegimen()) ? incomingCancer.getRegimen() : "";
+
+    Cancer existingCancer = cancerRepository.getCancerById(incomingCancer.getId());
+    String existingCancerRegimen = !StringUtils.isEmpty(existingCancer.getRegimen() ) ? existingCancer.getRegimen() : "";
+    Set<String> regimenSet = new HashSet<>();
+
+    for(String regimenId: existingCancerRegimen.split(",")) {
+      regimenSet.add(regimenId);
+    }
+
+    for(String regimenId: incomingRegimenString.split(",")) {
+      if(regimenSet.contains(regimenId)) {
+        regimenSet.remove(regimenId);
+      } else {
+        regimenSet.add(regimenId);
+      }
+    }
+
+
+    existingCancer.setRegimen(String.join(",", regimenSet));
+
+
+    Cancer cancer = cancerRepository.save(existingCancer);
+
+    CancerResponse cancerResponse = new CancerResponse();
+    cancerResponse.setId(cancer.getId());
+    cancerResponse.setTitle(cancer.getTitle());
+    cancerResponse.setPatientType(cancer.getPatientType());
+    cancerResponse.setRegimenDetail(getRegimenDetailFromRegimenList(cancer.getRegimen()));
+    cancerResponse.setParentId(cancer.getParentId());
+
+    return cancerResponse;
+  }
+
   public List<Cancer> getParentCancers(int parentId) {
     List<Cancer> parentCancers = new ArrayList<>();
 
@@ -129,25 +172,32 @@ public class CancerService {
   private List<Cancer> populateCancersWithRegimens(List<Cancer> cancers) {
 
     for (Cancer cancer : cancers) {
-      if (null != cancer.getRegimen() && !cancer.getRegimen().equals("")) {
-        cancer.setRegimenDetails(getRegimenDetailFromRegimenList(cancer.getRegimen()));
+      List<RegimenDetail> regimenForCancer = new ArrayList<>();
+      regimenForCancer.addAll(getRegimenForCancerId(cancer.getId() + ""));
+
+      if (!StringUtils.isEmpty(cancer.getRegimen())) {
+        regimenForCancer.addAll(getRegimenDetailFromRegimenList(cancer.getRegimen()));
       }
 
+      cancer.setRegimenDetails(regimenForCancer);
     }
 
     return cancers;
   }
 
   private List<RegimenDetail> getRegimenForCancerId(String cancerId) {
+    List<RegimenDetail> regimenForCancer = new ArrayList<>();
 
-    return regimenDetailRepository.findRegimenDetailByCancerId(cancerId);
+    regimenForCancer.addAll(regimenDetailRepository.findRegimenDetailByCancerId(cancerId));
+
+    return regimenForCancer;
   }
 
-  private List<RegimenDetail> getRegimenDetailFromRegimenList(String regimenString) {
+  public List<RegimenDetail> getRegimenDetailFromRegimenList(String regimenString) {
 
     List<RegimenDetail> regimensForCancer = new ArrayList<>();
 
-    if (null != regimenString && !regimenString.equals("")) {
+    if (!StringUtils.isEmpty(regimenString)) {
       String[] regimens = regimenString.split(",");
       for (String regimen : regimens) {
         if(null != regimen && !regimen.equals("")) {

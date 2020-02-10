@@ -7,6 +7,8 @@ public class CancerResponse {
 
   private int patientType;
 
+  private Cancer currentCancer;
+
   private String patientTitle;
 
   private Integer parentId;
@@ -93,5 +95,13 @@ public class CancerResponse {
 
   public void setAllCancers(List<Object> allCancers) {
     this.allCancers = allCancers;
+  }
+
+  public Cancer getCurrentCancer() {
+    return currentCancer;
+  }
+
+  public void setCurrentCancer(Cancer currentCancer) {
+    this.currentCancer = currentCancer;
   }
 }

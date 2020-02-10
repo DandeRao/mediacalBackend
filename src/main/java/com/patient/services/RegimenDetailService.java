@@ -10,10 +10,13 @@ import com.patient.repos.PatientRepository;
 import com.patient.repos.RegimenDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RegimenDetailService {
@@ -150,25 +153,30 @@ public class RegimenDetailService {
       }
     }
 
-    public CancerResponse getRegimenDetailByCancerId(String cancerId) {
+  public CancerResponse getRegimenDetailByCancerId(String cancerId) {
 
-        CancerResponse cancerResponse = new CancerResponse();
+    CancerResponse cancerResponse = new CancerResponse();
 
-        if (Integer.valueOf(cancerId) == 0) {
-            cancerResponse.setRegimenDetail(regimenDetailRepository.getAllRegimenDetails());
-        } else {
-            cancerResponse.setRegimenDetail(regimenDetailRepository.findRegimenDetailByCancerId(cancerId));
-        }
+    if (Integer.valueOf(cancerId) == 0) {
+      cancerResponse.setRegimenDetail(regimenDetailRepository.getAllRegimenDetails());
+    } else {
+      List<RegimenDetail> regimenFromCancer = new ArrayList<>();
+      Cancer cancer = cancerRepository.getCancerById(Integer.valueOf(cancerId));
+      regimenFromCancer.addAll(cancerService.getRegimenDetailFromRegimenList(cancer.getRegimen()));
+      regimenFromCancer.addAll(regimenDetailRepository.findRegimenDetailByCancerId(cancerId));
 
-        cancerResponse.setParentCancers(cancerService.getParentCancers(Integer.valueOf(cancerId)));
-
-        if(null != cancerResponse.getParentCancers() && cancerResponse.getParentCancers().size() > 0) {
-            cancerResponse.setPatientType(cancerResponse.getParentCancers().get(0).getPatientType());
-            cancerResponse.setPatientTitle(patientRepository.getPatientTitileById(cancerResponse.getPatientType()));
-        }
-
-        return cancerResponse;
+      cancerResponse.setRegimenDetail(regimenFromCancer);
     }
+
+    cancerResponse.setParentCancers(cancerService.getParentCancers(Integer.valueOf(cancerId)));
+
+    if (null != cancerResponse.getParentCancers() && cancerResponse.getParentCancers().size() > 0) {
+      cancerResponse.setPatientType(cancerResponse.getParentCancers().get(0).getPatientType());
+      cancerResponse.setPatientTitle(patientRepository.getPatientTitileById(cancerResponse.getPatientType()));
+    }
+
+    return cancerResponse;
+  }
 
     public CancerResponse getRegimenDetailByCancerIdAndType(String cancerId, String type) {
 
@@ -206,4 +214,26 @@ public class RegimenDetailService {
 
         return levels;
     }
+
+    public RegimenDetail updateCancerToRegimenList(Integer regimenId, String cancerIds) {
+      RegimenDetail regimenDetailToUpdate = this.regimenDetailRepository.getRegimenDetailWithId(regimenId);
+
+      String cancersInRegimen = StringUtils.isEmpty(regimenDetailToUpdate.getSubCancerTypeId3()) ?  "" : regimenDetailToUpdate.getSubCancerTypeId3();
+
+      for(String cancerId : cancerIds.split(",")) {
+        if (Arrays.asList(cancersInRegimen.split(",")).indexOf(cancerId) > -1) {
+          cancersInRegimen = Arrays.stream(cancersInRegimen.split(",")).filter(id -> !id.equals(cancerId)).collect(Collectors.joining(","));
+        } else {
+          cancersInRegimen = cancersInRegimen.length() > 0 ? cancersInRegimen + "," + cancerId : cancerId;
+        }
+      }
+
+      regimenDetailToUpdate.setSubCancerTypeId3(cancersInRegimen);
+
+      this.regimenDetailRepository.save(regimenDetailToUpdate);
+
+      return regimenDetailToUpdate;
+
+    }
+
 }

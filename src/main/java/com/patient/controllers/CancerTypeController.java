@@ -90,4 +90,11 @@ public class CancerTypeController {
             throws JsonParseException, JsonMappingException, IOException {
             return cancerService.addOrUpdateCancer(payLoad);
     }
+
+    @CrossOrigin("*")
+    @RequestMapping(value = "/updateRegimenInCancer", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    public CancerResponse updateRegimenInCancer(@RequestBody String payLoad)
+            throws JsonParseException, JsonMappingException, IOException {
+        return cancerService.updateRegimenInCancer(payLoad);
+    }
 }

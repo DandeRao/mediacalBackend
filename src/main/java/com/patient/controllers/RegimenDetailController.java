@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.patient.models.CancerResponse;
 import com.patient.models.LevelType;
 import com.patient.models.RegimenDetail;
-import com.patient.repos.LevelTypeRepository;
 import com.patient.services.RegimenDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -30,6 +29,12 @@ public class RegimenDetailController {
     @RequestMapping(value = "/regimenDetailController/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public RegimenDetail getRegimenDetail(@PathVariable("id") Integer id) {
         return regimenDetailService.getRegimenDetailId(id);
+    }
+
+    @CrossOrigin("*")
+    @RequestMapping(value = "/regimenDetailController/{id}/updateCancerToList/{commaSeperatedCancerIds}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    public RegimenDetail updateCancerToRegimenList(@PathVariable("id") Integer id, @PathVariable("commaSeperatedCancerIds") String cancerId) {
+        return regimenDetailService.updateCancerToRegimenList(id, cancerId);
     }
 
     @CrossOrigin("*")

@@ -110,8 +110,8 @@
 INSERT INTO patient_type (pk, title) VALUES (1, 'Adult');
 INSERT INTO patient_type (pk, title) VALUES (2, 'Pediatric');
 
-INSERT INTO level_type (pk, level, type ) VALUES (1, 'ADJUVENT', 'REGIMEN');
-INSERT INTO level_type (pk, level, type ) VALUES (2, 'NEOADJUVENT', 'REGIMEN');
+INSERT INTO level_type (pk, level, type ) VALUES (1, 'ADJUVANT', 'REGIMEN');
+INSERT INTO level_type (pk, level, type ) VALUES (2, 'NEOADJUVANT', 'REGIMEN');
 INSERT INTO level_type (pk, level, type ) VALUES (3, 'METASTATIC', 'REGIMEN');
 
 INSERT INTO public.cancer (id, title, regimen, parent_id, patient_type) VALUES (1, 'CNS Tumors', '1,2,3,4,5', null, 1);
@@ -161,10 +161,10 @@ INSERT INTO public.cancer (id, title, regimen, parent_id, patient_type) VALUES (
 INSERT INTO public.cancer (id, title, regimen, parent_id, patient_type) VALUES (46, 'Non-Hodgkin''s', '321', 20, 2);
 INSERT INTO public.cancer (id, title, regimen, parent_id, patient_type) VALUES (47, 'Acute Lymphocytic Leukemia', '322,323,324,325,326,327,329,330,331', 21, 2);
 INSERT INTO public.cancer (id, title, regimen, parent_id, patient_type) VALUES (48, 'Acute Myeloid Leukemia', '332,333,334,335,336,337,338', 21, 2);
-INSERT INTO public.cancer (id, title, regimen, parent_id, patient_type) VALUES (83, 'Neuroblastoma', '', 15, null);
-INSERT INTO public.cancer (id, title, regimen, parent_id, patient_type) VALUES (84, 'Retinoblastoma', '', 16, null);
-INSERT INTO public.cancer (id, title, regimen, parent_id, patient_type) VALUES (85, 'Hepatoblastoma', '', 17, null);
-INSERT INTO public.cancer (id, title, regimen, parent_id, patient_type) VALUES (86, 'Wilms'' Tumor', '', 18, null);
+INSERT INTO public.cancer (id, title, regimen, parent_id, patient_type) VALUES (83, 'Neuroblastoma', '', 15, 1);
+INSERT INTO public.cancer (id, title, regimen, parent_id, patient_type) VALUES (84, 'Retinoblastoma', '', 16, 1);
+INSERT INTO public.cancer (id, title, regimen, parent_id, patient_type) VALUES (85, 'Hepatoblastoma', '', 17, 1);
+INSERT INTO public.cancer (id, title, regimen, parent_id, patient_type) VALUES (86, 'Wilms'' Tumor', '', 18, 1);
 INSERT INTO public.cancer (id, title, regimen, parent_id, patient_type) VALUES (91, 'Anal Cancer', '', 3, 1);
 INSERT INTO public.cancer (id, title, regimen, parent_id, patient_type) VALUES (92, 'Gastric Cancer', '', 3, 1);
 INSERT INTO public.cancer (id, title, regimen, parent_id, patient_type) VALUES (93, 'Colon and Rectal Cancer', '', 3, 1);
