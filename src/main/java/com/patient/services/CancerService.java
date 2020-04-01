@@ -5,12 +5,13 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.patient.models.Cancer;
+import com.patient.models.CancerRegimenLink;
 import com.patient.models.CancerResponse;
 import com.patient.models.RegimenDetail;
+import com.patient.repos.CancerRegimenLinkRepository;
 import com.patient.repos.CancerRepository;
 import com.patient.repos.PatientRepository;
 import com.patient.repos.RegimenDetailRepository;
-import org.aspectj.apache.bcel.generic.RET;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,6 @@ import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @ComponentScan("com.patient.services")
 @Service
@@ -33,6 +33,9 @@ public class CancerService {
 
   @Autowired
   private PatientRepository patientRepository;
+
+  @Autowired
+  private CancerRegimenLinkRepository cancerRegimenLinkRepository;
 
   @Autowired
   private ObjectMapper objectMapper;
@@ -62,7 +65,7 @@ public class CancerService {
     cancerResponse.setParentCancers(getParentCancers(parentId));
 
     List<RegimenDetail> regimenForCancer = new ArrayList<>();
-    regimenForCancer.addAll(getRegimenDetailFromRegimenList(cancerResponse.getCurrentCancer().getRegimen()));
+    regimenForCancer.addAll(getRegimenDetailFromRegimenList(cancerResponse.getCurrentCancer().getId()));
     regimenForCancer.addAll(getRegimenForCancerId(String.valueOf(parentId)));
 
     cancerResponse.setRegimenDetail(regimenForCancer);
@@ -107,7 +110,7 @@ public class CancerService {
     cancerResponse.setId(cancer.getId());
     cancerResponse.setTitle(cancer.getTitle());
     cancerResponse.setPatientType(cancer.getPatientType());
-    cancerResponse.setRegimenDetail(getRegimenDetailFromRegimenList(cancer.getRegimen()));
+    cancerResponse.setRegimenDetail(getRegimenDetailFromRegimenList(cancer.getId()));
     cancerResponse.setParentId(cancer.getParentId());
 
     return cancerResponse;
@@ -118,33 +121,44 @@ public class CancerService {
     Cancer incomingCancer = objectMapper.readValue(payLoad, Cancer.class);
     String incomingRegimenString = !StringUtils.isEmpty(incomingCancer.getRegimen()) ? incomingCancer.getRegimen() : "";
 
-    Cancer existingCancer = cancerRepository.getCancerById(incomingCancer.getId());
-    String existingCancerRegimen = !StringUtils.isEmpty(existingCancer.getRegimen() ) ? existingCancer.getRegimen() : "";
-    Set<String> regimenSet = new HashSet<>();
+    List<CancerRegimenLink> existingCancerRegimen = cancerRegimenLinkRepository.findRegimenDetailByCancerId(incomingCancer.getId());
 
-    for(String regimenId: existingCancerRegimen.split(",")) {
-      regimenSet.add(regimenId);
-    }
+    List<CancerRegimenLink> regimenBeingRemoved = new ArrayList<>();
+    List<CancerRegimenLink> finalRegimenList = new ArrayList<>();
 
     for(String regimenId: incomingRegimenString.split(",")) {
-      if(regimenSet.contains(regimenId)) {
-        regimenSet.remove(regimenId);
-      } else {
-        regimenSet.add(regimenId);
+      int numberOfRegimenBeingRemoved = regimenBeingRemoved.size();
+      for(CancerRegimenLink cancerRegimenLink: existingCancerRegimen) {
+        if (cancerRegimenLink.getRegimenId().equals(Integer.valueOf(regimenId))) {
+          regimenBeingRemoved.add(cancerRegimenLink);
+        }
+      }
+
+      if (numberOfRegimenBeingRemoved == regimenBeingRemoved.size()) {
+          finalRegimenList.add(CancerRegimenLink.builder()
+                  .id(cancerRegimenLinkRepository.getMaxId())
+                  .regimenId(Integer.valueOf(regimenId))
+                  .cancerId(incomingCancer.getId())
+                  .build());
       }
     }
 
+    if (regimenBeingRemoved.size() > 0) {
+      cancerRegimenLinkRepository.delete(regimenBeingRemoved);
+    }
 
-    existingCancer.setRegimen(String.join(",", regimenSet));
 
+    if (finalRegimenList.size() > 0) {
+      cancerRegimenLinkRepository.save(finalRegimenList);
+    }
 
-    Cancer cancer = cancerRepository.save(existingCancer);
+    Cancer cancer = cancerRepository.getCancerById(incomingCancer.getId());
 
     CancerResponse cancerResponse = new CancerResponse();
     cancerResponse.setId(cancer.getId());
     cancerResponse.setTitle(cancer.getTitle());
     cancerResponse.setPatientType(cancer.getPatientType());
-    cancerResponse.setRegimenDetail(getRegimenDetailFromRegimenList(cancer.getRegimen()));
+    cancerResponse.setRegimenDetail(getRegimenDetailFromRegimenList(cancer.getId()));
     cancerResponse.setParentId(cancer.getParentId());
 
     return cancerResponse;
@@ -176,7 +190,7 @@ public class CancerService {
       regimenForCancer.addAll(getRegimenForCancerId(cancer.getId() + ""));
 
       if (!StringUtils.isEmpty(cancer.getRegimen())) {
-        regimenForCancer.addAll(getRegimenDetailFromRegimenList(cancer.getRegimen()));
+        regimenForCancer.addAll(getRegimenDetailFromRegimenList(cancer.getId()));
       }
 
       cancer.setRegimenDetails(regimenForCancer);
@@ -193,21 +207,20 @@ public class CancerService {
     return regimenForCancer;
   }
 
-  public List<RegimenDetail> getRegimenDetailFromRegimenList(String regimenString) {
+  public List<RegimenDetail> getRegimenDetailFromRegimenList(int cancerId) {
 
     List<RegimenDetail> regimensForCancer = new ArrayList<>();
 
-    if (!StringUtils.isEmpty(regimenString)) {
-      String[] regimens = regimenString.split(",");
-      for (String regimen : regimens) {
-        if(null != regimen && !regimen.equals("")) {
-          RegimenDetail regimenDetail = regimenDetailRepository.getRegimenDetailWithId(Integer.parseInt(regimen));
-          if(null != regimenDetail) {
-            regimensForCancer.add(regimenDetail);
-          }
-        }
+
+    List<Integer> regimenIdsWithCancer = new ArrayList<>();
+
+    for (CancerRegimenLink cancerRegimenLink : cancerRegimenLinkRepository.findRegimenDetailByCancerId(cancerId)) {
+      if (!StringUtils.isEmpty(cancerRegimenLink.getRegimenId())) {
+        regimenIdsWithCancer.add(cancerRegimenLink.getRegimenId());
       }
     }
+
+    regimensForCancer.addAll(regimenDetailRepository.getRegimenFromListOfIds(regimenIdsWithCancer));
 
     return  regimensForCancer;
   }

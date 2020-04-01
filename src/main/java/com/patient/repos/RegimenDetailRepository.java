@@ -28,6 +28,9 @@ public interface RegimenDetailRepository extends JpaRepository< RegimenDetail, L
     @Query(value = "Select a from RegimenDetail a where a.id = :id")
     RegimenDetail getRegimenDetailWithId(@Param("id") int id);
 
+    @Query(value = "Select a from RegimenDetail a where a.id in (:id)")
+    List<RegimenDetail> getRegimenFromListOfIds(@Param("id") List<Integer> id);
+
     @Transactional
     @Modifying
     @Query(value = "DELETE FROM RegimenDetail c WHERE  c.id=:id")

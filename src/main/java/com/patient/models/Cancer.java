@@ -41,7 +41,7 @@ public class Cancer implements Serializable {
   private String regimen;
 
   @Transient
-  private List<RegimenDetail> regimenDetails;
+  private List<com.patient.models.RegimenDetail> regimenDetails;
 
 
   @Transient
