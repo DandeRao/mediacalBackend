@@ -220,7 +220,9 @@ public class CancerService {
       }
     }
 
-    regimensForCancer.addAll(regimenDetailRepository.getRegimenFromListOfIds(regimenIdsWithCancer));
+    if (!regimenIdsWithCancer.isEmpty()) {
+      regimensForCancer.addAll(regimenDetailRepository.getRegimenFromListOfIds(regimenIdsWithCancer));
+    }
 
     return  regimensForCancer;
   }

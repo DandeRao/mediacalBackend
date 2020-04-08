@@ -161,10 +161,7 @@ public class RegimenDetailService {
       cancerResponse.setRegimenDetail(regimenDetailRepository.getAllRegimenDetails());
     } else {
       List<RegimenDetail> regimenFromCancer = new ArrayList<>();
-      Cancer cancer = cancerRepository.getCancerById(Integer.valueOf(cancerId));
-      regimenFromCancer.addAll(cancerService.getRegimenDetailFromRegimenList(Integer.valueOf(cancer.getRegimen())));
       regimenFromCancer.addAll(regimenDetailRepository.findRegimenDetailByCancerId(cancerId));
-
       cancerResponse.setRegimenDetail(regimenFromCancer);
     }
 
