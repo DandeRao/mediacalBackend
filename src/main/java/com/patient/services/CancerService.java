@@ -193,7 +193,7 @@ public class CancerService {
         regimenForCancer.addAll(getRegimenDetailFromRegimenList(cancer.getId()));
       }
 
-      cancer.setRegimenDetails(regimenForCancer);
+//      cancer.setRegimenDetails(regimenForCancer);
     }
 
     return cancers;

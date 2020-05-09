@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "regimen_detail")
@@ -17,7 +19,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class RegimenDetail implements Serializable {
     @Id
-    @Column(name = "pk")
+    @GeneratedValue
+    @Column(name = "id", updatable = false, nullable = false)
     private int id;
 
     @Column(name = "subcancer_type3_id")
@@ -55,4 +58,9 @@ public class RegimenDetail implements Serializable {
     @Size(max = 10485760)
     private String brandNames;
 
+    @OneToMany(mappedBy = "regimenDetail")
+    private List<Reference> references = new ArrayList<>();
+
+    @OneToMany(mappedBy = "regimenDetail")
+    private List<Brand> brands = new ArrayList<>();
 }

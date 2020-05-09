@@ -18,8 +18,9 @@ import java.util.List;
 @AllArgsConstructor
 public class CancerRegimenLink  implements Serializable {
 
-  @Column(name = "id")
   @Id
+  @GeneratedValue
+  @Column(name = "id", updatable = false, nullable = false)
   private int id;
 
   @Column(name = "cancer_id")

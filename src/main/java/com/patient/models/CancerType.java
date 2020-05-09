@@ -13,16 +13,17 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 public class CancerType implements Serializable {
-    @Column(name = "pk")
     @Id
+    @GeneratedValue
+    @Column(name = "id", updatable = false, nullable = false)
     private int id;
 
     @Column(name = "patient_type_id")
     private int patienttypeid;
-
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private Patient patient;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "id")
+//    private Patient patient;
 
     @Column(name = "title")
     private String title;

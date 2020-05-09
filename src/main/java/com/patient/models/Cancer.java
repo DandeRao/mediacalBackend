@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,8 +19,9 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 public class Cancer implements Serializable {
-  @Column(name = "id")
   @Id
+  @GeneratedValue
+  @Column(name = "id", updatable = false, nullable = false)
   private int id;
 
   @Column(name = "patient_type")
@@ -40,19 +42,11 @@ public class Cancer implements Serializable {
   @Column(name = "regimen", length = 10000)
   private String regimen;
 
-  @Transient
-  private List<com.patient.models.RegimenDetail> regimenDetails;
-
-
-  @Transient
-  private List<Cancer> neoAdjuvantTypes;
-
-
-  @Transient
-  private List<Cancer> adjuvantTypes;
-
-
-  @Transient
-  private List<Cancer> metaStaticTypes;
-
+  @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+  @JoinTable(
+          name = "cancer_regimen_link",
+          joinColumns = {@JoinColumn(name = "cancer_id")},
+          inverseJoinColumns = {@JoinColumn(name = "regimen_id")}
+  )
+  private List<com.patient.models.RegimenDetail> regimenList = new ArrayList<>();
 }
