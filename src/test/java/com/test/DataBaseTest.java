@@ -14,7 +14,7 @@ import static com.rometools.utils.Strings.trim;
 
 public class DataBaseTest {
   public static void main(String[] args) {
-    splitBrandNameAndCreateNewTable();
+    getRegimenLinkedToThisBrand();
   }
 
   public static void createCancerRegimenLinkTable () {
@@ -149,6 +149,54 @@ public class DataBaseTest {
 //          }
 //        }
 //      }
+
+    } /*catch (ClassNotFoundException e) {
+            System.out.println("PostgreSQL JDBC driver not found.");
+            e.printStackTrace();
+        }*/ catch (SQLException e) {
+      System.out.println("Connection failure.");
+      e.printStackTrace();
+    }
+  }
+
+  public static void getRegimenLinkedToThisBrand() {
+    try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/medicalApp", "postgres", "admin")) {
+
+      System.out.println("Java JDBC PostgreSQL Example");
+      // When this class first attempts to establish a connection, it automatically loads any JDBC 4.0 drivers found within
+      // the class path. Note that your application must manually load any JDBC drivers prior to version 4.0.
+//          Class.forName("org.postgresql.Driver");
+
+      System.out.println("Connected to PostgreSQL database!");
+      Statement statement = connection.createStatement();
+      ResultSet resultSet = statement.executeQuery("SELECT * FROM public.brand");
+      Map brandMap = new HashMap<String, String>();
+      int columnId = 1;
+      while (resultSet.next()) {
+        String brandName = resultSet.getString("brand_name");
+        int id = resultSet.getInt("id");
+
+        brandMap.put(StringUtils.capitalize(trim(brandName)), String.valueOf(id));
+
+      }
+
+      resultSet = statement.executeQuery("SELECT * FROM public.regimen_detail");
+      int counter  = 0;
+      while (resultSet.next()) {
+        String brandName = resultSet.getString("brand_names");
+        if (!StringUtils.isEmpty(brandName)) {
+          String[] brands = brandName.split("<br>");
+
+          for (String brand : brands) {
+            if (brand.split(":").length > 0 &&
+                    brandMap.containsKey(StringUtils.capitalize(trim(brand.split(":")[0])))) {
+              System.out.printf("insert into brand_regimen_link (id, brand_id, regimen_id) values (%d, %s, %d);\n", counter,
+                      brandMap.get(trim(StringUtils.capitalize(brand.split(":")[0]))), resultSet.getInt("id"));
+              counter++;
+            }
+          }
+        }
+      }
 
     } /*catch (ClassNotFoundException e) {
             System.out.println("PostgreSQL JDBC driver not found.");

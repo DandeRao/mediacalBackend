@@ -11,7 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "regimen_brand")
+@Table(name = "brand")
 @Data
 @Builder
 @AllArgsConstructor
