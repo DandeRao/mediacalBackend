@@ -66,12 +66,9 @@ public class RegimenDetailService {
                 .dosageModifications(regimenDetail1.getDosageModifications())
                 .schedule(regimenDetail1.getSchedule())
                 .regimenType(regimenDetail1.getRegimenType())
+                .regimenLevels(regimenDetail1.getRegimenLevels())
+                .brands(regimenDetail1.getBrands())
                 .build();
-
-      if(null != regimenDetail1.getSubCancerTypeId3())
-      {
-        regimenDetail.setSubCancerTypeId3(regimenDetail1.getSubCancerTypeId3());
-      }
 
       saveRegimenInCancer(regimenDetail);
 
@@ -81,13 +78,11 @@ public class RegimenDetailService {
     public LevelType addLevel(String payLoad) throws JsonParseException, JsonMappingException, IOException {
         LevelType level = objectMapper.readValue(payLoad, LevelType.class);
 
-        LevelType existingLevel = levelTypeRepository.findLevelTypeByLevelNameAndType(level.getLevel(), level.getType());
+        LevelType existingLevel = levelTypeRepository.findLevelTypeByLevelName(level.getLevel());
 
         if(null == existingLevel) {
           LevelType levelDetail = LevelType.builder()
-                  .id(levelTypeRepository.getMaxId() + 1)
                   .level(level.getLevel())
-                  .type(level.getType())
                   .build();
 
           return levelTypeRepository.save(levelDetail);
@@ -122,9 +117,8 @@ public class RegimenDetailService {
             regimenDetail.setEmetogenicPotential(regimenDetail1.getEmetogenicPotential());
             regimenDetail.setSchedule(regimenDetail1.getSchedule());
             regimenDetail.setRegimenType(regimenDetail1.getRegimenType());
-            if (null != regimenDetail1.getSubCancerTypeId3()) {
-              regimenDetail.setSubCancerTypeId3(regimenDetail1.getSubCancerTypeId3());
-            }
+            regimenDetail.setRegimenLevels(regimenDetail.getRegimenLevels());
+            regimenDetail.setBrands(regimenDetail.getBrands());
             saveRegimenInCancer(regimenDetail);
             return regimenDetailRepository.save(regimenDetail);
         }
@@ -134,23 +128,23 @@ public class RegimenDetailService {
 
     private void  saveRegimenInCancer(RegimenDetail regimenDetail)
     {
-      if (null != regimenDetail.getSubCancerTypeId3())
-      {
-        for (String cancerId : regimenDetail.getSubCancerTypeId3().split(",")) {
-          if (cancerId != "") {
-            Cancer cancer = cancerRepository.getCancerById(Integer.valueOf(cancerId));
-
-            if(null == cancer.getRegimen()) {
-              cancer.setRegimen(regimenDetail.getId() + "");
-            }
-            else if (cancer.getRegimen().indexOf(regimenDetail.getId()) == -1) {
-              cancer.setRegimen(cancer.getRegimen() + "," + regimenDetail.getId());
-            }
-
-            cancerRepository.save(cancer);
-          }
-        }
-      }
+//      if (null != regimenDetail.getSubCancerTypeId3())
+//      {
+//        for (String cancerId : regimenDetail.getSubCancerTypeId3().split(",")) {
+//          if (cancerId != "") {
+//            Cancer cancer = cancerRepository.getCancerById(Integer.valueOf(cancerId));
+//
+//            if(null == cancer.getRegimen()) {
+//              cancer.setRegimen(regimenDetail.getId() + "");
+//            }
+//            else if (cancer.getRegimen().indexOf(regimenDetail.getId()) == -1) {
+//              cancer.setRegimen(cancer.getRegimen() + "," + regimenDetail.getId());
+//            }
+//
+//            cancerRepository.save(cancer);
+//          }
+//        }
+//      }
     }
 
   public CancerResponse getRegimenDetailByCancerId(String cancerId) {
@@ -161,7 +155,6 @@ public class RegimenDetailService {
       cancerResponse.setRegimenDetail(regimenDetailRepository.getAllRegimenDetails());
     } else {
       List<RegimenDetail> regimenFromCancer = new ArrayList<>();
-      regimenFromCancer.addAll(regimenDetailRepository.findRegimenDetailByCancerId(cancerId));
       cancerResponse.setRegimenDetail(regimenFromCancer);
     }
 
@@ -178,8 +171,6 @@ public class RegimenDetailService {
     public CancerResponse getRegimenDetailByCancerIdAndType(String cancerId, String type) {
 
         CancerResponse cancerResponse = new CancerResponse();
-
-        cancerResponse.setRegimenDetail(regimenDetailRepository.findRegimenDetailByIdAndType(cancerId, type));
 
         cancerResponse.setParentCancers(cancerService.getParentCancers(Integer.valueOf(cancerId)));
 
@@ -200,37 +191,33 @@ public class RegimenDetailService {
         return regimenDetailRepository.getMaxId() + 1;
     }
 
+  public List<LevelType> getLevels() {
 
-    public List<String> getLevelsByType(String type) {
+    List<LevelType> levels = new ArrayList<>();
+    levels.addAll(levelTypeRepository.getLevels());
+    return levels;
+  }
 
-        List<String> levels = new ArrayList<>();
-
-        for(LevelType level: levelTypeRepository.findLevelTypeByType(type)) {
-            levels.add(level.getLevel());
-        }
-
-        return levels;
-    }
 
     public RegimenDetail updateCancerToRegimenList(Integer regimenId, String cancerIds) {
-      RegimenDetail regimenDetailToUpdate = this.regimenDetailRepository.getRegimenDetailWithId(regimenId);
-
-      String cancersInRegimen = StringUtils.isEmpty(regimenDetailToUpdate.getSubCancerTypeId3()) ?  "" : regimenDetailToUpdate.getSubCancerTypeId3();
-
-      for(String cancerId : cancerIds.split(",")) {
-        if (Arrays.asList(cancersInRegimen.split(",")).indexOf(cancerId) > -1) {
-          cancersInRegimen = Arrays.stream(cancersInRegimen.split(",")).filter(id -> !id.equals(cancerId)).collect(Collectors.joining(","));
-        } else {
-          cancersInRegimen = cancersInRegimen.length() > 0 ? cancersInRegimen + "," + cancerId : cancerId;
-        }
-      }
-
-      regimenDetailToUpdate.setSubCancerTypeId3(cancersInRegimen);
-
-      this.regimenDetailRepository.save(regimenDetailToUpdate);
-
-      return regimenDetailToUpdate;
-
+//      RegimenDetail regimenDetailToUpdate = this.regimenDetailRepository.getRegimenDetailWithId(regimenId);
+//
+//      String cancersInRegimen = StringUtils.isEmpty(regimenDetailToUpdate.getSubCancerTypeId3()) ?  "" : regimenDetailToUpdate.getSubCancerTypeId3();
+//
+//      for(String cancerId : cancerIds.split(",")) {
+//        if (Arrays.asList(cancersInRegimen.split(",")).indexOf(cancerId) > -1) {
+//          cancersInRegimen = Arrays.stream(cancersInRegimen.split(",")).filter(id -> !id.equals(cancerId)).collect(Collectors.joining(","));
+//        } else {
+//          cancersInRegimen = cancersInRegimen.length() > 0 ? cancersInRegimen + "," + cancerId : cancerId;
+//        }
+//      }
+//
+//      regimenDetailToUpdate.setSubCancerTypeId3(cancersInRegimen);
+//
+//      this.regimenDetailRepository.save(regimenDetailToUpdate);
+//
+//      return regimenDetailToUpdate;
+        return null;
     }
 
 }

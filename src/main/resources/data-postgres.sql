@@ -110,9 +110,9 @@
 INSERT INTO patient_type (id, title) VALUES (1, 'Adult');
 INSERT INTO patient_type (id, title) VALUES (2, 'Pediatric');
 
-INSERT INTO level_type (id, level, type ) VALUES (1, 'ADJUVANT', 'REGIMEN');
-INSERT INTO level_type (id, level, type ) VALUES (2, 'NEOADJUVANT', 'REGIMEN');
-INSERT INTO level_type (id, level, type ) VALUES (3, 'METASTATIC', 'REGIMEN');
+INSERT INTO level_type (id, level ) VALUES (1, 'ADJUVANT');
+INSERT INTO level_type (id, level ) VALUES (2, 'NEOADJUVANT');
+INSERT INTO level_type (id, level ) VALUES (3, 'METASTATIC');
 
 INSERT INTO public.cancer (id, title, parent_id, patient_type) VALUES (1, 'CNS Tumors', null, 1);
 INSERT INTO public.cancer (id, title, parent_id, patient_type) VALUES (2, 'Head & Neck Malignancies', null, 1);
@@ -3889,4 +3889,4 @@ insert into brand_regimen_link (id, brand_id, regimen_id) values (679, 100, 372)
 insert into brand_regimen_link (id, brand_id, regimen_id) values (680, 91, 373);
 insert into brand_regimen_link (id, brand_id, regimen_id) values (681, 106, 374);
 insert into brand_regimen_link (id, brand_id, regimen_id) values (682, 9, 375);
-insert into brand_regimen_link (id, brand_id, regimen_id) values (683, 7, 376);0
+insert into brand_regimen_link (id, brand_id, regimen_id) values (683, 7, 376);

@@ -1,29 +1,28 @@
 package com.patient.models;
 
 
-
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
-import java.io.Serializable;
 
 @Entity
-@Table(name = "level_type")
+@NoArgsConstructor
+@Table(name = "brand_regimen_link")
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
-public class LevelType implements Serializable {
+public class BrandRegimenLink {
   @Id
   @GeneratedValue
   @Column(name = "id", updatable = false, nullable = false)
   private int id;
 
-  @Column(name = "level")
-  private String level;
+  @Column(name = "brand_id")
+  private Integer brandId;
+
+  @Column(name = "regimen_id")
+  private Integer regimenId;
 }

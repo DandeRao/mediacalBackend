@@ -49,8 +49,8 @@ public class RegimenDetailController {
     }
     @CrossOrigin("*")
     @RequestMapping(value = "/regimenDetailController/levels/{type}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-    public List<String> getLevels(@PathVariable("type") String type) {
-        return regimenDetailService.getLevelsByType(type);
+    public List<LevelType> getLevels(@PathVariable("type") String type) {
+        return regimenDetailService.getLevels();
     }
 
     /**

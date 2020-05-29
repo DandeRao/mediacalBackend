@@ -16,15 +16,10 @@ public class LevelTypeService {
   @Autowired
   LevelTypeRepository levelTypeRepository;
 
-
-  List<LevelType> getLevelsByType(String type) {
-
+  List<LevelType> getRegimenLevels() {
     List<LevelType> levels = new ArrayList<>();
-
-    if(type != null && !type.equals("")) {
-      levels.addAll(levelTypeRepository.findLevelTypeByType(type));
-    }
-
+    levels.addAll(levelTypeRepository.getLevels());
     return levels;
   }
+
 }

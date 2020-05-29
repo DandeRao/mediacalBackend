@@ -66,8 +66,6 @@ public class CancerService {
 
     List<RegimenDetail> regimenForCancer = new ArrayList<>();
     regimenForCancer.addAll(getRegimenDetailFromRegimenList(cancerResponse.getCurrentCancer().getId()));
-    regimenForCancer.addAll(getRegimenForCancerId(String.valueOf(parentId)));
-
     cancerResponse.setRegimenDetail(regimenForCancer);
 
     if(null != cancerResponse.getSubCancers() && cancerResponse.getSubCancers().size() > 0) {
@@ -187,8 +185,6 @@ public class CancerService {
 
     for (Cancer cancer : cancers) {
       List<RegimenDetail> regimenForCancer = new ArrayList<>();
-      regimenForCancer.addAll(getRegimenForCancerId(cancer.getId() + ""));
-
       if (!StringUtils.isEmpty(cancer.getRegimen())) {
         regimenForCancer.addAll(getRegimenDetailFromRegimenList(cancer.getId()));
       }
@@ -197,14 +193,6 @@ public class CancerService {
     }
 
     return cancers;
-  }
-
-  private List<RegimenDetail> getRegimenForCancerId(String cancerId) {
-    List<RegimenDetail> regimenForCancer = new ArrayList<>();
-
-    regimenForCancer.addAll(regimenDetailRepository.findRegimenDetailByCancerId(cancerId));
-
-    return regimenForCancer;
   }
 
   public List<RegimenDetail> getRegimenDetailFromRegimenList(int cancerId) {
