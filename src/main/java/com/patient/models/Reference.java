@@ -18,9 +18,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Reference implements Serializable {
   @Id
-  @GeneratedValue
   @Column(name = "id", updatable = false, nullable = false)
-  private int id;
+  private Integer id;
 
   @Column(name = "reference")
   @Size(max = 10485760)

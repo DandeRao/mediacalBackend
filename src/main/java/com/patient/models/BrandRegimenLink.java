@@ -16,13 +16,17 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class BrandRegimenLink {
   @Id
-  @GeneratedValue
   @Column(name = "id", updatable = false, nullable = false)
-  private int id;
+  private Integer id;
 
   @Column(name = "brand_id")
   private Integer brandId;
 
   @Column(name = "regimen_id")
   private Integer regimenId;
+
+  public BrandRegimenLink(int brandId, int regimenId) {
+    this.brandId = brandId;
+    this.regimenId = regimenId;
+  }
 }

@@ -1,5 +1,6 @@
 package com.patient.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,9 +22,8 @@ import java.util.List;
 @NoArgsConstructor
 public class RegimenDetail implements Serializable {
     @Id
-    @GeneratedValue
     @Column(name = "id", updatable = false, nullable = false)
-    private int id;
+    private Integer id;
 
     @Column(name = "disp_name")
     @Size(max = 10485760)
@@ -57,6 +57,7 @@ public class RegimenDetail implements Serializable {
     private String brandNames;
 
     @OneToMany(mappedBy = "regimenDetail")
+    @JsonManagedReference
     private List<Reference> references = new ArrayList<>();
 
 

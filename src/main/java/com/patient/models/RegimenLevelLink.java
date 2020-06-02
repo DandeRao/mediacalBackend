@@ -16,13 +16,17 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class RegimenLevelLink {
   @Id
-  @GeneratedValue
   @Column(name = "id", updatable = false, nullable = false)
-  private int id;
+  private Integer id;
 
   @Column(name = "level_id")
-  private Integer level_id;
+  private Integer levelId;
 
   @Column(name = "regimen_id")
   private Integer regimenId;
+
+  public RegimenLevelLink(int levelId, int regimenId) {
+    this.levelId = levelId;
+    this.regimenId = regimenId;
+  }
 }

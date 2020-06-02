@@ -20,9 +20,8 @@ import java.util.List;
 @AllArgsConstructor
 public class Cancer implements Serializable {
   @Id
-  @GeneratedValue
   @Column(name = "id", updatable = false, nullable = false)
-  private int id;
+  private Integer id;
 
   @Column(name = "patient_type")
   private int patientType;

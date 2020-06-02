@@ -18,9 +18,8 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class Brand {
   @Id
-  @GeneratedValue
   @Column(name = "id", updatable = false, nullable = false)
-  private int id;
+  private Integer id;
 
   @Column(name = "brand_name")
   @Size(max = 10485760)
@@ -33,8 +32,4 @@ public class Brand {
   @Column(name = "manufacturer")
   @Size(max = 10485760)
   private String manufacturer;
-
-  @ManyToOne()
-  @JsonBackReference
-  private RegimenDetail regimenDetail;
 }

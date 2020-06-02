@@ -20,9 +20,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class LevelType implements Serializable {
   @Id
-  @GeneratedValue
   @Column(name = "id", updatable = false, nullable = false)
-  private int id;
+  private Integer id;
 
   @Column(name = "level")
   private String level;

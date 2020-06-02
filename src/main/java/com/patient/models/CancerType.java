@@ -14,12 +14,11 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class CancerType implements Serializable {
     @Id
-    @GeneratedValue
     @Column(name = "id", updatable = false, nullable = false)
-    private int id;
+    private Integer id;
 
     @Column(name = "patient_type_id")
-    private int patienttypeid;
+    private Integer patienttypeid;
 //
 //    @ManyToOne
 //    @JoinColumn(name = "id")

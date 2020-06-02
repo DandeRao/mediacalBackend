@@ -11,9 +11,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Patient implements Serializable {
     @Id
-    @GeneratedValue
     @Column(name = "id", updatable = false, nullable = false)
-    private int id;
+    private Integer id;
 
 
     @Column(name = "title")

@@ -1,5 +1,6 @@
 package com.patient.repos;
 import com.patient.models.Patient;
+import com.patient.models.RegimenLevelLink;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,6 +19,8 @@ public interface PatientRepository extends JpaRepository<Patient, Integer> {
     String getPatientTitileById(@Param("id") int id);
 
 
+    @Query("Select r from Patient r where r.id = :id")
+    public Patient getById(@Param("id") int id);
 
     @Query(value = "select MAX(pk) from patient_type", nativeQuery = true)
     int getMaxId();

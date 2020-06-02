@@ -1,5 +1,6 @@
 package com.patient.repos;
 import com.patient.models.RegimenDetail;
+import com.patient.models.RegimenLevelLink;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -31,5 +32,9 @@ public interface RegimenDetailRepository extends JpaRepository< RegimenDetail, L
 
     @Query(value = "select MAX(pk) from regimen_detail", nativeQuery = true)
     int getMaxId();
+
+
+    @Query("Select r from RegimenDetail r where r.id = :id")
+    public RegimenDetail getById(@Param("id") int id);
 
 }

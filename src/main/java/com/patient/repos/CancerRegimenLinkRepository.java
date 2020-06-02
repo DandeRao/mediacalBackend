@@ -1,6 +1,7 @@
 package com.patient.repos;
 
 import com.patient.models.CancerRegimenLink;
+import com.patient.models.RegimenLevelLink;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,4 +18,7 @@ public interface CancerRegimenLinkRepository extends JpaRepository<CancerRegimen
 
   @Query("Select c from CancerRegimenLink c where c.cancerId = :cancerId")
   public List<CancerRegimenLink> findRegimenDetailByCancerId(@Param("cancerId") int cancerId);
+
+  @Query("Select r from CancerRegimenLink r where r.id = :id")
+  public CancerRegimenLink getById(@Param("id") int id);
 }
