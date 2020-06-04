@@ -7,20 +7,10 @@ import com.patient.models.*;
 import com.patient.repos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.util.StringUtils;
 
-import javax.persistence.EntityExistsException;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class RegimenDetailService {
@@ -116,34 +106,42 @@ public class RegimenDetailService {
   }
 
   public RegimenDetail updateRegimenDetail(String payLoad) throws JsonParseException, JsonMappingException, IOException {
-    RegimenDetail regimenDetail1 = objectMapper.readValue(payLoad, RegimenDetail.class);
-    RegimenDetail regimenDetail = regimenDetailRepository.fingRegimenById(regimenDetail1.getId());
+    RegimenDetail regimenInRequest = objectMapper.readValue(payLoad, RegimenDetail.class);
 
-    if (regimenDetail.getDispName() != regimenDetail1.getDispName()
-            | regimenDetail.getDosageModifications() != regimenDetail1.getDosageModifications()
-            | regimenDetail.getEmetogenicPotential() != regimenDetail.getDosageModifications()
-            | regimenDetail.getSchedule() != regimenDetail1.getSchedule()) {
 
-      regimenDetail.setDispName(regimenDetail1.getDispName());
-      regimenDetail.setDosageModifications(regimenDetail1.getDosageModifications());
-      regimenDetail.setEmetogenicPotential(regimenDetail1.getEmetogenicPotential());
-      regimenDetail.setSchedule(regimenDetail1.getSchedule());
-      regimenDetail.setReferences(regimenDetail1.getReferences());
+    RegimenDetail regimenInDB = null;
 
-      saveRegimenInCancer(regimenDetail);
-
-      if (null != regimenDetail1.getBrands() && regimenDetail1.getBrands().size() > 0) {
-        saveBrands(regimenDetail1.getBrands(), regimenDetail1.getId());
-      }
-
-      if (null != regimenDetail1.getRegimenLevels() && regimenDetail1.getRegimenLevels().size() > 0) {
-        saveRegimenLevels(regimenDetail1.getRegimenLevels(), regimenDetail1.getId());
-      }
-
-      return regimenDetailRepository.save(regimenDetail);
+    if (null == regimenInRequest.getId()) {
+      regimenInDB = new RegimenDetail();
+      regimenInDB.setId(regimenDetailRepository.getMaxId() + 1);
+    } else {
+      regimenInDB = regimenDetailRepository.fingRegimenById(regimenInRequest.getId());
     }
 
-    return regimenDetail;
+    regimenInDB.setDispName(regimenInRequest.getDispName());
+    regimenInDB.setDosageModifications(regimenInRequest.getDosageModifications());
+    regimenInDB.setEmetogenicPotential(regimenInRequest.getEmetogenicPotential());
+    regimenInDB.setSchedule(regimenInRequest.getSchedule());
+
+    regimenInDB = regimenDetailRepository.save(regimenInDB);
+
+    saveRegimenInCancer(regimenInDB);
+
+    if (null != regimenInRequest.getBrands() && regimenInRequest.getBrands().size() > 0) {
+
+      saveBrands(regimenInRequest.getBrands(), regimenInDB.getId());
+    }
+
+    if (null != regimenInRequest.getRegimenLevels() && regimenInRequest.getRegimenLevels().size() > 0) {
+      saveRegimenLevels(regimenInRequest.getRegimenLevels(), regimenInDB.getId());
+    }
+
+    if (null != regimenInRequest.getReferences() && regimenInRequest.getReferences().size() > 0) {
+      saveReferences(regimenInRequest.getReferences(), regimenInDB.getId());
+    }
+
+    return regimenInDB;
+
   }
 
   public void saveBrands(List<Brand> brands, int regimenId) {
@@ -196,6 +194,20 @@ public class RegimenDetailService {
     }
   }
 
+  public void saveReferences(List<Reference> references, int regimenId) {
+    List<Reference> referencesForRegimen = referenceRepository.getByRegimenId(regimenId);
+    referenceRepository.delete(referencesForRegimen);
+
+    if (null != references && references.size() > 0) {
+      for (Reference reference: references) {
+        reference.setId(referenceRepository.getMaxId() + 1);
+        reference.setReferenceValue(reference.getReferenceValue());
+        reference.setRegimenDetail(regimenDetailRepository.getById(regimenId));
+        referenceRepository.save(reference);
+      }
+    }
+
+  }
   private void saveRegimenInCancer(RegimenDetail regimenDetail) {
 //      if (null != regimenDetail.getSubCancerTypeId3())
 //      {

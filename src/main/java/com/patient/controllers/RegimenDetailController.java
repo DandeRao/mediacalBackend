@@ -102,7 +102,7 @@ public class RegimenDetailController {
     }
 
     @CrossOrigin("*")
-    @RequestMapping(value = "/regimenDetailController/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
+    @RequestMapping(value = "/regimenDetailController/updateRegimen", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
     public RegimenDetail UpdateRegimenDetail(@RequestBody String payLoad)
             throws JsonParseException, JsonMappingException, IOException {
         return regimenDetailService.updateRegimenDetail(payLoad);

@@ -30,7 +30,7 @@ public interface RegimenDetailRepository extends JpaRepository< RegimenDetail, L
     @Query(value = "DELETE FROM RegimenDetail c WHERE  c.id=:id")
     void delteRegimenWithId(@Param("id") int id);
 
-    @Query(value = "select MAX(pk) from regimen_detail", nativeQuery = true)
+    @Query(value = "select MAX(id) from regimen_detail", nativeQuery = true)
     int getMaxId();
 
 

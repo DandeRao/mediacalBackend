@@ -58,7 +58,7 @@ public class RegimenDetail implements Serializable {
 
     @OneToMany(mappedBy = "regimenDetail")
     @JsonManagedReference
-    private List<Reference> references = new ArrayList<>();
+    private List<Reference> references;
 
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
