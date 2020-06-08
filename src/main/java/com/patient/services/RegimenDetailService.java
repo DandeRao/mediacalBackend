@@ -1,6 +1,7 @@
 package com.patient.services;
 
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.patient.models.*;
@@ -44,6 +45,9 @@ public class RegimenDetailService {
 
   @Autowired
   private RegimenLevelLinkRepository regimenLevelLinkRepository;
+
+  @Autowired
+  private CancerRegimenLinkRepository cancerRegimenLinkRepository;
 
   public List<RegimenDetail> getAllRegimenDetails() {
     return regimenDetailRepository.findAll();
@@ -105,7 +109,7 @@ public class RegimenDetailService {
     return payLoad;
   }
 
-  public RegimenDetail updateRegimenDetail(String payLoad) throws JsonParseException, JsonMappingException, IOException {
+  public RegimenDetail updateRegimenDetail(String payLoad, Integer cancerId) throws JsonParseException, JsonMappingException, IOException {
     RegimenDetail regimenInRequest = objectMapper.readValue(payLoad, RegimenDetail.class);
 
 
@@ -140,8 +144,52 @@ public class RegimenDetailService {
       saveReferences(regimenInRequest.getReferences(), regimenInDB.getId());
     }
 
+    if (null != cancerId) {
+      addRegimenToCancer(regimenInDB.getId(), cancerId);
+    }
+
     return regimenInDB;
 
+  }
+
+  public void linkRegimenToCancer(String payload) throws IOException {
+    List<CancerRegimenLink> cancerRegimenLinks = objectMapper.readValue(payload,
+            objectMapper.getTypeFactory().constructCollectionType(List.class, CancerRegimenLink.class));
+
+    if (null != cancerRegimenLinks) {
+      cancerRegimenLinks.forEach(cancerRegimenLink -> {
+        addRegimenToCancer(cancerRegimenLink.getRegimenId(), cancerRegimenLink.getCancerId());
+      });
+    }
+  }
+
+  public void unLinkRegimenToCancer(String payload) throws IOException {
+    List<CancerRegimenLink> cancerRegimenLinks = objectMapper.readValue(payload,
+            objectMapper.getTypeFactory().constructCollectionType(List.class, CancerRegimenLink.class));
+
+    if (null != cancerRegimenLinks) {
+      cancerRegimenLinks.forEach(cancerRegimenLink -> {
+        deleteRegimenFromCancer(cancerRegimenLink.getRegimenId(), cancerRegimenLink.getCancerId());
+      });
+    }
+  }
+
+  public void addRegimenToCancer(Integer regimenId, Integer cancerId) {
+    CancerRegimenLink cancerRegimenLink = cancerRegimenLinkRepository.getCancerRegimenLinkByRegimenAndCancerId(regimenId, cancerId);
+
+    if (null == cancerRegimenLink) {
+      cancerRegimenLink = new CancerRegimenLink(cancerId, regimenId);
+      cancerRegimenLink.setId(cancerRegimenLinkRepository.getMaxId() + 1);
+      cancerRegimenLinkRepository.save(cancerRegimenLink);
+    }
+  }
+
+  public void deleteRegimenFromCancer(Integer regimenId, Integer cancerId) {
+    CancerRegimenLink cancerRegimenLink = cancerRegimenLinkRepository.getCancerRegimenLinkByRegimenAndCancerId(regimenId, cancerId);
+
+    if (null != cancerRegimenLink) {
+      cancerRegimenLinkRepository.delete(cancerRegimenLink);
+    }
   }
 
   public void saveBrands(List<Brand> brands, int regimenId) {
@@ -258,6 +306,7 @@ public class RegimenDetailService {
     if (null != cancerResponse.getParentCancers() && cancerResponse.getParentCancers().size() > 0) {
       cancerResponse.setPatientType(cancerResponse.getParentCancers().get(0).getPatientType());
       cancerResponse.setPatientTitle(patientRepository.getPatientTitileById(cancerResponse.getPatientType()));
+      cancerResponse.setRegimenDetail(regimenDetailRepository.getByCancerIdAndRegimenLevelType(Integer.valueOf(cancerId), type));
     }
 
     return cancerResponse;

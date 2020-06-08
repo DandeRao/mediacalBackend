@@ -66,7 +66,7 @@ public class RegimenDetailController {
     @RequestMapping(value = "/regimenDetailController/add", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     public RegimenDetail addRegimenDetail(@RequestBody String payLoad)
             throws JsonParseException, JsonMappingException, IOException {
-        return regimenDetailService.addOrUpdateRegimenDetail(payLoad);
+        return regimenDetailService.updateRegimenDetail(payLoad, null);
     }
 
     /**
@@ -105,8 +105,42 @@ public class RegimenDetailController {
     @RequestMapping(value = "/regimenDetailController/updateRegimen", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
     public RegimenDetail UpdateRegimenDetail(@RequestBody String payLoad)
             throws JsonParseException, JsonMappingException, IOException {
-        return regimenDetailService.updateRegimenDetail(payLoad);
+        return regimenDetailService.updateRegimenDetail(payLoad, null);
     }
+
+    @CrossOrigin("*")
+    @RequestMapping(value = "/regimenDetailController/updateRegimen/cancerId/{cancerId}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
+    public RegimenDetail createOrUpdateRegimenAndAddToCancer(@RequestBody String payLoad, @PathVariable("cancerId") Integer cancerId)
+            throws JsonParseException, JsonMappingException, IOException {
+        return regimenDetailService.updateRegimenDetail(payLoad, cancerId);
+    }
+
+    @CrossOrigin("*")
+    @RequestMapping(value = "/regimenDetailController/linkRegimenToCancer",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            method = RequestMethod.PUT)
+    public String linkRegimenToCancer(@RequestBody String payLoad) {
+        try {
+            regimenDetailService.linkRegimenToCancer(payLoad);
+            return "SUCCESS";
+        } catch (Exception e) {
+            return "FAILED";
+        }
+    }
+
+    @CrossOrigin("*")
+    @RequestMapping(value = "/regimenDetailController/deleteRegimenFromCancer",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            method = RequestMethod.DELETE)
+    public String deleteRegimenFromCancer(@RequestBody String payLoad){
+        try {
+            regimenDetailService.unLinkRegimenToCancer(payLoad);
+            return "SUCCESS";
+        } catch (Exception e) {
+            return "FAILED";
+        }
+    }
+
     /**
      * This method is used to delete the patient.
      *

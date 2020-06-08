@@ -27,4 +27,9 @@ public class CancerRegimenLink  implements Serializable {
 
   @Column(name = "regimen_id")
   private Integer regimenId;
+
+  public CancerRegimenLink(Integer cancerId, Integer regimenId) {
+    this.cancerId = cancerId;
+    this.regimenId = regimenId;
+  }
 }

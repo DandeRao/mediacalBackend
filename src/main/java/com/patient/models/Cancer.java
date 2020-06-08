@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Where;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
@@ -48,4 +49,7 @@ public class Cancer implements Serializable {
           inverseJoinColumns = {@JoinColumn(name = "regimen_id")}
   )
   private List<com.patient.models.RegimenDetail> regimenList = new ArrayList<>();
+
+  @Transient
+  private List<String> regimenLevelsInCancer = new ArrayList<>( );
 }

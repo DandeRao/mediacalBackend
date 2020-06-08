@@ -184,6 +184,8 @@ public class CancerService {
   private List<Cancer> populateCancersWithRegimens(List<Cancer> cancers) {
 
     for (Cancer cancer : cancers) {
+      cancer.setRegimenLevelsInCancer(regimenDetailRepository.getRegimenLevelNameByCancerId(cancer.getId()));
+
       List<RegimenDetail> regimenForCancer = new ArrayList<>();
       if (!StringUtils.isEmpty(cancer.getRegimen())) {
         regimenForCancer.addAll(getRegimenDetailFromRegimenList(cancer.getId()));

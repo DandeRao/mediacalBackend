@@ -19,6 +19,15 @@ public interface CancerRegimenLinkRepository extends JpaRepository<CancerRegimen
   @Query("Select c from CancerRegimenLink c where c.cancerId = :cancerId")
   public List<CancerRegimenLink> findRegimenDetailByCancerId(@Param("cancerId") int cancerId);
 
+
+  @Query("Select c from CancerRegimenLink c where c.regimenId = :regimenId")
+  public List<CancerRegimenLink> getCancersForRegimen(@Param("regimenId") int regimenId);
+
   @Query("Select r from CancerRegimenLink r where r.id = :id")
   public CancerRegimenLink getById(@Param("id") int id);
+
+
+  @Query("Select r from CancerRegimenLink r where r.regimenId = :regimenId and r.cancerId = :cancerId")
+  public CancerRegimenLink getCancerRegimenLinkByRegimenAndCancerId(@Param("regimenId") int regimenId, @Param("cancerId") int cancerId);
+
 }
