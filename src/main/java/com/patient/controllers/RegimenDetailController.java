@@ -155,4 +155,16 @@ public class RegimenDetailController {
         regimenDetailService.deleteRegimenDetail(id);
         return id;
     }
+
+    @CrossOrigin("*")
+    @RequestMapping(value = "/regimenDetailController/getRegimenListToAddToCancer/{cancerId}/type/{type}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    public CancerResponse getRegimenListToAddToCancerWithType(@PathVariable("cancerId") int cancerId, @PathVariable("type") String type) {
+        return regimenDetailService.getRegimenListToAddToCancer(cancerId, type);
+    }
+
+    @CrossOrigin("*")
+    @RequestMapping(value = "/regimenDetailController/getRegimenListToAddToCancer/{cancerId}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    public CancerResponse getRegimenListToAddToCancer(@PathVariable("cancerId") int cancerId) {
+        return regimenDetailService.getRegimenListToAddToCancer(cancerId, null);
+    }
 }

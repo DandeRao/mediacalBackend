@@ -1,13 +1,13 @@
 package com.patient.services;
 
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.patient.models.*;
 import com.patient.repos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -350,4 +350,17 @@ public class RegimenDetailService {
     return null;
   }
 
+  public CancerResponse getRegimenListToAddToCancer(int cancerId, String type) {
+    CancerResponse response = new CancerResponse();
+
+    if (!StringUtils.isEmpty(type)) {
+      response.setExistingRegimenInCancer(regimenDetailRepository.getByCancerIdAndRegimenLevelType(cancerId, type));
+    } else {
+      response.setExistingRegimenInCancer(regimenDetailRepository.getRegimenDetailByCancerId(cancerId));
+    }
+
+    response.setAllRegimenListToAddToCancer(regimenDetailRepository.getRegimenDetailNotLinkedToCancerId(cancerId));
+
+    return response;
+  }
 }

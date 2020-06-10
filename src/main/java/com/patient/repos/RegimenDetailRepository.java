@@ -42,4 +42,11 @@ public interface RegimenDetailRepository extends JpaRepository< RegimenDetail, L
     @Query(value = "select * from regimen_detail where id in (select regimen_id from regimen_level_link where level_id in (select id from level_type where level =:regimenType) and regimen_id in (select cancer_regimen_link.regimen_id from cancer_regimen_link where cancer_id =:cancerId))", nativeQuery = true)
     public List<RegimenDetail> getByCancerIdAndRegimenLevelType(@Param("cancerId") int id, @Param("regimenType") String regimenType);
 
+    @Query(value = "select * from regimen_detail where id in (select regimen_id from cancer_regimen_link where cancer_id in (select cancer_regimen_link.regimen_id from cancer_regimen_link where cancer_id =:cancerId))", nativeQuery = true)
+    public List<RegimenDetail> getRegimenDetailByCancerId(@Param("cancerId") int id);
+
+    @Query(value = "select * from regimen_detail where id in (select regimen_id from cancer_regimen_link where cancer_id in (select cancer_regimen_link.regimen_id from cancer_regimen_link where cancer_id != :cancerId))", nativeQuery = true)
+    public List<RegimenDetail> getRegimenDetailNotLinkedToCancerId(@Param("cancerId") int id);
+
+
 }
