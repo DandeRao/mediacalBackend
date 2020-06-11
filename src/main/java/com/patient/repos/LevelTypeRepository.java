@@ -19,7 +19,11 @@ public interface LevelTypeRepository extends JpaRepository<LevelType, Integer> {
   LevelType findLevelTypeByLevelName(@Param("id") String type);
 
   @Query(value = "select MAX(id) from level_type", nativeQuery = true)
-  int getMaxId();
+  Integer getMaxId();
+
+  default Integer getNextId() {
+    return null == getMaxId() ? 1 : getMaxId() + 1;
+  }
 
   @Query("Select r from LevelType r where r.id = :id")
   public LevelType getById(@Param("id") int id);

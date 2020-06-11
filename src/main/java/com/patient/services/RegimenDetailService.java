@@ -101,12 +101,33 @@ public class RegimenDetailService {
     return level;
   }
 
-  public String deleteLevel(String payLoad) throws JsonParseException, JsonMappingException, IOException {
+  public String editLevel(String payLoad) throws JsonParseException, JsonMappingException, IOException {
+    List<LevelType> levels =  objectMapper.readValue(payLoad,
+            objectMapper.getTypeFactory().constructCollectionType(List.class, LevelType.class));
 
-    LevelType levelType = levelTypeRepository.findLevelTypeByLevelName(payLoad);
-    levelTypeRepository.delete(levelType);
+    for(LevelType levelType: levels) {
+      if (null == levelType.getId() && !StringUtils.isEmpty(levelType.getLevel())) {
+        levelType.setId(levelTypeRepository.getNextId());
+      }
+    }
 
-    return payLoad;
+    levelTypeRepository.save(levels);
+
+    return "SUCCESS";
+  }
+
+  public String deleteLevel(String payload) throws JsonParseException, JsonMappingException, IOException {
+    List<LevelType> levels =  objectMapper.readValue(payload,
+            objectMapper.getTypeFactory().constructCollectionType(List.class, LevelType.class));
+
+    for (LevelType levelType: levels) {
+      if (null != levelType.getId()) {
+        regimenLevelLinkRepository.deleteRegimenLevelLinksByLevelId(levelType.getId());
+
+        levelTypeRepository.delete(levelTypeRepository.getById(levelType.getId()));
+      }
+    }
+    return "SUCCESS";
   }
 
   public RegimenDetail updateRegimenDetail(String payLoad, Integer cancerId) throws JsonParseException, JsonMappingException, IOException {
@@ -221,7 +242,7 @@ public class RegimenDetailService {
     for (LevelType level : levels) {
 
       if (null == level.getId()) {
-        level.setId(levelTypeRepository.getMaxId() + 1);
+        level.setId(levelTypeRepository.getNextId());
         savedLevel = level;
       } else {
         savedLevel = levelTypeRepository.getById(level.getId());
@@ -235,7 +256,7 @@ public class RegimenDetailService {
         regimenLevelLink = new RegimenLevelLink(savedLevel.getId(), regimenId);
 
         regimenLevelLink.setId( null == regimenLevelLinkRepository.getMaxId()
-                ? 0 : regimenLevelLinkRepository.getMaxId() + 1);
+                ? 0 : regimenLevelLinkRepository.getNextId());
 
         regimenLevelLinkRepository.save(regimenLevelLink);
       }
