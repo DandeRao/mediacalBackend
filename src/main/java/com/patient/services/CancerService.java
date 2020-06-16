@@ -101,7 +101,6 @@ public class CancerService {
             .patientType(incomingCancer.getPatientType())
             .parentId(incomingCancer.getParentId())
             .regimen(incomingCancer.getRegimen())
-            .subCancerType(incomingCancer.getSubCancerType())
             .build());
 
     CancerResponse cancerResponse = new CancerResponse();

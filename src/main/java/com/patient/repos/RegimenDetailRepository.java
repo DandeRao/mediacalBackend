@@ -22,7 +22,7 @@ public interface RegimenDetailRepository extends JpaRepository< RegimenDetail, L
     @Query(value = "Select a from RegimenDetail a where a.id = :id")
     RegimenDetail getRegimenDetailWithId(@Param("id") int id);
 
-    @Query(value = "Select a from RegimenDetail a where a.id in (:id)")
+    @Query(value = "Select a from RegimenDetail a where a.id in (:id) ORDER BY disp_name ASC")
     List<RegimenDetail> getRegimenFromListOfIds(@Param("id") List<Integer> id);
 
     @Transactional
@@ -39,13 +39,13 @@ public interface RegimenDetailRepository extends JpaRepository< RegimenDetail, L
     @Query("Select r from RegimenDetail r where r.id = :id")
     public RegimenDetail getById(@Param("id") int id);
 
-    @Query(value = "select * from regimen_detail where id in (select regimen_id from regimen_level_link where level_id in (select id from level_type where level =:regimenType) and regimen_id in (select cancer_regimen_link.regimen_id from cancer_regimen_link where cancer_id =:cancerId))", nativeQuery = true)
+    @Query(value = "select * from regimen_detail where id in (select regimen_id from regimen_level_link where level_id in (select id from level_type where level =:regimenType) and regimen_id in (select cancer_regimen_link.regimen_id from cancer_regimen_link where cancer_id =:cancerId)) ORDER BY disp_name ASC", nativeQuery = true)
     public List<RegimenDetail> getByCancerIdAndRegimenLevelType(@Param("cancerId") int id, @Param("regimenType") String regimenType);
 
-    @Query(value = "select * from regimen_detail where id in (select regimen_id from cancer_regimen_link where cancer_id in (select cancer_regimen_link.regimen_id from cancer_regimen_link where cancer_id =:cancerId))", nativeQuery = true)
+    @Query(value = "select * from regimen_detail where id in (select regimen_id from cancer_regimen_link where cancer_id in (select cancer_regimen_link.regimen_id from cancer_regimen_link where cancer_id =:cancerId)) ORDER BY disp_name ASC", nativeQuery = true)
     public List<RegimenDetail> getRegimenDetailByCancerId(@Param("cancerId") int id);
 
-    @Query(value = "select * from regimen_detail where id in (select regimen_id from cancer_regimen_link where cancer_id in (select cancer_regimen_link.regimen_id from cancer_regimen_link where cancer_id != :cancerId))", nativeQuery = true)
+    @Query(value = "select * from regimen_detail where id in (select regimen_id from cancer_regimen_link where cancer_id in (select cancer_regimen_link.regimen_id from cancer_regimen_link where cancer_id != :cancerId)) ORDER BY disp_name ASC", nativeQuery = true)
     public List<RegimenDetail> getRegimenDetailNotLinkedToCancerId(@Param("cancerId") int id);
 
 

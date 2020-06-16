@@ -56,6 +56,10 @@ public class RegimenDetail implements Serializable {
     @Size(max = 10485760)
     private String brandNames;
 
+    @Column(name = "subcancer_type3_id")
+    @Size(max = 10485760)
+    private String subCancerType3Id;
+
     @OneToMany(mappedBy = "regimenDetail")
     @JsonManagedReference
     private List<Reference> references;
