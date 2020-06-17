@@ -38,7 +38,7 @@ public class PatientService {
 		Patient patient1 = objectMapper.readValue(payLoad, Patient.class);
         Patient patient = Patient.builder()
                 .title(patient1.getTitle())
-                .id(patient1.getId() != 0? patient1.getId() : patientRepository.getMaxId()+1)
+                .id( null != patient1.getId() ? patient1.getId() : patientRepository.getMaxId()+1)
                 .build();
 		return patientRepository.save(patient);
 	}

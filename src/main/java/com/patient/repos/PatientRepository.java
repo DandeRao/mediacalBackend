@@ -22,7 +22,7 @@ public interface PatientRepository extends JpaRepository<Patient, Integer> {
     @Query("Select r from Patient r where r.id = :id")
     public Patient getById(@Param("id") int id);
 
-    @Query(value = "select MAX(pk) from patient_type", nativeQuery = true)
+    @Query(value = "select MAX(id) from patient_type", nativeQuery = true)
     int getMaxId();
 	
 }

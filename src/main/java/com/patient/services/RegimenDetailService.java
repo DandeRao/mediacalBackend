@@ -58,7 +58,7 @@ public class RegimenDetailService {
   }
 
   public int deleteRegimenDetail(int id) {
-    regimenDetailRepository.delteRegimenWithId(id);
+    regimenDetailRepository.deleteRegimenWithId(id);
     return id;
   }
 
@@ -297,19 +297,23 @@ public class RegimenDetailService {
 //      }
   }
 
-  public CancerResponse getRegimenDetailByCancerId(String cancerId) {
+  public CancerResponse getRegimenDetailByCancerId(int cancerId) {
 
     CancerResponse cancerResponse = new CancerResponse();
 
-    if (Integer.valueOf(cancerId) == 0) {
-      cancerResponse.setRegimenDetail(regimenDetailRepository.getAllRegimenDetails());
+    if (cancerId == 0) {
+      List<RegimenDetail> regimenDetails = regimenDetailRepository.getAllRegimenDetails();
+      for (RegimenDetail regimenDetail: regimenDetails) {
+        regimenDetail.setLinkedToCancers(cancerRepository.getCancerNamesLinkedToARegimenByRegimenId(regimenDetail.getId()));
+      }
+
+      cancerResponse.setRegimenDetail(regimenDetails);
     } else {
-      List<RegimenDetail> regimenFromCancer = new ArrayList<>();
-      cancerResponse.setRegimenDetail(regimenFromCancer);
+      cancerResponse.setRegimenDetail(regimenDetailRepository.getRegimenDetailByCancerId(cancerId));
     }
 
-    cancerResponse.setParentCancers(cancerService.getParentCancers(Integer.valueOf(cancerId)));
-
+    cancerResponse.setParentCancers(cancerService.getParentCancers(cancerId));
+    cancerResponse.setCurrentCancer(cancerRepository.getCancerById(cancerId));
     if (null != cancerResponse.getParentCancers() && cancerResponse.getParentCancers().size() > 0) {
       cancerResponse.setPatientType(cancerResponse.getParentCancers().get(0).getPatientType());
       cancerResponse.setPatientTitle(patientRepository.getPatientTitileById(cancerResponse.getPatientType()));
@@ -326,6 +330,7 @@ public class RegimenDetailService {
 
     if (null != cancerResponse.getParentCancers() && cancerResponse.getParentCancers().size() > 0) {
       cancerResponse.setPatientType(cancerResponse.getParentCancers().get(0).getPatientType());
+      cancerResponse.setCurrentCancer(cancerRepository.getCancerById(Integer.valueOf(cancerId)));
       cancerResponse.setPatientTitle(patientRepository.getPatientTitileById(cancerResponse.getPatientType()));
       cancerResponse.setRegimenDetail(regimenDetailRepository.getByCancerIdAndRegimenLevelType(Integer.valueOf(cancerId), type));
     }

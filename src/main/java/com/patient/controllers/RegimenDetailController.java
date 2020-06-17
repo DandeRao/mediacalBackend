@@ -40,7 +40,7 @@ public class RegimenDetailController {
     @CrossOrigin("*")
     @RequestMapping(value = "/regimenDetailController/{id}/names", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public CancerResponse getregimenDetailId(@PathVariable("id") int id) {
-        return regimenDetailService.getRegimenDetailByCancerId(String.valueOf(id));
+        return regimenDetailService.getRegimenDetailByCancerId(id);
     }
     @CrossOrigin("*")
     @RequestMapping(value = "/regimenDetailController/{id}/type/{type}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
@@ -147,7 +147,7 @@ public class RegimenDetailController {
     @CrossOrigin("*")
     @RequestMapping(value = "/regimenDetailController/deleteRegimenFromCancer",
             produces = MediaType.APPLICATION_JSON_VALUE,
-            method = RequestMethod.DELETE)
+            method = RequestMethod.POST)
     public String deleteRegimenFromCancer(@RequestBody String payLoad){
         try {
             regimenDetailService.unLinkRegimenToCancer(payLoad);

@@ -82,4 +82,7 @@ public class RegimenDetail implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "level_id")}
     )
     private List<LevelType> regimenLevels = new ArrayList<>();
+
+    @Transient
+    private List<String> linkedToCancers = new ArrayList<>( );
 }

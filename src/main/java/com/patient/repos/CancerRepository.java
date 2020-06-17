@@ -31,4 +31,7 @@ public interface CancerRepository extends JpaRepository<Cancer, Integer> {
 
   @Query(value = "select MAX(id) from cancer", nativeQuery = true)
   int getMaxId();
+
+  @Query(value = "Select title from cancer where id in (select cancer_id from cancer_regimen_link where regimen_id=:regimenId) ORDER BY title ASC", nativeQuery = true)
+  List<String> getCancerNamesLinkedToARegimenByRegimenId(@Param("regimenId") int regimenId);
 }
