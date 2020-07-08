@@ -5,7 +5,9 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.patient.models.CancerResponse;
 import com.patient.models.Patient;
+import com.patient.models.responses.AllData;
 import com.patient.repos.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -52,4 +54,17 @@ public class PatientController {
 		return id;
 	}
 
+	/**
+	 * This method is used to delete the patient.
+	 *
+	 * @parampayLoad
+	 * @throws JsonParseException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
+	@CrossOrigin("*")
+	@RequestMapping(value = "/patientController/getAllData", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+	public AllData getAllData() {
+		return patientService.getAllData();
+	}
 }

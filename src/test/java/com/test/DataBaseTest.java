@@ -14,7 +14,7 @@ import static com.rometools.utils.Strings.trim;
 
 public class DataBaseTest {
   public static void main(String[] args) {
-    createAdditionalRegimenCancerLinkFromCancerIdInRegimen();
+    convertOldBrandRegimenLinkToDrugRegimenLink();
   }
 
   public static void createCancerRegimenLinkTable () {
@@ -310,6 +310,87 @@ public class DataBaseTest {
               }
             }
           }
+        }
+      }
+
+    } /*catch (ClassNotFoundException e) {
+            System.out.println("PostgreSQL JDBC driver not found.");
+            e.printStackTrace();
+        }*/ catch (SQLException e) {
+      System.out.println("Connection failure.");
+      e.printStackTrace();
+    }
+  }
+
+  public static void breakBrandToDrugAndDrugBrand() {
+    try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/medicalApp", "postgres", "postgres")) {
+
+      System.out.println("Connected to DB!");
+      Statement statement = connection.createStatement();
+      ResultSet resultSet = statement.executeQuery("SELECT * FROM public.brand");
+      Map<String, Integer> genericNameMap = new HashMap<>();
+      Map<String, Integer> brandNameMap = new HashMap<>();
+      Map<String, Integer> brandGenericLink = new HashMap<>();
+      int genericNameCounter = 1;
+      int brandNameCounter = 1;
+      int brand_drug_counter = 1;
+      while (resultSet.next()) {
+        String genericName = trim(resultSet.getString("generic_name"));
+        String brandName = trim(resultSet.getString("brand_name"));
+        if (!StringUtils.isEmpty(genericName) && null == genericNameMap.get(genericName)) {
+          genericNameMap.put(genericName, genericNameCounter);
+          genericNameCounter++;
+        }
+
+        if (null == brandNameMap.get(brandName) && !StringUtils.isEmpty(brandName)) {
+          brandNameMap.put(brandName, brandNameCounter);
+          brandNameCounter++;
+
+          if (null == brandGenericLink.get(genericNameMap.get(genericName)+","+brandNameMap.get(brandName))) {
+            brandGenericLink.put(genericNameMap.get(genericName)+","+brandNameMap.get(brandName), brand_drug_counter);
+            brand_drug_counter++;
+          }
+
+        }
+      }
+
+      genericNameMap.forEach((k, v) -> System.out.printf("insert into drug (id, drug_name) values (%d, \"%s\");%n", v, k));
+      brandNameMap.forEach((k, v) -> System.out.printf("insert into drug_brand (id, brand_name, manufacturer) values (%d, \"%s\", \"\");%n", v, k));
+      brandGenericLink.forEach((k, v) -> System.out.printf("insert into drug_brand_link (id, drug_id, drug_brand_id) values (%d, %s, %s);%n", v, k.split(",")[0], k.split(",")[1]));
+
+
+    } /*catch (ClassNotFoundException e) {
+            System.out.println("PostgreSQL JDBC driver not found.");
+            e.printStackTrace();
+        }*/ catch (SQLException e) {
+      System.out.println("Connection failure.");
+      e.printStackTrace();
+    }
+  }
+
+  public static void convertOldBrandRegimenLinkToDrugRegimenLink() {
+    try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/medicalApp", "postgres", "postgres")) {
+
+      System.out.println("Connected to DB!");
+      Statement statement = connection.createStatement();
+      ResultSet resultSet = statement.executeQuery("SELECT * FROM public.drug");
+      Map<String, Integer> drugMap = new HashMap<>();
+      Map<String, Integer> brandMap = new HashMap<>();
+      Map<Integer, Integer> brandToDrugMap = new HashMap<>();
+      while (resultSet.next()) {
+        drugMap.put(resultSet.getString("generic_name"), resultSet.getInt("id"));
+      }
+      resultSet = statement.executeQuery("SELECT * FROM public.brand");
+      while (resultSet.next()) {
+        if (null != drugMap.get(trim(resultSet.getString("generic_name")))) {
+          brandToDrugMap.put(resultSet.getInt("id"), drugMap.get(trim(resultSet.getString("generic_name"))));
+        }
+      }
+      resultSet = statement.executeQuery("SELECT * FROM public.brand_regimen_link");
+
+      while (resultSet.next()) {
+        if (null != brandToDrugMap.get(resultSet.getInt("brand_id"))) {
+          System.out.printf("insert into drug_regimen_link (id, drug_id, regimen_id) values (%d, %d, %d);%n", resultSet.getInt("id"), brandToDrugMap.get(resultSet.getInt("brand_id")), resultSet.getInt("regimen_id"));
         }
       }
 

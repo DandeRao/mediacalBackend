@@ -1,7 +1,5 @@
 package com.patient.repos;
 
-import com.patient.models.BrandRegimenLink;
-import com.patient.models.LevelType;
 import com.patient.models.RegimenLevelLink;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

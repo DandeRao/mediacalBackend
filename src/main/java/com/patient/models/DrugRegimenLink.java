@@ -10,23 +10,23 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-@Table(name = "brand_regimen_link")
+@Table(name = "drug_regimen_link")
 @Data
 @Builder
 @AllArgsConstructor
-public class BrandRegimenLink {
+public class DrugRegimenLink {
   @Id
   @Column(name = "id", updatable = false, nullable = false)
   private Integer id;
 
-  @Column(name = "brand_id")
-  private Integer brandId;
+  @Column(name = "drug_id")
+  private Integer drugId;
 
   @Column(name = "regimen_id")
   private Integer regimenId;
 
-  public BrandRegimenLink(int brandId, int regimenId) {
-    this.brandId = brandId;
+  public DrugRegimenLink(int drugId, int regimenId) {
+    this.drugId = drugId;
     this.regimenId = regimenId;
   }
 }

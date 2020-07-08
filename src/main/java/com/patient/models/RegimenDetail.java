@@ -68,11 +68,11 @@ public class RegimenDetail implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(
-            name = "brand_regimen_link",
+            name = "drug_regimen_link",
             joinColumns = {@JoinColumn(name = "regimen_id")},
-            inverseJoinColumns = {@JoinColumn(name = "brand_id")}
+            inverseJoinColumns = {@JoinColumn(name = "drug_id")}
     )
-    private List<Brand> brands = new ArrayList<>();
+    private List<Drug> brands = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @Fetch(value = FetchMode.SUBSELECT)

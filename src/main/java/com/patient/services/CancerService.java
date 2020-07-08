@@ -8,6 +8,7 @@ import com.patient.models.Cancer;
 import com.patient.models.CancerRegimenLink;
 import com.patient.models.CancerResponse;
 import com.patient.models.RegimenDetail;
+import com.patient.models.responses.Regimen;
 import com.patient.repos.CancerRegimenLinkRepository;
 import com.patient.repos.CancerRepository;
 import com.patient.repos.PatientRepository;
@@ -93,7 +94,8 @@ public class CancerService {
   public CancerResponse addOrUpdateCancer(String payLoad) throws JsonParseException, JsonMappingException, IOException {
 
     Cancer incomingCancer = objectMapper.readValue(payLoad, Cancer.class);
-    int newId = (incomingCancer.getId() !=0)? incomingCancer.getId() : (0 ==  cancerRepository.getMaxId() ? 1 : cancerRepository.getMaxId() +1);
+    int newId = (null != incomingCancer.getId() && incomingCancer.getId() !=0)
+            ? incomingCancer.getId() : (0 ==  cancerRepository.getMaxId() ? 1 : cancerRepository.getMaxId() +1);
 
     Cancer cancer = cancerRepository.save(Cancer.builder()
             .id(newId)
@@ -221,5 +223,66 @@ public class CancerService {
     CancerResponse response = new CancerResponse();
     response.setAllCancers(cancers);
     return  response;
+  }
+
+
+  public List<com.patient.models.responses.Cancer> getCancerResponseByPatientId(Integer patientId) {
+    List<Cancer> cancers = cancerRepository.getCancersByPatientId(patientId);
+    List<com.patient.models.responses.Cancer> cancersInResponse = getCancerResponsesFromCancers(cancers);
+
+    for (com.patient.models.responses.Cancer cancer: cancersInResponse) {
+      cancer.setSubCancers(getSubCancerResponseType(cancer));
+    }
+
+    return cancersInResponse;
+  }
+
+
+  public List<com.patient.models.responses.Cancer> getSubCancerResponseType(com.patient.models.responses.Cancer cancer) {
+    List<com.patient.models.responses.Cancer> cancersInResponse = new ArrayList<>();
+
+    for (Cancer cancerType : getSubCancersForCancer(cancer.getId())) {
+      com.patient.models.responses.Cancer c1 = getCancerResponseTypeFromCancer(cancerType);
+      List<Cancer> subCancers = getSubCancersForCancer(c1.getId());
+      if (subCancers.size() == 0) {
+        return cancersInResponse;
+      } else {
+        c1.setSubCancers(getSubCancerResponseType(c1));
+        cancersInResponse.add(c1);
+      }
+    }
+
+    return cancersInResponse;
+  }
+
+  public List<com.patient.models.responses.Cancer> getCancerResponsesFromCancers(List<Cancer> cancers) {
+    List<com.patient.models.responses.Cancer> cancersInResponse = new ArrayList();
+
+    for (Cancer cancer: cancers) {
+      cancersInResponse.add(getCancerResponseTypeFromCancer(cancer));
+    }
+
+    return cancersInResponse;
+  }
+
+  public List<Cancer> getSubCancersForCancer(Integer cancerId) {
+    return  cancerRepository.getCancersByParentId(cancerId);
+  }
+
+  public com.patient.models.responses.Cancer getCancerResponseTypeFromCancer(Cancer cancer) {
+    com.patient.models.responses.Cancer cancerR = new com.patient.models.responses.Cancer();
+    cancerR.setId(cancer.getId());
+    cancerR.setTitle(cancer.getTitle());
+    List<Regimen> regimenList = new ArrayList();
+
+    for (RegimenDetail regimenDetail: cancer.getRegimenList()) {
+      Regimen regimen = new Regimen();
+      regimen.setId(regimenDetail.getId());
+      regimenList.add(regimen);
+    }
+
+    cancerR.getRegimenList().addAll(regimenList);
+
+    return cancerR;
   }
 }

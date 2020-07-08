@@ -38,7 +38,7 @@ public class RegimenDetailService {
   private BrandRepository brandRepository;
 
   @Autowired
-  private BrandRegimenLinkRepository brandRegimenLinkRepository;
+  private DrugRegimenLinkRepository drugRegimenLinkRepository;
 
   @Autowired
   private ReferenceRepository referenceRepository;
@@ -48,6 +48,12 @@ public class RegimenDetailService {
 
   @Autowired
   private CancerRegimenLinkRepository cancerRegimenLinkRepository;
+
+  @Autowired
+  private DrugRepository drugRepository;
+
+  @Autowired
+  private DrugBrandRepository drugBrandRepository;
 
   public List<RegimenDetail> getAllRegimenDetails() {
     return regimenDetailRepository.findAll();
@@ -153,7 +159,6 @@ public class RegimenDetailService {
     saveRegimenInCancer(regimenInDB);
 
     if (null != regimenInRequest.getBrands() && regimenInRequest.getBrands().size() > 0) {
-
       saveBrands(regimenInRequest.getBrands(), regimenInDB.getId());
     }
 
@@ -213,27 +218,40 @@ public class RegimenDetailService {
     }
   }
 
-  public void saveBrands(List<Brand> brands, int regimenId) {
-    Brand savedBrand = null;
-    for (Brand brand : brands) {
-      if (null == brand.getId()) {
-        brand.setId(brandRepository.getMaxId() + 1);
-        savedBrand = brand;
+  public void saveBrands(List<Drug> drugs, int regimenId) {
+    Drug savedDrug = null;
+    for (Drug drug : drugs) {
+      if (null == drug.getId()) {
+        drug.setId(drugRepository.getNextId());
+        savedDrug = drug;
       } else {
-        savedBrand = brandRepository.getById(brand.getId());
-        savedBrand.setBrandName(brand.getBrandName());
-        savedBrand.setGenericName(brand.getGenericName());
-        savedBrand.setManufacturer(brand.getManufacturer());
+        savedDrug = drugRepository.getById(drug.getId());
+        savedDrug.setGenericName(drug.getGenericName());
       }
 
-      savedBrand = brandRepository.saveAndFlush(savedBrand);
+      savedDrug = drugRepository.saveAndFlush(savedDrug);
 
-      BrandRegimenLink brandRegimenLink = brandRegimenLinkRepository.findBrandRegimenLinkByBrandIdAndRegimenId(savedBrand.getId(), regimenId);
-      if (null == brandRegimenLink) {
-        brandRegimenLink = new BrandRegimenLink(savedBrand.getId(), regimenId);
-        brandRegimenLink.setId(null == brandRegimenLinkRepository.getMaxId() ? 0 : brandRegimenLinkRepository.getMaxId() + 1 );
-        brandRegimenLinkRepository.save(brandRegimenLink);
+      DrugRegimenLink drugRegimenLink = drugRegimenLinkRepository.findDrugRegimenLinkByBrandIdAndRegimenId(savedDrug.getId(), regimenId);
+      if (null == drugRegimenLink) {
+        drugRegimenLink = new DrugRegimenLink(savedDrug.getId(), regimenId);
+        drugRegimenLink.setId(null == drugRegimenLinkRepository.getMaxId() ? 0 : drugRegimenLinkRepository.getMaxId() + 1 );
+        drugRegimenLinkRepository.save(drugRegimenLink);
       }
+
+      for (DrugBrand brand: drug.getDrugBrandList()) {
+        DrugBrand brandToSave = null;
+        if (null == brand.getId()) {
+          brand.setId(drugBrandRepository.getNextId());
+          brandToSave = brand;
+        } else {
+          brandToSave = drugBrandRepository.getById(brand.getId());
+          brandToSave.setBrandName(brand.getBrandName());
+          brandToSave.setManufacturer(brand.getManufacturer());
+        }
+
+        drugBrandRepository.saveAndFlush(brandToSave);
+      }
+
     }
   }
 
