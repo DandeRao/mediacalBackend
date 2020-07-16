@@ -1,6 +1,7 @@
 package com.patient.repos;
 
 import com.patient.models.DrugBrand;
+import com.patient.models.DrugBrandLink;
 import com.patient.models.DrugRegimenLink;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,4 +21,6 @@ public interface DrugBrandRepository extends JpaRepository<DrugBrand, Integer> {
   @Query("Select r from DrugBrand r where r.id = :id")
   public DrugBrand getById(@Param("id") int id);
 
+  @Query(value = "select r from DrugBrand r where r.brand_name = :brandName", nativeQuery = true)
+  DrugBrandLink getDrugBrandLinkByBrandName(@Param("brandName") String brandName);
 }

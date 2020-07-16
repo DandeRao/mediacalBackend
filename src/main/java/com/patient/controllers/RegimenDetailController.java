@@ -3,6 +3,7 @@ package com.patient.controllers;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.patient.models.CancerResponse;
+import com.patient.models.Drug;
 import com.patient.models.LevelType;
 import com.patient.models.RegimenDetail;
 import com.patient.services.RegimenDetailService;
@@ -182,5 +183,23 @@ public class RegimenDetailController {
     @RequestMapping(value = "/regimenDetailController/getRegimenListToAddToCancer/{cancerId}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public CancerResponse getRegimenListToAddToCancer(@PathVariable("cancerId") int cancerId) {
         return regimenDetailService.getRegimenListToAddToCancer(cancerId, null);
+    }
+
+    @CrossOrigin("*")
+    @RequestMapping(value = "/regimenDetailController/getAllDrugs", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    public List<Drug> getAllDrugs() {
+        return regimenDetailService.getAllDrugs();
+    }
+
+    @CrossOrigin("*")
+    @RequestMapping(value = "/regimenDetailController/add/drug", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    public Drug addDrug(@RequestBody String payLoad) throws IOException {
+        return regimenDetailService.addDrug(payLoad);
+    }
+
+    @CrossOrigin("*")
+    @RequestMapping(value = "/regimenDetailController/edit/drug", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    public Drug editDrug(@RequestBody String payLoad) throws IOException {
+        return regimenDetailService.editDrug(payLoad);
     }
 }

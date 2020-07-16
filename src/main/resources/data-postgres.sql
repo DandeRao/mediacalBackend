@@ -11739,7 +11739,7 @@ insert into drug (id, generic_name) values (143, 'Flutamide');
 insert into drug (id, generic_name) values (113, 'Keytruda');
 insert into drug (id, generic_name) values (35, 'Doxorubicin liposome');
 insert into drug (id, generic_name) values (98, 'Vorinostat');
-insert into drug (id, generic_name) values (38, 'Methotrexate (Otrexup; Rasuvo; Rheumatrex [DSC]; Trexall; Xatmep). Vinblastine (Vinblastine), Doxorubicin (Adriamycin), (Cisplatin (Platinum)');
+insert into drug (id, generic_name) values (38, 'Methotrexate');
 insert into drug (id, generic_name) values (114, 'Ixabepilome');
 insert into drug (id, generic_name) values (161, 'Bicalutamide');
 insert into drug (id, generic_name) values (57, 'Procarbazine');

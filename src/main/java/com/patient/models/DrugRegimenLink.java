@@ -16,14 +16,14 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class DrugRegimenLink {
   @Id
-  @Column(name = "id", updatable = false, nullable = false)
-  private Integer id;
+  @Column(name = "id")
+  Integer id;
 
   @Column(name = "drug_id")
-  private Integer drugId;
+  Integer drugId;
 
   @Column(name = "regimen_id")
-  private Integer regimenId;
+  Integer regimenId;
 
   public DrugRegimenLink(int drugId, int regimenId) {
     this.drugId = drugId;

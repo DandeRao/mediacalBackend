@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 public class DrugBrand {
   @Id
-  @Column(name = "id", updatable = false, nullable = false)
+  @Column(name = "id")
   private Integer id;
 
   @Column(name = "brand_name")

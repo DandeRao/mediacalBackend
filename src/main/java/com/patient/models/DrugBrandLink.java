@@ -16,16 +16,21 @@ import java.util.List;
 @Data
 @Builder
 @AllArgsConstructor
-
 public class DrugBrandLink implements Serializable {
 
   @Id
-  @Column(name = "id", updatable = false, nullable = false)
-  private Integer id;
+  @Column(name = "id")
+  Integer id;
 
   @Column(name = "drug_id")
-  private Integer drugId;
+  Integer drugId;
 
   @Column(name = "drug_brand_id")
-  private Integer drugBrandId;
+  Integer drugBrandId;
+
+  public DrugBrandLink(Integer drugId, Integer drugBrandId) {
+    this.drugId = drugId;
+    this.drugBrandId = drugBrandId;
+    this.id = null;
+  }
 }

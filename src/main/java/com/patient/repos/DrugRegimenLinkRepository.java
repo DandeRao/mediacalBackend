@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DrugRegimenLinkRepository extends JpaRepository<DrugRegimenLink, Integer> {
-  @Query(value = "select MAX(id) from brand_regimen_link", nativeQuery = true)
+  @Query(value = "select MAX(id) from drug_regimen_link", nativeQuery = true)
   Integer getMaxId();
 
   @Query("Select c from DrugRegimenLink c where c.drugId = :drugId and c.regimenId = :regimenId")

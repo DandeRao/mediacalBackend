@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.patient.models.*;
 import com.patient.repos.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -39,6 +40,9 @@ public class RegimenDetailService {
 
   @Autowired
   private DrugRegimenLinkRepository drugRegimenLinkRepository;
+
+  @Autowired
+  private DrugBrandLinkRepository drugBrandLinkRepository;
 
   @Autowired
   private ReferenceRepository referenceRepository;
@@ -406,5 +410,70 @@ public class RegimenDetailService {
     response.setAllRegimenListToAddToCancer(regimenDetailRepository.getRegimenDetailNotLinkedToCancerId(cancerId));
 
     return response;
+  }
+
+  public List<Drug> getAllDrugs() {
+    return drugRepository.findAll(new Sort(Sort.Direction.ASC, "genericName"));
+  }
+
+  public Drug addDrug(String payload) throws IOException {
+
+    Drug drugFromRequest = objectMapper.readValue(payload, Drug.class);
+
+    if (null == drugFromRequest.getId()) {
+      drugFromRequest.setId(drugRepository.getNextId());
+    }
+
+    Drug drugToSave = new Drug();
+    drugToSave.setId(drugFromRequest.getId());
+    drugToSave.setGenericName(drugFromRequest.getGenericName());
+    drugRepository.save(drugToSave);
+
+    if (null != drugFromRequest.getDrugBrandList()) {
+      for(DrugBrand drugBrand: drugFromRequest.getDrugBrandList()) {
+        if (null == drugBrand.getId()) {
+          drugBrand.setId(drugBrandRepository.getNextId());
+        }
+
+        drugBrandRepository.save(drugBrand);
+
+        DrugBrandLink drugBrandLink = new DrugBrandLink();
+        drugBrandLink.setId(drugBrandLinkRepository.getNextId());
+        drugBrandLink.setDrugId(drugFromRequest.getId());
+        drugBrandLink.setDrugBrandId(drugBrand.getId());
+
+        drugBrandLinkRepository.save(drugBrandLink);
+      }
+    }
+
+    return drugToSave;
+  }
+
+  public Drug editDrug(String payload) throws IOException {
+
+    Drug drugFromRequest = objectMapper.readValue(payload, Drug.class);
+    Drug drugToSave = new Drug();
+    drugToSave.setId(drugFromRequest.getId());
+    drugToSave.setGenericName(drugFromRequest.getGenericName());
+    drugRepository.save(drugToSave);
+
+    if (null != drugFromRequest.getDrugBrandList()) {
+      for(DrugBrand drugBrand: drugFromRequest.getDrugBrandList()) {
+        if (null == drugBrand.getId()) {
+          drugBrand.setId(drugBrandRepository.getNextId());
+        }
+
+        drugBrandRepository.save(drugBrand);
+
+        if (null == drugBrandLinkRepository.getDrugBrandLinkByDrugAndBrandId(drugBrand.getId(), drugFromRequest.getId())) {
+          DrugBrandLink drugBrandLink = new DrugBrandLink(drugFromRequest.getId(), drugBrand.getId());
+          drugBrandLink.setId(drugBrandLinkRepository.getNextId());
+
+          drugBrandLinkRepository.save(drugBrandLink);
+        }
+      }
+    }
+
+    return drugToSave;
   }
 }
