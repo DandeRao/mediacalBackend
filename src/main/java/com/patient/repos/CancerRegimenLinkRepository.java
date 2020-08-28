@@ -14,7 +14,11 @@ public interface CancerRegimenLinkRepository extends JpaRepository<CancerRegimen
 
 
   @Query(value = "select MAX(id) from cancer_regimen_link", nativeQuery = true)
-  public int getMaxId();
+  public Integer getMaxId();
+
+  default Integer getNextId() {
+    return null == getMaxId() ? 1 : this.getMaxId() + 1;
+  }
 
   @Query("Select c from CancerRegimenLink c where c.cancerId = :cancerId")
   public List<CancerRegimenLink> findRegimenDetailByCancerId(@Param("cancerId") int cancerId);

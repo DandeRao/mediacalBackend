@@ -124,7 +124,7 @@ public class CancerService {
 
     List<CancerRegimenLink> regimenBeingRemoved = new ArrayList<>();
     List<CancerRegimenLink> finalRegimenList = new ArrayList<>();
-
+    Integer nextIdInCancerRegimen = cancerRegimenLinkRepository.getMaxId();
     for(String regimenId: incomingRegimenString.split(",")) {
       int numberOfRegimenBeingRemoved = regimenBeingRemoved.size();
       for(CancerRegimenLink cancerRegimenLink: existingCancerRegimen) {
@@ -134,8 +134,9 @@ public class CancerService {
       }
 
       if (numberOfRegimenBeingRemoved == regimenBeingRemoved.size()) {
+        nextIdInCancerRegimen = nextIdInCancerRegimen + 1;
           finalRegimenList.add(CancerRegimenLink.builder()
-                  .id(cancerRegimenLinkRepository.getMaxId())
+                  .id(nextIdInCancerRegimen)
                   .regimenId(Integer.valueOf(regimenId))
                   .cancerId(incomingCancer.getId())
                   .build());
