@@ -24,6 +24,10 @@ public class Reference implements Serializable {
   @Column(name = "reference")
   @Size(max = 10485760)
   private String referenceValue;
+
+  @Column(name = "link")
+  @Size(max = 10485760)
+  private String referenceLink;
 //
 //  @Column(name = "regimen_id")
 //  private Integer regimenId;

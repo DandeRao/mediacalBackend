@@ -1,5 +1,10 @@
 package com.test;
 
+import com.patient.models.responses.Regimen;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.util.StringUtils;
 
 import java.sql.Connection;
@@ -14,7 +19,8 @@ import static com.rometools.utils.Strings.trim;
 
 public class DataBaseTest {
   public static void main(String[] args) {
-    convertOldBrandRegimenLinkToDrugRegimenLink();
+    generateRegimenReferenceWithLinks();
+//    convertOldBrandRegimenLinkToDrugRegimenLink();
   }
 
   public static void createCancerRegimenLinkTable () {
@@ -78,6 +84,76 @@ public class DataBaseTest {
             }
           }
         }
+      }
+
+    } /*catch (ClassNotFoundException e) {
+            System.out.println("PostgreSQL JDBC driver not found.");
+            e.printStackTrace();
+        }*/ catch (SQLException e) {
+      System.out.println("Connection failure.");
+      e.printStackTrace();
+    }
+  }
+
+  public static void generateRegimenReferenceWithLinks () {
+    try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/medicalApp", "postgres", "postgres")) {
+
+      System.out.println("Java JDBC PostgreSQL Example");
+      // When this class first attempts to establish a connection, it automatically loads any JDBC 4.0 drivers found within
+      // the class path. Note that your application must manually load any JDBC drivers prior to version 4.0.
+//          Class.forName("org.postgresql.Driver");
+      Map<Integer, List<RegimenReference>> mapOfReferencesByRegimen = new HashMap<>();
+      System.out.println("Connected to PostgreSQL database!");
+      Statement statement = connection.createStatement();
+      ResultSet resultSet = statement.executeQuery("SELECT * FROM public.regimen_reference");
+      int columnId = 1;
+      while (resultSet.next()) {
+        Integer regimenId = resultSet.getInt("regimen_detail_id");
+
+        if (null != regimenId)
+        {
+          mapOfReferencesByRegimen.computeIfAbsent(regimenId, k -> new ArrayList<>());
+          mapOfReferencesByRegimen.get(regimenId).add(new RegimenReference(0, resultSet.getString("reference"), null, regimenId));
+        }
+      }
+
+      Map<Integer, List<RegimenReference>> updatedMapOfReferencesByPopulatingLinks = new HashMap<>();
+
+      for(Map.Entry<Integer, List<RegimenReference>> entry: mapOfReferencesByRegimen.entrySet()) {
+        mapOfReferencesByRegimen.computeIfAbsent(entry.getKey(), k -> new ArrayList<>());
+        List<RegimenReference> regimenReferences = entry.getValue();
+        List<RegimenReference> referencesWithCorrectLinks = new ArrayList<>();
+        Collections.sort(regimenReferences);
+//        System.out.format("Processing reference for Regimen  %d, found %d regimen; %n", entry.getKey(), regimenReferences.size());
+
+        for (int i=0; i < regimenReferences.size(); i = i + 2) {
+          RegimenReference regimenReference = new RegimenReference();
+          regimenReference.reference = regimenReferences.get(i).reference;
+          if (i + 1 < regimenReferences.size()) {
+            regimenReference.referenceLink = regimenReferences.get(i + 1).reference;
+          }
+          regimenReference.regimenId = regimenReferences.get(i).regimenId;
+//          System.out.format("i: %d, referenceSize: %d; Regimen Created: %s; %n", i, regimenReferences.size(), regimenReference.toString());
+          referencesWithCorrectLinks.add(regimenReference);
+        }
+
+        updatedMapOfReferencesByPopulatingLinks.put(entry.getKey(), referencesWithCorrectLinks);
+      }
+
+      System.out.println("Number of regimen Captured: " + updatedMapOfReferencesByPopulatingLinks.size());
+
+      // this loop is supposed to be used to create the  query
+      int counter = 1;
+      for(Map.Entry<Integer, List<RegimenReference>> entry: updatedMapOfReferencesByPopulatingLinks.entrySet()) {
+        List<RegimenReference> regimenReferences = entry.getValue();
+        for(RegimenReference r: regimenReferences) {
+          String reference = StringUtils.replace(r.reference, "\n", " ");
+          reference = StringUtils.replace(reference, "'", "''");
+          System.out.printf("insert into regimen_reference (id, regimen_detail_id, reference, link) values (%d, %d, '%s', '%s');%n",
+                  counter, r.regimenId, reference, r.referenceLink);
+          counter++;
+        }
+
       }
 
     } /*catch (ClassNotFoundException e) {
@@ -406,3 +482,29 @@ public class DataBaseTest {
 
 //                  System.out.printf("insert into regimen_brand_names (id, regimen_id, brand_name, generic_name, manufacturer) values (%d, %d, \"%s\", \"%s\", \"%s\");%n", columnId, resultSet.getInt("pk"), trim(brand), trim(eachGenericNameUnderBrand), "");
 //                  columnId++;
+
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter @Getter
+ class RegimenReference implements Comparable<RegimenReference> {
+  int id;
+  String reference;
+  String referenceLink;
+  int regimenId;
+
+  @Override
+  public int compareTo(RegimenReference o) {
+    if(id==o.id)
+      return 0;
+    else if(id > o.id )
+      return 1;
+    else
+      return -1;
+  }
+
+  @Override
+  public String toString() {
+    return String.format("id: %d; reference: %s; link: %s; regimenId: %d", id, reference, referenceLink, regimenId);
+  }
+}

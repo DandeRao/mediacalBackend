@@ -11,6 +11,6 @@ import java.util.List;
 public class Cancer {
   private Integer id;
   private String title;
-  private List<Regimen> regimenList = new ArrayList<>();
+  private List<RegimenLevel> regimenByLevelList = new ArrayList<>();
   private List<Cancer> subCancers  = new ArrayList<>();
 }

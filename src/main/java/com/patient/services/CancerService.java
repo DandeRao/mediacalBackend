@@ -9,6 +9,7 @@ import com.patient.models.CancerRegimenLink;
 import com.patient.models.CancerResponse;
 import com.patient.models.RegimenDetail;
 import com.patient.models.responses.Regimen;
+import com.patient.models.responses.RegimenLevel;
 import com.patient.repos.CancerRegimenLinkRepository;
 import com.patient.repos.CancerRepository;
 import com.patient.repos.PatientRepository;
@@ -248,7 +249,7 @@ public class CancerService {
       if (subCancers.size() == 0) {
         return cancersInResponse;
       } else {
-        c1.setSubCancers(getSubCancerResponseType(c1));
+        c1.setSubCancers(getCancerResponsesFromCancers(subCancers));
         cancersInResponse.add(c1);
       }
     }
@@ -274,15 +275,36 @@ public class CancerService {
     com.patient.models.responses.Cancer cancerR = new com.patient.models.responses.Cancer();
     cancerR.setId(cancer.getId());
     cancerR.setTitle(cancer.getTitle());
-    List<Regimen> regimenList = new ArrayList();
+
+
+    Map<String, List<String>> levelToRegimenMap = new HashMap<>();
 
     for (RegimenDetail regimenDetail: cancer.getRegimenList()) {
-      Regimen regimen = new Regimen();
-      regimen.setId(regimenDetail.getId());
-      regimenList.add(regimen);
+      List<String> regimenList = new ArrayList();
+      String level = "none";
+      if (null != regimenDetail.getRegimenLevels() && regimenDetail.getRegimenLevels().size() > 0 && null !=
+              levelToRegimenMap.get(regimenDetail.getRegimenLevels().get(0).getLevel())) {
+        level = regimenDetail.getRegimenLevels().get(0).getLevel();
+        regimenList = levelToRegimenMap.get(level);
+      }
+
+      regimenList.add(String.valueOf(regimenDetail.getId()));
+      levelToRegimenMap.put(level, regimenList);
     }
 
-    cancerR.getRegimenList().addAll(regimenList);
+    List<RegimenLevel> regimenList = new ArrayList<>();
+
+    Iterator hmIterator = levelToRegimenMap.entrySet().iterator();
+
+    while (hmIterator.hasNext()) {
+      Map.Entry mapElement = (Map.Entry) hmIterator.next();
+      RegimenLevel regimenLevel = new RegimenLevel();
+      regimenLevel.setRegimenLevelId((Integer) mapElement.getKey());
+      regimenLevel.setRegimenIds((List<Integer>) mapElement.getValue());
+      regimenList.add(regimenLevel);
+    }
+
+    cancerR.getRegimenByLevelList().addAll(regimenList);
 
     return cancerR;
   }

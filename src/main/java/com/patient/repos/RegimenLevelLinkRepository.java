@@ -31,4 +31,7 @@ public interface RegimenLevelLinkRepository extends JpaRepository<RegimenLevelLi
 
   @Query("Select r from RegimenLevelLink r where r.id = :id")
   public RegimenLevelLink getById(@Param("id") int id);
+
+  @Query("Select r from RegimenLevelLink r where r.regimenId = :id")
+  public List<RegimenLevelLink> getLevelTypeByRegimenId(@Param("id") int id);
 }
