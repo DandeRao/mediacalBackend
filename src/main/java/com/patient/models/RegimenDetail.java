@@ -12,6 +12,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -85,4 +86,8 @@ public class RegimenDetail implements Serializable {
 
     @Transient
     private List<String> linkedToCancers = new ArrayList<>( );
+
+    @Column(name = "last_modified_date")
+    @Size(max = 10485760)
+    private Date lastModifiedDate;
 }

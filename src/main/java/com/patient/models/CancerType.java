@@ -4,7 +4,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @NoArgsConstructor
@@ -26,5 +28,9 @@ public class CancerType implements Serializable {
 
     @Column(name = "title")
     private String title;
+
+    @Column(name = "last_modified_date")
+    @Size(max = 10485760)
+    private Date lastModifiedDate;
 
 }

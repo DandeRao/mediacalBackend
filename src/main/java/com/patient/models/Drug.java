@@ -10,8 +10,10 @@ import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -35,5 +37,14 @@ public class Drug implements Serializable {
           inverseJoinColumns = {@JoinColumn(name = "drug_brand_id")}
   )
   List<DrugBrand> drugBrandList = new ArrayList<>();
+
+
+  @Column(name = "additional_details")
+  @Size(max = 10485760)
+  String additionalDetails;
+
+  @Column(name = "last_modified_date")
+  @Size(max = 10485760)
+  private Date lastModifiedDate;
 
 }

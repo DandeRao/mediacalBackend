@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "regimen_reference")
@@ -25,13 +26,14 @@ public class Reference implements Serializable {
   @Size(max = 10485760)
   private String referenceValue;
 
-  @Column(name = "link")
-  @Size(max = 10485760)
-  private String referenceLink;
 //
 //  @Column(name = "regimen_id")
 //  private Integer regimenId;
   @ManyToOne()
   @JsonBackReference
   private RegimenDetail regimenDetail;
+
+  @Column(name = "last_modified_date")
+  @Size(max = 10485760)
+  private Date lastModifiedDate;
 }

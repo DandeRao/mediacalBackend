@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 @Table(name = "brand")
@@ -32,4 +33,8 @@ public class Brand {
   @Column(name = "manufacturer")
   @Size(max = 10485760)
   private String manufacturer;
+
+  @Column(name = "last_modified_date")
+  @Size(max = 10485760)
+  private Date lastModifiedDate;
 }

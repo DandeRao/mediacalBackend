@@ -9,8 +9,10 @@ import org.hibernate.annotations.Where;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -52,4 +54,8 @@ public class Cancer implements Serializable {
 
   @Transient
   private List<String> regimenLevelsInCancer = new ArrayList<>( );
+
+  @Column(name = "last_modified_date")
+  @Size(max = 10485760)
+  private Date lastModifiedDate;
 }

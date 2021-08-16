@@ -1,7 +1,9 @@
 package com.patient.models;
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "patient_type")
@@ -17,5 +19,9 @@ public class Patient implements Serializable {
 
     @Column(name = "title")
     private String title;
+
+    @Column(name = "last_modified_date")
+    @Size(max = 10485760)
+    private Date lastModifiedDate;
 
 }
