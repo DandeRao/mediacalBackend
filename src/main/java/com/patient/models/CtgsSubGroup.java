@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -23,11 +24,7 @@ public class CtgsSubGroup {
     String title;
 
 
-    @ManyToOne()
-    @JsonBackReference
-    private CtgsOption ctgsOption;
-
-    @ManyToOne()
-    @JsonBackReference
-    private CtgsGroup ctgsGroup;
+    @OneToMany()
+    @JoinColumn(name="ctgs_sub_group_id", referencedColumnName = "id")
+    private List<CtgsOption> ctgsOptions;
 }

@@ -15,9 +15,6 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 public class CtgsOption {
-    @ManyToOne()
-    @JsonBackReference
-    private CtgsSubGroup ctgsSubGroup;
     @Id
     @Column(name = "id")
     Integer id;

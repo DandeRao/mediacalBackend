@@ -11,6 +11,7 @@ import com.patient.models.responses.*;
 import com.patient.models.responses.Cancer;
 import com.patient.repos.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -40,6 +41,9 @@ public class PatientService {
 
     @Autowired
     private RegimenLevelLinkRepository regimenLevelLinkRepository;
+
+    @Autowired
+    private CTGSGroupRepository ctgsGroupRepository;
 
     Map<Integer, String> levelTypeMap = new HashMap<>();
 
@@ -98,23 +102,33 @@ public class PatientService {
             regimen.setRegimenLevels(regimenDetail.getRegimenLevels());
             regimen.setName(regimenDetail.getDispName());
             regimen.setReferences(regimenDetail.getReferences());
-
-            allData.getRegimen().add(regimen);
+            allData.getRegimen().put(String.valueOf(regimen.getId()), regimen);
         }
 
-        allData.setDrugs(drugRepository.findAll());
+        allData.setDrugs(drugRepository.findAll(new Sort(Sort.Direction.ASC, "genericName")));
+        Map<Integer, CtgsGroup> ctgsGroupMap = new LinkedHashMap<>();
+
+        for (CtgsGroup ctgsGroup : ctgsGroupRepository.findAll()) {
+            ctgsGroupMap.put(ctgsGroup.getId(),ctgsGroup);
+        }
+
+        allData.setCtgsGroups(ctgsGroupMap);
+
+        Map<Integer, LevelType> levelTypeMap = new LinkedHashMap<>();
+
+
+
+        for (LevelType levelType : levelTypeRepository.findAll()) {
+           levelTypeMap.put(levelType.getId(),levelType);
+        }
+
+        allData.setRegimenLevel(levelTypeMap);
 
         return allData;
     }
 
     private Cancer populateSubCancersForCancer(Cancer cancer) {
         List<com.patient.models.Cancer> subCancersForCancer = cancerRepository.getCancersByParentId(cancer.getId());
-
-
-
-
-
-
 
 		List<Cancer> subCancers = new ArrayList<>();
         if (null != subCancersForCancer && subCancersForCancer.size() > 0) {

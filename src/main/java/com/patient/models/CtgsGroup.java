@@ -1,5 +1,6 @@
 package com.patient.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,11 +24,7 @@ public class CtgsGroup {
     @Column(name = "title")
     String title;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinTable(
-            name = "cancer_regimen_link",
-            joinColumns = {@JoinColumn(name = "cancer_id")},
-            inverseJoinColumns = {@JoinColumn(name = "regimen_id")}
-    )
+    @OneToMany()
+    @JoinColumn(name="ctgs_group_id", referencedColumnName = "id")
     List<CtgsSubGroup> ctgsSubGroupList = new ArrayList<>();
 }
