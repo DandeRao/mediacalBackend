@@ -1,9 +1,11 @@
 package com.patient.services;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.patient.models.*;
 
@@ -45,6 +47,9 @@ public class PatientService {
     @Autowired
     private CTGSGroupRepository ctgsGroupRepository;
 
+    @Autowired
+    private StorageService storageService;
+
     Map<Integer, String> levelTypeMap = new HashMap<>();
 
     public List<Patient> getAllPatients() {
@@ -72,18 +77,18 @@ public class PatientService {
         List<Patient> patients = patientRepository.findAll();
 
         for (Patient patient : patients) {
-            PatientType patientType = new PatientType();
+            PatientTypeV2 patientType = new PatientTypeV2();
             patientType.setType(patient.getTitle());
             // for each patient get cancers
             List<com.patient.models.Cancer> cancersFromRepoList = cancerRepository.getCancersByPatientId(patient.getId());
-            List<Cancer> cancersToPutInPatientResponse = new ArrayList<>();
+            List<CancerV2> cancersToPutInPatientResponse = new ArrayList<>();
 
             for (com.patient.models.Cancer cancer : cancersFromRepoList) {
-                Cancer responseCancer = new com.patient.models.responses.Cancer();
+                CancerV2 responseCancer = new CancerV2();
                 responseCancer.setId(cancer.getId());
 				responseCancer.setTitle(cancer.getTitle());
-				populateRegimenForCancer(responseCancer);
-                populateSubCancersForCancer(responseCancer);
+				populateRegimenForCancerV2(responseCancer);
+                populateSubCancersForCancerV2(responseCancer);
 
                 cancersToPutInPatientResponse.add(responseCancer);
             }
@@ -150,6 +155,70 @@ public class PatientService {
         return cancer;
     }
 
+    private CancerV2 populateSubCancersForCancerV2(CancerV2 cancer) {
+        List<com.patient.models.Cancer> subCancersForCancer = cancerRepository.getCancersByParentId(cancer.getId());
+
+        List<CancerV2> subCancers = new ArrayList<>();
+        if (null != subCancersForCancer && subCancersForCancer.size() > 0) {
+            // this block is for building sub cancers only
+            for (com.patient.models.Cancer subCancerFromDB : subCancersForCancer) {
+                CancerV2 responseCancer = new CancerV2();
+                responseCancer.setTitle(subCancerFromDB.getTitle());
+                responseCancer.setId(subCancerFromDB.getId());
+
+                populateRegimenForCancerV2(responseCancer);
+
+                populateSubCancersForCancerV2(responseCancer);
+                subCancers.add(responseCancer);
+            }
+        }
+
+        // need to build up the cancer here
+        cancer.setCancers(subCancers);
+        return cancer;
+    }
+
+    private void populateRegimenForCancerV2(CancerV2 cancer) {
+        // setting regimen under cancer.regimenLevel
+        List<CancerRegimenLink> cancerRegimenLinks = cancerRegimenLinkRepository.getCancerRegimenLinkByCancerId(cancer.getId());
+        if (null != cancerRegimenLinks && cancerRegimenLinks.size() > 0) {
+            Map<Integer, RegimenLevel> levelTitleToRegimenLevelMap = new HashMap<>();
+            for (CancerRegimenLink cancerRegimenLink : cancerRegimenLinks) {
+                List<RegimenLevelLink> regimenLevelLinks = regimenLevelLinkRepository.getLevelTypeByRegimenId(cancerRegimenLink.getRegimenId());
+
+                // this block for regimen with level type links.
+                if (null != regimenLevelLinks && regimenLevelLinks.size() > 0) {
+                    for (RegimenLevelLink regimenLevelLink : regimenLevelLinks) {
+                        Integer levelTitle = regimenLevelLink.getLevelId();
+
+                        RegimenLevel regimenLevel = levelTitleToRegimenLevelMap.get(levelTitle);
+
+                        if (null == regimenLevel) {
+                            regimenLevel = new RegimenLevel();
+                        }
+
+                        regimenLevel.setRegimenLevelId(levelTitle);
+                        regimenLevel.getRegimenIds().add(cancerRegimenLink.getRegimenId());
+
+                        levelTitleToRegimenLevelMap.put(levelTitle, regimenLevel);
+                    }
+                } else {
+                    RegimenLevel regimenLevel = levelTitleToRegimenLevelMap.get(-1);
+
+                    if (null == regimenLevel) {
+                        regimenLevel = new RegimenLevel();
+                    }
+
+                    regimenLevel.setRegimenLevelId(-1);
+                    regimenLevel.getRegimenIds().add(cancerRegimenLink.getRegimenId());
+                    levelTitleToRegimenLevelMap.put(-1, regimenLevel);
+
+                }
+            }
+            cancer.getRegimenByLevelList().addAll(levelTitleToRegimenLevelMap.values());
+        }
+    }
+
     private void populateRegimenForCancer(Cancer cancer) {
 		// setting regimen under cancer.regimenLevel
 		List<CancerRegimenLink> cancerRegimenLinks = cancerRegimenLinkRepository.getCancerRegimenLinkByCancerId(cancer.getId());
@@ -197,6 +266,23 @@ public class PatientService {
 
         for (LevelType lt : levelTypes) {
             levelTypeMap.put(lt.getId(), lt.getLevel());
+        }
+    }
+
+    public void generateDataFileAndUploadToS3() {
+        AllData data = getAllData();
+        File dataFile = new File("data.json");
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            System.out.println(new StringBuilder().append("Creating new Data file on ").append(new Date()).toString());
+            mapper.writeValue(dataFile, data);
+            storageService.uploadDataFile(dataFile);
+            dataFile.delete();
+        }catch (JsonProcessingException e) {
+            System.out.println(new StringBuilder().append("Parsing json file failed on ").append(new Date()).toString());
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

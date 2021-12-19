@@ -44,7 +44,6 @@ public class Drug implements Serializable {
   String additionalDetails;
 
   @Column(name = "last_modified_date")
-  @Size(max = 10485760)
   private Date lastModifiedDate;
 
 }

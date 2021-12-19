@@ -12,7 +12,7 @@ import java.util.*;
 @Setter
 @Getter
 public class AllData {
-  private List<PatientType> patients = new ArrayList();
+  private List<PatientTypeV2> patients = new ArrayList();
   private Map<String, Regimen> regimen = new HashMap<>();
   private List<Drug> drugs = new ArrayList();
   private Map<Integer, CtgsGroup> ctgsGroups = new LinkedHashMap<>();

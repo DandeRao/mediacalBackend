@@ -67,4 +67,11 @@ public class PatientController {
 	public AllData getAllData() {
 		return patientService.getAllData();
 	}
+
+	@CrossOrigin("*")
+	@RequestMapping(value = "/patientController/generateDataFileAndUploadToS3", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+	public void generateDataFileAndUploadToS3() {
+		patientService.generateDataFileAndUploadToS3();
+	}
+
 }

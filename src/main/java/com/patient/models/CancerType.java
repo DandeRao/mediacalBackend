@@ -30,7 +30,6 @@ public class CancerType implements Serializable {
     private String title;
 
     @Column(name = "last_modified_date")
-    @Size(max = 10485760)
     private Date lastModifiedDate;
 
 }

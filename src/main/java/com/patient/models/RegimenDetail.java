@@ -88,6 +88,5 @@ public class RegimenDetail implements Serializable {
     private List<String> linkedToCancers = new ArrayList<>( );
 
     @Column(name = "last_modified_date")
-    @Size(max = 10485760)
     private Date lastModifiedDate;
 }
